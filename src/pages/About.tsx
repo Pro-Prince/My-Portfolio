@@ -1,4 +1,4 @@
-import { Github, Linkedin, Twitter, Instagram } from 'lucide-react';
+import { Github, Linkedin, Twitter, Instagram, Puzzle, Bot, Zap } from 'lucide-react';
 import FadeIn from '../components/FadeIn';
 import { useDynamicTitle } from '../hooks/useDynamicTitle';
 
@@ -13,12 +13,12 @@ export default function About() {
         <div className="py-24 grid grid-cols-1 md:grid-cols-[38%_62%] gap-12 items-center">
           {/* LEFT COLUMN */}
           <div className="text-center">
-            <div style={{ width: 200, height: 200, borderRadius: '50%', background: '#1A1A1A', border: '4px solid rgba(99,102,241,0.25)', boxShadow: '0 0 50px rgba(99,102,241,0.1)', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }} className="mx-auto">
+            <div style={{ borderRadius: '50%', background: '#1A1A1A', border: '4px solid rgba(99,102,241,0.25)', boxShadow: '0 0 50px rgba(99,102,241,0.1)', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }} className="mx-auto flex-shrink-0 w-[220px] h-[220px] sm:w-[260px] sm:h-[260px] md:w-[280px] md:h-[280px]">
               <img src="/prince-photo.jpg" alt="Prince Patel" className="w-full h-full object-cover rounded-full" />
             </div>
-            <div className="mt-6 font-bold text-xl text-white">Prince Patel</div>
-            <div className="text-sm text-[#6366F1] mt-1">AI Builder & CS Student</div>
-            <div className="mt-5 flex justify-center gap-3">
+            <div className="mt-8 font-bold text-2xl text-white">Prince Patel</div>
+            <div className="text-base text-[#6366F1] mt-1">AI Builder & CS Student</div>
+            <div className="mt-6 flex justify-center gap-4">
               <a href="https://github.com/Pro-Prince" aria-label="GitHub profile" target="_blank" rel="noopener noreferrer" className="w-[40px] h-[40px] flex items-center justify-center rounded-full bg-[#1A1A1A] border border-[#262626] hover:border-[#6366F1] transition-colors text-white">
                 <Github size={20} />
               </a>
@@ -60,7 +60,7 @@ export default function About() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <FadeIn delay={0}>
               <div className="bg-[#111111] border border-[#262626] rounded-xl p-6 hover:border-[#3F3F46] transition-colors h-full">
-                <div className="text-4xl mb-4">🧩</div>
+                <div className="mb-4 text-[#6366F1]"><Puzzle size={36} /></div>
                 <h3 className="text-lg font-semibold text-white mb-2">Chrome Extensions</h3>
                 <p className="text-sm text-[#A3A3A3] leading-relaxed">
                   Native browser tools that eliminate real friction from designer and developer workflows. Built with Manifest V3 and a performance-first architecture.
@@ -69,7 +69,7 @@ export default function About() {
             </FadeIn>
             <FadeIn delay={0.1}>
               <div className="bg-[#111111] border border-[#262626] rounded-xl p-6 hover:border-[#3F3F46] transition-colors h-full">
-                <div className="text-4xl mb-4">🤖</div>
+                <div className="mb-4 text-[#22D3EE]"><Bot size={36} /></div>
                 <h3 className="text-lg font-semibold text-white mb-2">AI-Powered Apps</h3>
                 <p className="text-sm text-[#A3A3A3] leading-relaxed">
                   Web and Android apps that integrate Gemini AI to create intelligent, context-aware user experiences. From emotional wellness to personal productivity.
@@ -78,7 +78,7 @@ export default function About() {
             </FadeIn>
             <FadeIn delay={0.2}>
               <div className="bg-[#111111] border border-[#262626] rounded-xl p-6 hover:border-[#3F3F46] transition-colors h-full">
-                <div className="text-4xl mb-4">⚡</div>
+                <div className="mb-4 text-[#22C55E]"><Zap size={36} /></div>
                 <h3 className="text-lg font-semibold text-white mb-2">Full Stack Products</h3>
                 <p className="text-sm text-[#A3A3A3] leading-relaxed">
                   End-to-end development from interface design through React frontend, Supabase backend, PostgreSQL database, and deployment. Idea to shipped product.

@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import FadeIn from '../components/FadeIn';
 import { useCountUp } from '../hooks/useCountUp';
 import { useDynamicTitle } from '../hooks/useDynamicTitle';
+import { Atom, FileCode2, Paintbrush, Database, Sparkles, FlaskConical, Smartphone, LayoutTemplate, Puzzle, BarChart3, Heart, Type } from 'lucide-react';
 
 export default function Home() {
   useDynamicTitle('Prince Patel — I Build Things That Actually Work');
@@ -16,13 +17,13 @@ export default function Home() {
     <main className="pt-24 pb-16 md:pb-24">
       <div className="max-w-6xl mx-auto px-6">
         {/* HERO SECTION */}
-        <div className="grid grid-cols-1 md:grid-cols-[60%_40%] gap-12 items-center mb-24">
+        <div className="grid grid-cols-1 md:grid-cols-[60%_40%] gap-12 md:gap-8 items-center mb-24">
           <FadeIn>
             <div className="mb-6 inline-flex items-center gap-2.5 bg-[#111111] border border-[#262626] rounded-full px-4 py-2 w-fit">
               <div className="w-2 h-2 rounded-full bg-[#22C55E] pulse-dot shadow-[0_0_8px_#22C55E]"></div>
               <span className="text-sm text-[#A3A3A3] font-medium">Open to Freelance & Opportunities</span>
             </div>
-            <h1 className="mb-4 text-6xl font-extrabold tracking-tight leading-[1.1] text-[#FAFAFA]">
+            <h1 className="mb-4 text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.1] text-[#FAFAFA]">
               <div>I Build Things</div>
               <div className="text-[#FAFAFA]">
                 That Actually <span className="text-[#6366F1]">Work.</span>
@@ -45,7 +46,7 @@ export default function Home() {
                 Get In Touch
               </Link>
             </div>
-            <FadeIn delay={0.2} className="mt-12 flex flex-wrap gap-8 md:gap-12">
+            <FadeIn delay={0.2} className="mt-12 grid grid-cols-2 sm:flex sm:flex-wrap gap-8 sm:gap-10 md:gap-12">
               <div>
                 <div className="text-4xl font-bold text-[#6366F1]">
                   <span ref={ref1}>{count1}</span>
@@ -72,11 +73,11 @@ export default function Home() {
               </div>
             </FadeIn>
           </FadeIn>
-          <div className="hidden md:flex justify-end">
-            <div style={{ width: 180, height: 180, borderRadius: '50%', background: '#1A1A1A', border: '4px solid rgba(99,102,241,0.2)', boxShadow: '0 0 40px rgba(99,102,241,0.15)', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <FadeIn delay={0.1} className="flex justify-center md:justify-end">
+            <div style={{ borderRadius: '50%', background: '#1A1A1A', border: '4px solid rgba(99,102,241,0.2)', boxShadow: '0 0 40px rgba(99,102,241,0.15)', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }} className="flex-shrink-0 w-[200px] h-[200px] sm:w-[240px] sm:h-[240px] md:w-[260px] md:h-[260px]">
               <img src="/prince-photo.jpg" alt="Prince Patel" className="w-full h-full object-cover rounded-full" />
             </div>
-          </div>
+          </FadeIn>
         </div>
 
         {/* FEATURED PROJECTS SECTION */}
@@ -193,18 +194,18 @@ export default function Home() {
             className="grid grid-cols-2 md:grid-cols-4 gap-4"
           >
             {[
-              { emoji: '⚛️', name: 'React', sub: 'UI Framework' },
-              { emoji: '🟦', name: 'TypeScript', sub: 'Type Safety' },
-              { emoji: '🎨', name: 'Tailwind CSS', sub: 'Styling' },
-              { emoji: '🗄️', name: 'Supabase', sub: 'Backend & DB' },
-              { emoji: '🤖', name: 'Gemini AI', sub: 'AI Integration' },
-              { emoji: '🧪', name: 'Google AI Studio', sub: 'AI Dev' },
-              { emoji: '📱', name: 'Kotlin', sub: 'Android Native' },
-              { emoji: '🖼️', name: 'Jetpack Compose', sub: 'Android UI' },
-              { emoji: '🧩', name: 'Chrome Ext', sub: 'MV3 Platform' },
-              { emoji: '📊', name: 'Recharts', sub: 'Data Viz' },
-              { emoji: '💜', name: 'Lovable', sub: 'Vibe Coding' },
-              { emoji: '🔤', name: 'Tesseract.js', sub: 'Local OCR' },
+              { icon: <Atom size={28} className="text-[#61DAFB]" />, name: 'React', sub: 'UI Framework' },
+              { icon: <FileCode2 size={28} className="text-[#3178C6]" />, name: 'TypeScript', sub: 'Type Safety' },
+              { icon: <Paintbrush size={28} className="text-[#38BDF8]" />, name: 'Tailwind CSS', sub: 'Styling' },
+              { icon: <Database size={28} className="text-[#3ECF8E]" />, name: 'Supabase', sub: 'Backend & DB' },
+              { icon: <Sparkles size={28} className="text-[#8B5CF6]" />, name: 'Gemini AI', sub: 'AI Integration' },
+              { icon: <FlaskConical size={28} className="text-[#F59E0B]" />, name: 'Google AI Studio', sub: 'AI Dev' },
+              { icon: <Smartphone size={28} className="text-[#7F52FF]" />, name: 'Kotlin', sub: 'Android Native' },
+              { icon: <LayoutTemplate size={28} className="text-[#4285F4]" />, name: 'Jetpack Compose', sub: 'Android UI' },
+              { icon: <Puzzle size={28} className="text-[#FBBF24]" />, name: 'Chrome Ext', sub: 'MV3 Platform' },
+              { icon: <BarChart3 size={28} className="text-[#22D3EE]" />, name: 'Recharts', sub: 'Data Viz' },
+              { icon: <Heart size={28} className="text-[#F43F5E]" />, name: 'Lovable', sub: 'Vibe Coding' },
+              { icon: <Type size={28} className="text-[#A3A3A3]" />, name: 'Tesseract.js', sub: 'Local OCR' },
             ].map((tech, i) => (
               <motion.div 
                 key={i} 
@@ -212,9 +213,9 @@ export default function Home() {
                   hidden: { opacity: 0, y: 16 },
                   visible: { opacity: 1, y: 0, transition: { duration: 0.4 } }
                 }}
-                className="bg-[#111111] border border-[#262626] rounded-xl p-4 text-center hover:border-[#3F3F46] transition-colors"
+                className="bg-[#111111] border border-[#262626] rounded-xl p-4 flex flex-col items-center text-center hover:border-[#3F3F46] transition-colors"
               >
-                <div className="text-3xl mb-3">{tech.emoji}</div>
+                <div className="mb-3">{tech.icon}</div>
                 <div className="text-sm font-medium text-[#FAFAFA] mb-1">{tech.name}</div>
                 <div className="text-xs text-[#525252]">{tech.sub}</div>
               </motion.div>

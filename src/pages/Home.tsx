@@ -73,12 +73,8 @@ export default function Home() {
             </FadeIn>
           </FadeIn>
           <div className="hidden md:flex justify-end">
-            <div className="w-[180px] h-[180px] rounded-full bg-[#1A1A1A] border-4 border-[rgba(99,102,241,0.2)] flex items-center justify-center shadow-[0_0_40px_rgba(99,102,241,0.15)] overflow-hidden">
-              {/* PHOTO — Replace this entire div with:
-                  <img src="/prince-photo.jpg" alt="Prince Patel"
-                    className="w-full h-full object-cover rounded-full" />
-                  Place your photo at public/prince-photo.jpg */}
-              <span className="text-2xl font-bold text-[#3F3F46]">PP</span>
+            <div style={{ width: 180, height: 180, borderRadius: '50%', background: '#1A1A1A', border: '4px solid rgba(99,102,241,0.2)', boxShadow: '0 0 40px rgba(99,102,241,0.15)', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <img src="/prince-photo.jpg" alt="Prince Patel" className="w-full h-full object-cover rounded-full" />
             </div>
           </div>
         </div>

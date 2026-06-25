@@ -13,12 +13,8 @@ export default function About() {
         <div className="py-24 grid grid-cols-1 md:grid-cols-[38%_62%] gap-12 items-center">
           {/* LEFT COLUMN */}
           <div className="text-center">
-            <div className="w-[200px] h-[200px] mx-auto rounded-full bg-[#1A1A1A] border-4 border-[rgba(99,102,241,0.25)] shadow-[0_0_50px_rgba(99,102,241,0.1)] flex items-center justify-center overflow-hidden">
-              {/* PHOTO — Replace this entire div with:
-                  <img src="/prince-photo.jpg" alt="Prince Patel"
-                    className="w-full h-full object-cover rounded-full" />
-                  Place your photo at public/prince-photo.jpg */}
-              <span className="text-2xl font-bold text-[#3F3F46]">PP</span>
+            <div style={{ width: 200, height: 200, borderRadius: '50%', background: '#1A1A1A', border: '4px solid rgba(99,102,241,0.25)', boxShadow: '0 0 50px rgba(99,102,241,0.1)', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }} className="mx-auto">
+              <img src="/prince-photo.jpg" alt="Prince Patel" className="w-full h-full object-cover rounded-full" />
             </div>
             <div className="mt-6 font-bold text-xl text-white">Prince Patel</div>
             <div className="text-sm text-[#6366F1] mt-1">AI Builder & CS Student</div>

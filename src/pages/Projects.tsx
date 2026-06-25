@@ -172,15 +172,10 @@ export default function Projects() {
               </div>
               
               <div className="mt-auto flex gap-3">
-                {project.id === "01" && (
-                  {/* CHROME_STORE — Add Chrome Web Store URL when published */}
-                )}
-                {project.id === "02" && (
-                  {/* CHROME_STORE — Add Chrome Web Store URL when published */}
-                )}
+                {/* CHROME_STORE — Add Chrome Web Store URL when published */}
                 {(project.id === "03" || project.id === "04") && (
                   <>
-                    {project.id === "04" && {/* LIFEOS_DEMO — Replace URL if different */}}
+                    {/* LIFEOS_DEMO — Replace URL if different */}
                     <a href={project.id === "03" ? "https://yoursoulsync.lovable.app" : "https://yourlifetracker.lovable.app"} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center gap-1.5 bg-[rgba(99,102,241,0.08)] border border-[rgba(99,102,241,0.3)] text-[#6366F1] rounded-[8px] px-5 py-2.5 hover:bg-[rgba(99,102,241,0.15)] hover:border-[#6366F1] transition-all duration-200 text-sm font-medium">
                       <ExternalLink size={14} />
                       Live Demo &rarr;

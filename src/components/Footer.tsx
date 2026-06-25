@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-import { Github, Linkedin, Twitter, Instagram } from 'lucide-react';
+import { Github, Linkedin, Instagram } from 'lucide-react';
+import XLogo from './XLogo';
 
 export default function Footer() {
   return (
@@ -20,7 +21,7 @@ export default function Footer() {
                 <Linkedin size={18} />
               </a>
               <a href="https://x.com/Pro_Prince_1" aria-label="X / Twitter profile" target="_blank" rel="noopener noreferrer" className="w-[36px] h-[36px] flex items-center justify-center rounded-full bg-[#111111] border border-[#262626] hover:border-[#6366F1] transition-colors text-white">
-                <Twitter size={18} />
+                <XLogo size={18} />
               </a>
               <a href="https://www.instagram.com/pro.prince.1/" aria-label="Instagram profile" target="_blank" rel="noopener noreferrer" className="w-[36px] h-[36px] flex items-center justify-center rounded-full bg-[#111111] border border-[#262626] hover:border-[#6366F1] transition-colors text-white">
                 <Instagram size={18} />

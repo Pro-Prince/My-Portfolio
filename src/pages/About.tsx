@@ -1,6 +1,7 @@
-import { Github, Linkedin, Twitter, Instagram, Puzzle, Bot, Zap } from 'lucide-react';
+import { Github, Linkedin, Instagram, Puzzle, Bot, Zap } from 'lucide-react';
 import FadeIn from '../components/FadeIn';
 import { useDynamicTitle } from '../hooks/useDynamicTitle';
+import XLogo from '../components/XLogo';
 
 export default function About() {
   useDynamicTitle('About — Prince Patel');
@@ -26,7 +27,7 @@ export default function About() {
                 <Linkedin size={20} />
               </a>
               <a href="https://x.com/Pro_Prince_1" aria-label="X / Twitter profile" target="_blank" rel="noopener noreferrer" className="w-[40px] h-[40px] flex items-center justify-center rounded-full bg-[#1A1A1A] border border-[#262626] hover:border-[#6366F1] transition-colors text-white">
-                <Twitter size={20} />
+                <XLogo size={20} />
               </a>
               <a href="https://www.instagram.com/pro.prince.1/" aria-label="Instagram profile" target="_blank" rel="noopener noreferrer" className="w-[40px] h-[40px] flex items-center justify-center rounded-full bg-[#1A1A1A] border border-[#262626] hover:border-[#6366F1] transition-colors text-white">
                 <Instagram size={20} />

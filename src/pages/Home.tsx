@@ -46,30 +46,30 @@ export default function Home() {
                 Get In Touch
               </Link>
             </div>
-            <FadeIn delay={0.2} className="mt-12 grid grid-cols-2 sm:flex sm:flex-wrap gap-8 sm:gap-10 md:gap-12">
-              <div>
+            <FadeIn delay={0.2} className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8">
+              <div className="flex flex-col">
                 <div className="text-4xl font-bold text-[#6366F1]">
                   <span ref={ref1}>{count1}</span>
                 </div>
-                <div className="text-sm text-[#A3A3A3] mt-1">Products Shipped</div>
+                <div className="text-sm text-[#A3A3A3] mt-1 font-medium">Products Shipped</div>
               </div>
-              <div>
+              <div className="flex flex-col">
                 <div className="text-4xl font-bold text-[#6366F1]">
                   <span ref={ref2}>{count2}</span>
                 </div>
-                <div className="text-sm text-[#A3A3A3] mt-1">Chrome Extensions</div>
+                <div className="text-sm text-[#A3A3A3] mt-1 font-medium">Chrome Extensions</div>
               </div>
-              <div>
+              <div className="flex flex-col">
                 <div className="text-4xl font-bold text-[#6366F1]">
                   <span ref={ref3}>{count3}</span>
                 </div>
-                <div className="text-sm text-[#A3A3A3] mt-1">Web Apps</div>
+                <div className="text-sm text-[#A3A3A3] mt-1 font-medium">Web Apps</div>
               </div>
-              <div>
+              <div className="flex flex-col">
                 <div className="text-4xl font-bold text-[#6366F1]">
                   <span ref={ref4}>{count4}</span>
                 </div>
-                <div className="text-sm text-[#A3A3A3] mt-1">Android App</div>
+                <div className="text-sm text-[#A3A3A3] mt-1 font-medium">Android App</div>
               </div>
             </FadeIn>
           </FadeIn>

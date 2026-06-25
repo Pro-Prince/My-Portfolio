@@ -1,5 +1,6 @@
 import FadeIn from '../components/FadeIn';
 import { useDynamicTitle } from '../hooks/useDynamicTitle';
+import { PenLine } from 'lucide-react';
 
 export default function Blog() {
   useDynamicTitle('Blog — Prince Patel');
@@ -11,15 +12,17 @@ export default function Blog() {
         {/* Page header */}
         <FadeIn>
           <div className="text-xs font-semibold tracking-widest uppercase text-[#6366F1] mb-3">NOTES</div>
-          <h1 className="text-5xl md:text-6xl font-extrabold text-white mb-3">Things I've Learned</h1>
+          <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.1] text-white mb-3">Things I've Learned</h1>
           <p className="text-xl text-[#A3A3A3] mb-20">What I built, what broke, and what I figured out.</p>
         </FadeIn>
 
         {/* Empty state */}
         <FadeIn delay={0.15}>
           <div className="mt-10 flex flex-col items-center text-center">
-            <div className="text-7xl mb-6">✍️</div>
-            <h2 className="text-2xl font-bold text-white mb-3">First post coming soon.</h2>
+            <div className="mb-6 text-[#6366F1] bg-[#111111] border border-[#262626] rounded-2xl p-6 shadow-[0_0_40px_rgba(99,102,241,0.15)]">
+              <PenLine size={48} />
+            </div>
+            <h2 className="text-2xl font-bold tracking-tight text-white mb-3">First post coming soon.</h2>
             <p className="text-[#A3A3A3] max-w-md leading-relaxed mb-8">
               I'm documenting my builder journey. Follow along on X while I write the first post.
             </p>

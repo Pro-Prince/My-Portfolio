@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import { Menu, X, Github, Linkedin, Twitter, Instagram } from 'lucide-react';
+import { Menu, X, Github, Linkedin, Instagram } from 'lucide-react';
+import XLogo from './XLogo';
 
 export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
@@ -13,6 +14,7 @@ export default function Navigation() {
   }, []);
 
   const navLinks = [
+    { path: '/', label: 'Home' },
     { path: '/projects', label: 'Projects' },
     { path: '/about', label: 'About' },
     { path: '/blog', label: 'Blog' },
@@ -36,6 +38,7 @@ export default function Navigation() {
             <NavLink
               key={link.path}
               to={link.path}
+              end={link.path === '/'}
               className={({ isActive }) =>
                 `text-sm font-medium transition-colors ${isActive ? 'text-white' : 'nav-link'}`
               }
@@ -78,6 +81,7 @@ export default function Navigation() {
             <NavLink
               key={link.path}
               to={link.path}
+              end={link.path === '/'}
               onClick={() => setIsOpen(false)}
               className={({ isActive }) =>
                 `text-2xl transition-colors ${isActive ? 'text-white' : 'text-[#A3A3A3] hover:text-white'}`
@@ -97,7 +101,7 @@ export default function Navigation() {
                 <Linkedin size={20} />
               </a>
               <a href="https://x.com/Pro_Prince_1" aria-label="X / Twitter profile" target="_blank" rel="noopener noreferrer" className="w-[44px] h-[44px] flex items-center justify-center rounded-full bg-[#1A1A1A] border border-[#262626] hover:border-[#6366F1] transition-colors text-white">
-                <Twitter size={20} />
+                <XLogo size={20} />
               </a>
               <a href="https://www.instagram.com/pro.prince.1/" aria-label="Instagram profile" target="_blank" rel="noopener noreferrer" className="w-[44px] h-[44px] flex items-center justify-center rounded-full bg-[#1A1A1A] border border-[#262626] hover:border-[#6366F1] transition-colors text-white">
                 <Instagram size={20} />

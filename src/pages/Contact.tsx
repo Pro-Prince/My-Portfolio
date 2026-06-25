@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { Mail, Linkedin, Github, Twitter, Instagram, CheckCircle } from 'lucide-react';
+import { Mail, Linkedin, Github, Instagram, CheckCircle } from 'lucide-react';
 import FadeIn from '../components/FadeIn';
 import { useDynamicTitle } from '../hooks/useDynamicTitle';
+import XLogo from '../components/XLogo';
 
 export default function Contact() {
   useDynamicTitle('Contact — Prince Patel');
@@ -68,7 +69,7 @@ export default function Contact() {
               <FadeIn delay={0.15}>
                 <a href="https://x.com/Pro_Prince_1" target="_blank" rel="noopener noreferrer" className="bg-[#111111] border border-[#262626] rounded-2xl p-5 flex items-center gap-4 hover:border-[#6366F1] transition-colors block">
                   <div className="w-[48px] h-[48px] bg-[#1A1A1A] border border-[#262626] rounded-xl flex items-center justify-center flex-shrink-0 text-[#FAFAFA]">
-                    <Twitter size={24} />
+                    <XLogo size={24} />
                   </div>
                   <div>
                     <div className="text-xs text-[#525252] uppercase tracking-widest mb-1">X</div>

@@ -1,4 +1,7 @@
 import { useState } from 'react';
+import { ExternalLink, Github } from 'lucide-react';
+import FadeIn from '../components/FadeIn';
+import { useDynamicTitle } from '../hooks/useDynamicTitle';
 
 const projects = [
   {
@@ -62,7 +65,12 @@ const projects = [
     category: "android",
     categoryBadge: "Android",
     categoryBadgeStyle: "bg-orange-500/10 text-[#F59E0B] text-[10px] font-bold uppercase",
-    status: "In Progress",
+    status: (
+      <>
+        <span className="inline-block w-2 h-2 rounded-full bg-[#F59E0B] mr-1.5 animate-pulse align-middle" />
+        In Progress
+      </>
+    ),
     statusBadgeStyle: "bg-orange-950 text-[#F59E0B] text-[10px] font-bold uppercase",
     title: "SoulSync — Android",
     tagline: "Native emotional wellness OS built for Android.",
@@ -74,45 +82,67 @@ const projects = [
 ];
 
 export default function Projects() {
+  useDynamicTitle('Projects — Prince Patel');
   const [filter, setFilter] = useState("all");
+  const [activeFilter, setActiveFilter] = useState("all");
+  const [fading, setFading] = useState(false);
 
-  const filteredProjects = projects.filter(p => filter === "all" || p.category === filter);
+  const filteredProjects = projects.filter(p => activeFilter === "all" || p.category === activeFilter);
+  const filteredCount = filteredProjects.length;
+
+  const handleFilterClick = (newFilter: string) => {
+    if (newFilter === filter) return;
+    setFilter(newFilter);
+    setFading(true);
+    setTimeout(() => {
+      setActiveFilter(newFilter);
+      setFading(false);
+    }, 150);
+  };
 
   return (
     <main className="pt-24 pb-16 md:pb-24">
       <div className="max-w-6xl mx-auto px-6">
-        <div className="text-[10px] font-bold tracking-[0.2em] text-[#6366F1] uppercase mb-3">PORTFOLIO</div>
-        <h1 className="text-5xl md:text-6xl font-extrabold text-white mb-3">All Projects</h1>
-        <p className="text-xl text-[#A3A3A3]">Everything I've built and shipped.</p>
+        <FadeIn>
+          <div className="text-[10px] font-bold tracking-[0.2em] text-[#6366F1] uppercase mb-3">PORTFOLIO</div>
+          <h1 className="text-5xl md:text-6xl font-extrabold text-white mb-3">All Projects</h1>
+          <p className="text-xl text-[#A3A3A3]">Everything I've built and shipped.</p>
+        </FadeIn>
 
-        <div className="mt-10 mb-12 flex flex-wrap gap-3">
-          {[
-            { id: 'all', label: 'All' },
-            { id: 'chrome', label: 'Chrome Extensions' },
-            { id: 'web', label: 'Web Apps' },
-            { id: 'android', label: 'Android' }
-          ].map(tab => (
-            <button
-              key={tab.id}
-              onClick={() => setFilter(tab.id)}
-              className={`rounded-full px-5 py-2 text-sm transition-colors ${
-                filter === tab.id
-                  ? 'bg-[#6366F1] text-white font-medium'
-                  : 'bg-[#111111] border border-[#262626] text-[#A3A3A3] hover:border-[#6366F1] hover:text-white'
-              }`}
-            >
-              {tab.label}
-            </button>
-          ))}
-        </div>
+        <FadeIn delay={0.1}>
+          <div className="mt-10 flex flex-wrap gap-3">
+            {[
+              { id: 'all', label: 'All' },
+              { id: 'chrome', label: 'Chrome Extensions' },
+              { id: 'web', label: 'Web Apps' },
+              { id: 'android', label: 'Android' }
+            ].map(tab => (
+              <button
+                key={tab.id}
+                onClick={() => handleFilterClick(tab.id)}
+                className={`rounded-full px-5 py-2 text-sm transition-colors ${
+                  filter === tab.id
+                    ? 'bg-[#6366F1] text-white font-medium'
+                    : 'bg-[#111111] border border-[#262626] text-[#A3A3A3] hover:border-[#6366F1] hover:text-white'
+                }`}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
+          <p className="text-sm text-[#525252] mb-6 mt-2">
+            Showing {filteredCount} project{filteredCount !== 1 ? 's' : ''}
+          </p>
+        </FadeIn>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {filteredProjects.map(project => (
-            <div key={project.id} data-category={project.category} className="project-card p-6 flex flex-col h-full">
-              <div className="flex justify-between items-center mb-4">
-                <span className={`${project.categoryBadgeStyle} rounded-full px-3 py-1`}>{project.categoryBadge}</span>
-                <span className={`${project.statusBadgeStyle} rounded-full px-3 py-1`}>{project.status}</span>
-              </div>
+        <div className={`grid grid-cols-1 md:grid-cols-2 gap-6 transition-opacity duration-200 ${fading ? 'opacity-0' : 'opacity-100'}`}>
+          {filteredProjects.map((project, index) => (
+            <FadeIn key={project.id} delay={index * 0.08}>
+              <div data-category={project.category} className="project-card p-6 flex flex-col h-full">
+                <div className="flex justify-between items-center mb-4">
+                  <span className={`${project.categoryBadgeStyle} rounded-full px-3 py-1`}>{project.categoryBadge}</span>
+                  <span className={`${project.statusBadgeStyle} rounded-full px-3 py-1 flex items-center`}>{project.status}</span>
+                </div>
               
               <div className="text-5xl font-extrabold text-[#1A1A1A] mb-2">{project.id}</div>
               <h2 className="text-2xl font-bold text-white mb-1">{project.title}</h2>
@@ -141,11 +171,29 @@ export default function Projects() {
                 </div>
               </div>
               
-              <a href={project.github} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-2 w-full bg-transparent border border-[#3F3F46] text-[#FAFAFA] rounded-[8px] px-5 py-2.5 hover:border-[#6366F1] transition-colors text-sm font-semibold mt-auto">
-                <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="css-i6dzq1"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-                View on GitHub
-              </a>
+              <div className="mt-auto flex gap-3">
+                {project.id === "01" && (
+                  {/* CHROME_STORE — Add Chrome Web Store URL when published */}
+                )}
+                {project.id === "02" && (
+                  {/* CHROME_STORE — Add Chrome Web Store URL when published */}
+                )}
+                {(project.id === "03" || project.id === "04") && (
+                  <>
+                    {project.id === "04" && {/* LIFEOS_DEMO — Replace URL if different */}}
+                    <a href={project.id === "03" ? "https://yoursoulsync.lovable.app" : "https://yourlifetracker.lovable.app"} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center gap-1.5 bg-[rgba(99,102,241,0.08)] border border-[rgba(99,102,241,0.3)] text-[#6366F1] rounded-[8px] px-5 py-2.5 hover:bg-[rgba(99,102,241,0.15)] hover:border-[#6366F1] transition-all duration-200 text-sm font-medium">
+                      <ExternalLink size={14} />
+                      Live Demo &rarr;
+                    </a>
+                  </>
+                )}
+                <a href={project.github} target="_blank" rel="noreferrer" className={`flex items-center justify-center gap-2 ${project.id === "03" || project.id === "04" ? "flex-1" : "w-full"} bg-transparent border border-[#3F3F46] text-[#FAFAFA] rounded-[8px] px-5 py-2.5 hover:border-[#6366F1] transition-colors text-sm font-semibold`}>
+                  <Github size={16} />
+                  View on GitHub
+                </a>
+              </div>
             </div>
+          </FadeIn>
           ))}
         </div>
       </div>

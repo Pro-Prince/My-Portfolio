@@ -13,16 +13,16 @@ export default function Footer() {
               AI Builder. Product Developer. CS Student.
             </div>
             <div className="flex gap-3">
-              <a href="https://github.com/Pro-Prince" target="_blank" rel="noopener noreferrer" className="w-[36px] h-[36px] flex items-center justify-center rounded-full bg-[#111111] border border-[#262626] hover:border-[#6366F1] transition-colors text-white">
+              <a href="https://github.com/Pro-Prince" aria-label="GitHub profile" target="_blank" rel="noopener noreferrer" className="w-[36px] h-[36px] flex items-center justify-center rounded-full bg-[#111111] border border-[#262626] hover:border-[#6366F1] transition-colors text-white">
                 <Github size={18} />
               </a>
-              <a href="https://www.linkedin.com/in/prince-patel476/" target="_blank" rel="noopener noreferrer" className="w-[36px] h-[36px] flex items-center justify-center rounded-full bg-[#111111] border border-[#262626] hover:border-[#6366F1] transition-colors text-white">
+              <a href="https://www.linkedin.com/in/prince-patel476/" aria-label="LinkedIn profile" target="_blank" rel="noopener noreferrer" className="w-[36px] h-[36px] flex items-center justify-center rounded-full bg-[#111111] border border-[#262626] hover:border-[#6366F1] transition-colors text-white">
                 <Linkedin size={18} />
               </a>
-              <a href="https://x.com/Pro_Prince_1" target="_blank" rel="noopener noreferrer" className="w-[36px] h-[36px] flex items-center justify-center rounded-full bg-[#111111] border border-[#262626] hover:border-[#6366F1] transition-colors text-white">
+              <a href="https://x.com/Pro_Prince_1" aria-label="X / Twitter profile" target="_blank" rel="noopener noreferrer" className="w-[36px] h-[36px] flex items-center justify-center rounded-full bg-[#111111] border border-[#262626] hover:border-[#6366F1] transition-colors text-white">
                 <Twitter size={18} />
               </a>
-              <a href="https://www.instagram.com/pro.prince.1/" target="_blank" rel="noopener noreferrer" className="w-[36px] h-[36px] flex items-center justify-center rounded-full bg-[#111111] border border-[#262626] hover:border-[#6366F1] transition-colors text-white">
+              <a href="https://www.instagram.com/pro.prince.1/" aria-label="Instagram profile" target="_blank" rel="noopener noreferrer" className="w-[36px] h-[36px] flex items-center justify-center rounded-full bg-[#111111] border border-[#262626] hover:border-[#6366F1] transition-colors text-white">
                 <Instagram size={18} />
               </a>
             </div>
@@ -53,9 +53,8 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-[#1F1F1F] mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="text-xs text-[#525252]">© 2025 Prince Patel. All rights reserved.</div>
-          <div className="text-xs text-[#525252]">Built with <span className="text-[#6366F1]">Lovable</span></div>
+        <div className="border-t border-[#1F1F1F] mt-12 pt-8 flex flex-col md:flex-row justify-start items-center gap-4">
+          <div className="text-xs text-[#525252]">© 2026 Prince Patel. All rights reserved.</div>
         </div>
       </div>
     </footer>

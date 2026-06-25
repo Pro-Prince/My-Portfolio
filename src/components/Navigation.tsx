@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Github, Linkedin, Twitter, Instagram } from 'lucide-react';
 
 export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
@@ -52,36 +52,63 @@ export default function Navigation() {
         </div>
 
         {/* Mobile Toggle */}
-        <button className="md:hidden text-white" onClick={() => setIsOpen(true)}>
+        <button aria-label="Open navigation menu" className="md:hidden text-white" onClick={() => setIsOpen(true)}>
           <Menu size={24} />
         </button>
       </div>
 
       {/* Mobile Menu */}
-      {isOpen && (
-        <div className="fixed inset-0 bg-[#0A0A0A] z-50 flex flex-col items-center justify-center">
-          <button
-            className="absolute top-5 right-6 text-white"
-            onClick={() => setIsOpen(false)}
-          >
-            <X size={24} />
-          </button>
-          <div className="flex flex-col items-center gap-8">
-            {navLinks.map((link) => (
-              <NavLink
-                key={link.path}
-                to={link.path}
-                onClick={() => setIsOpen(false)}
-                className={({ isActive }) =>
-                  `text-2xl transition-colors ${isActive ? 'text-white' : 'text-[#A3A3A3] hover:text-white'}`
-                }
-              >
-                {link.label}
-              </NavLink>
-            ))}
+      <div 
+        className="fixed inset-0 bg-[#0A0A0A] z-50 flex flex-col items-center justify-center pt-20 pb-8"
+        style={{
+          transform: isOpen ? 'translateX(0)' : 'translateX(100%)',
+          transition: 'transform 300ms cubic-bezier(0.4, 0, 0.2, 1)',
+          willChange: 'transform'
+        }}
+      >
+        <button
+          aria-label="Close navigation menu"
+          className="absolute top-5 right-6 text-white"
+          onClick={() => setIsOpen(false)}
+        >
+          <X size={24} />
+        </button>
+        <div className="flex flex-col items-center gap-8 w-full px-6">
+          {navLinks.map((link) => (
+            <NavLink
+              key={link.path}
+              to={link.path}
+              onClick={() => setIsOpen(false)}
+              className={({ isActive }) =>
+                `text-2xl transition-colors ${isActive ? 'text-white' : 'text-[#A3A3A3] hover:text-white'}`
+              }
+            >
+              {link.label}
+            </NavLink>
+          ))}
+          
+          <div className="mt-auto mb-8 w-full max-w-[280px]">
+            <div className="border-t border-[#1F1F1F] w-full my-8" />
+            <div className="flex justify-center gap-4">
+              <a href="https://github.com/Pro-Prince" aria-label="GitHub profile" target="_blank" rel="noopener noreferrer" className="w-[44px] h-[44px] flex items-center justify-center rounded-full bg-[#1A1A1A] border border-[#262626] hover:border-[#6366F1] transition-colors text-white">
+                <Github size={20} />
+              </a>
+              <a href="https://www.linkedin.com/in/prince-patel476/" aria-label="LinkedIn profile" target="_blank" rel="noopener noreferrer" className="w-[44px] h-[44px] flex items-center justify-center rounded-full bg-[#1A1A1A] border border-[#262626] hover:border-[#6366F1] transition-colors text-white">
+                <Linkedin size={20} />
+              </a>
+              <a href="https://x.com/Pro_Prince_1" aria-label="X / Twitter profile" target="_blank" rel="noopener noreferrer" className="w-[44px] h-[44px] flex items-center justify-center rounded-full bg-[#1A1A1A] border border-[#262626] hover:border-[#6366F1] transition-colors text-white">
+                <Twitter size={20} />
+              </a>
+              <a href="https://www.instagram.com/pro.prince.1/" aria-label="Instagram profile" target="_blank" rel="noopener noreferrer" className="w-[44px] h-[44px] flex items-center justify-center rounded-full bg-[#1A1A1A] border border-[#262626] hover:border-[#6366F1] transition-colors text-white">
+                <Instagram size={20} />
+              </a>
+            </div>
+            <p className="text-xs text-[#525252] text-center mt-4">
+              © 2026 Prince Patel
+            </p>
           </div>
         </div>
-      )}
+      </div>
     </header>
   );
 }

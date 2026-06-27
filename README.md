@@ -83,35 +83,6 @@ src/
 └── App.tsx
 ```
 
----
-
-## Local Development
-
-```bash
-git clone https://github.com/Pro-Prince/My-Portfolio
-cd My-Portfolio
-npm install
-npm run dev
-```
-
-Open `http://localhost:5173`
-
----
-
-## Deployment
-
-Deployed on Vercel with a `vercel.json` rewrite rule for React Router SPA support:
-
-```json
-{
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
-  ]
-}
-```
-
----
-
 ## Author
 
 **Prince Patel** — CS Student & Builder

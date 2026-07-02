@@ -21,6 +21,12 @@ Personal portfolio built from scratch with React and TypeScript. Five pages cove
 
 ---
 
+## Live Demo
+
+🔗 **[prince-patel-portfolio.vercel.app](https://prince-patel-portfolio.vercel.app)**
+
+---
+
 ## Pages
 
 - **Home** — hero, featured projects, tech stack, CTA

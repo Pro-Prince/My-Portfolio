@@ -44,7 +44,8 @@ const projects = [
     description: "SoulSync is a web application designed as a private emotional companion. Users write diary entries with rich text, track daily moods, receive personalized Gemini AI reflections, view emotional analytics, track menstrual cycles, store memories, and switch between five premium themes. Designed with Apple Health inspired minimalism — calm, intentional, distraction-free.",
     challenges: ["AI reflection with context memory", "Cycle tracking with emotional correlation", "Five-theme system with dark mode", "Supabase Row Level Security implementation"],
     tech: ["React", "TypeScript", "Vite", "Tailwind CSS", "shadcn/ui", "Supabase", "Google Gemini AI", "PostgreSQL", "Framer Motion"],
-    github: "https://github.com/Pro-Prince/yoursoulsync"
+    github: "https://github.com/Pro-Prince/yoursoulsync",
+    demo: "https://yoursoulsync.lovable.app"
   },
   {
     id: "04",
@@ -58,7 +59,8 @@ const projects = [
     description: "Life Tracker is a full-stack personal management platform unifying three life domains. Spreadsheet-style habit grids with streak tracking and heatmaps, monthly expense reports with category breakdowns, nutrition and workout logging with macro tracking, and analytics dashboards that turn raw daily data into actionable personal growth insights.",
     challenges: ["Spreadsheet-style habit grid architecture", "Nutrition estimation engine from food entries", "Three-module unified UX design", "Analytics aggregation with heatmaps"],
     tech: ["React", "TypeScript", "Tailwind CSS", "Framer Motion", "Supabase", "PostgreSQL", "Recharts", "Google OAuth", "Email Auth", "Row Level Security"],
-    github: "https://github.com/Pro-Prince/yourlifetracker"
+    github: "https://github.com/Pro-Prince/yourlifetracker",
+    demo: "https://yourlifetracker.lovable.app"
   },
   {
     id: "05",
@@ -186,20 +188,15 @@ export default function Projects() {
                 </div>
               </div>
               
-              <div className="mt-auto flex gap-3">
-                {/* CHROME_STORE — Add Chrome Web Store URL when published */}
-                {(project.id === "03" || project.id === "04" || project.id === "06") && (
-                  <>
-                    {/* LIFEOS_DEMO — Replace URL if different */}
-                    <a href={project.id === "06" ? "https://amul-kool-gold-animated-website.vercel.app/" : project.id === "03" ? "https://yoursoulsync.lovable.app" : "https://yourlifetracker.lovable.app"} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center gap-1.5 bg-[rgba(99,102,241,0.08)] border border-[rgba(99,102,241,0.3)] text-[#6366F1] rounded-[8px] px-5 py-2.5 hover:bg-[rgba(99,102,241,0.15)] hover:border-[#6366F1] transition-all duration-200 text-sm font-medium">
-                      <ExternalLink size={14} />
-                      Live Demo &rarr;
-                    </a>
-                  </>
+              <div className="mt-auto flex flex-col sm:flex-row gap-2 mt-4">
+                {project.demo && (
+                  <a href={project.demo} target="_blank" rel="noopener noreferrer" className="w-full sm:flex-1 flex items-center justify-center bg-[rgba(99,102,241,0.08)] border border-[rgba(99,102,241,0.3)] hover:bg-[rgba(99,102,241,0.15)] hover:border-[#6366F1] text-[#6366F1] rounded-lg px-4 py-2 transition-colors text-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-1.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                    Live Demo &rarr;
+                  </a>
                 )}
-                <a href={project.github} target="_blank" rel="noreferrer" className={`flex items-center justify-center gap-2 ${project.id === "03" || project.id === "04" || project.id === "06" ? "flex-1" : "w-full"} bg-transparent border border-[#3F3F46] text-[#FAFAFA] rounded-[8px] px-5 py-2.5 hover:border-[#6366F1] transition-colors text-sm font-semibold`}>
-                  <Github size={16} />
-                  View on GitHub
+                <a href={project.github} target="_blank" rel="noreferrer" className={`w-full ${project.demo ? "sm:flex-1" : ""} block text-center bg-transparent border border-[#3F3F46] hover:border-[#6366F1] text-[#FAFAFA] rounded-[8px] px-4 py-2 transition-colors text-sm`}>
+                  View on GitHub &rarr;
                 </a>
               </div>
             </div>

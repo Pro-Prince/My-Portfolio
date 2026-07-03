@@ -62,7 +62,7 @@ export default function Navigation() {
 
       {/* Mobile Menu */}
       <div 
-        className="fixed inset-0 bg-[#0A0A0A] z-50 flex flex-col items-center justify-center pt-20 pb-8"
+        className="fixed inset-0 w-screen h-screen bg-[#0A0A0A] z-[200] isolate flex flex-col items-center justify-center pt-20 pb-8"
         style={{
           transform: isOpen ? 'translateX(0)' : 'translateX(100%)',
           transition: 'transform 300ms cubic-bezier(0.4, 0, 0.2, 1)',

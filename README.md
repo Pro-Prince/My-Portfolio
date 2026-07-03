@@ -89,6 +89,8 @@ src/
 └── App.tsx
 ```
 
+---
+
 ## Author
 
 **Prince Patel** — CS Student & Builder

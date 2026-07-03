@@ -50,6 +50,7 @@ export default function Footer() {
               <a href="https://github.com/Pro-Prince/yoursoulsync" target="_blank" rel="noopener noreferrer" className="text-sm text-[#A3A3A3] hover:text-white transition-colors">SoulSync Web</a>
               <a href="https://github.com/Pro-Prince/yourlifetracker" target="_blank" rel="noopener noreferrer" className="text-sm text-[#A3A3A3] hover:text-white transition-colors">Life Tracker</a>
               <a href="https://github.com/Pro-Prince/Soul-Sync-Android-App" target="_blank" rel="noopener noreferrer" className="text-sm text-[#A3A3A3] hover:text-white transition-colors">SoulSync Android</a>
+              <a href="https://github.com/Pro-Prince/Amul-Kool-Gold-Animated-Website" target="_blank" rel="noopener noreferrer" className="text-sm text-[#A3A3A3] hover:text-white transition-colors">Amul Kool Gold</a>
             </div>
           </div>
         </div>

@@ -78,6 +78,21 @@ const projects = [
     challenges: ["Offline-first Room database architecture", "Local AES encryption", "Gemini AI on Android", "MVVM with Kotlin Coroutines and Flow"],
     tech: ["Kotlin", "Jetpack Compose", "Room Database", "Gemini AI", "MVVM", "WorkManager", "Hilt DI", "Material 3", "Kotlin Coroutines", "Kotlin Flow"],
     github: "https://github.com/Pro-Prince/Soul-Sync-Android-App"
+  },
+  {
+    id: "06",
+    category: "web",
+    categoryBadge: "Web App",
+    categoryBadgeStyle: "bg-indigo-400/10 text-[#6366F1] text-[10px] font-bold uppercase",
+    status: "Shipped",
+    statusBadgeStyle: "bg-green-950 text-[#22C55E] text-[10px] font-bold uppercase",
+    title: "Amul Kool Gold",
+    tagline: "Cinematic scroll-driven D2C storefront. Built to be clicked, not just scrolled.",
+    description: "A fully-functional concept storefront built around a premium dairy beverage line. Unlike portfolio pieces that stop at a hero section, this ships an entire simulated commerce loop — a cinematic scroll-driven hero, a four-flavour catalog with pricing tiers, a working cart with live subtotal updates, a three-step checkout with field validation, and a branded trial-payment intercept with a full simulated receipt. Built to prove product-engineering competency, not just visual layout.",
+    challenges: ["Scroll-driven canvas production failures", "Static mockup vs real commerce logic", "Simulated checkout without deceptive UX", "Consistent AI-generated product photography", "Navbar scene-continuous scroll transition"],
+    tech: ["React", "TypeScript", "Vite", "Tailwind CSS", "Framer Motion", "React Context", "Scroll-Frame Animation", "Vercel", "Google AI Studio"],
+    github: "https://github.com/Pro-Prince/Amul-Kool-Gold-Animated-Website",
+    demo: "https://amul-kool-gold-animated-website.vercel.app/"
   }
 ];
 
@@ -173,16 +188,16 @@ export default function Projects() {
               
               <div className="mt-auto flex gap-3">
                 {/* CHROME_STORE — Add Chrome Web Store URL when published */}
-                {(project.id === "03" || project.id === "04") && (
+                {(project.id === "03" || project.id === "04" || project.id === "06") && (
                   <>
                     {/* LIFEOS_DEMO — Replace URL if different */}
-                    <a href={project.id === "03" ? "https://yoursoulsync.lovable.app" : "https://yourlifetracker.lovable.app"} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center gap-1.5 bg-[rgba(99,102,241,0.08)] border border-[rgba(99,102,241,0.3)] text-[#6366F1] rounded-[8px] px-5 py-2.5 hover:bg-[rgba(99,102,241,0.15)] hover:border-[#6366F1] transition-all duration-200 text-sm font-medium">
+                    <a href={project.id === "06" ? "https://amul-kool-gold-animated-website.vercel.app/" : project.id === "03" ? "https://yoursoulsync.lovable.app" : "https://yourlifetracker.lovable.app"} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center gap-1.5 bg-[rgba(99,102,241,0.08)] border border-[rgba(99,102,241,0.3)] text-[#6366F1] rounded-[8px] px-5 py-2.5 hover:bg-[rgba(99,102,241,0.15)] hover:border-[#6366F1] transition-all duration-200 text-sm font-medium">
                       <ExternalLink size={14} />
                       Live Demo &rarr;
                     </a>
                   </>
                 )}
-                <a href={project.github} target="_blank" rel="noreferrer" className={`flex items-center justify-center gap-2 ${project.id === "03" || project.id === "04" ? "flex-1" : "w-full"} bg-transparent border border-[#3F3F46] text-[#FAFAFA] rounded-[8px] px-5 py-2.5 hover:border-[#6366F1] transition-colors text-sm font-semibold`}>
+                <a href={project.github} target="_blank" rel="noreferrer" className={`flex items-center justify-center gap-2 ${project.id === "03" || project.id === "04" || project.id === "06" ? "flex-1" : "w-full"} bg-transparent border border-[#3F3F46] text-[#FAFAFA] rounded-[8px] px-5 py-2.5 hover:border-[#6366F1] transition-colors text-sm font-semibold`}>
                   <Github size={16} />
                   View on GitHub
                 </a>

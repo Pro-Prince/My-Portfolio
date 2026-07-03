@@ -181,6 +181,11 @@ export default function About() {
                 year: '2026',
                 title: 'SoulSync — Android App',
                 description: 'Building SoulSync natively for Android with Kotlin, Jetpack Compose, and Gemini AI. Offline-first with local encryption.'
+              },
+              {
+                year: '2026',
+                title: 'Amul Kool Gold — D2C Concept Storefront',
+                description: 'Built a cinematic scroll-driven e-commerce concept storefront for a premium dairy beverage brand. Frame-sequence hero animation tied to scroll position, a full flavour catalog, working cart, three-step checkout with validation, and a complete order simulation from scroll to receipt.'
               }
             ].map((event, i) => (
               <FadeIn key={i} delay={i * 0.1}>

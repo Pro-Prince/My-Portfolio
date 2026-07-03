@@ -8,9 +8,9 @@ import { Atom, FileCode2, Paintbrush, Database, Sparkles, FlaskConical, Smartpho
 export default function Home() {
   useDynamicTitle('Prince Patel — I Build Things That Actually Work');
 
-  const { count: count1, ref: ref1 } = useCountUp(5);
+  const { count: count1, ref: ref1 } = useCountUp(6);
   const { count: count2, ref: ref2 } = useCountUp(2);
-  const { count: count3, ref: ref3 } = useCountUp(2);
+  const { count: count3, ref: ref3 } = useCountUp(3);
   const { count: count4, ref: ref4 } = useCountUp(1);
 
   return (
@@ -30,7 +30,7 @@ export default function Home() {
               </div>
             </h1>
             <p className="mb-10 text-lg text-[#A3A3A3] leading-relaxed max-w-lg">
-              CS student turned product builder. I've shipped 5 software products — Chrome extensions, full-stack web apps, and a native Android app — using AI as a force multiplier.
+              CS student turned product builder. I've shipped 6 software products — Chrome extensions, full-stack web apps, and a native Android app — using AI as a force multiplier.
             </p>
             <div className="flex gap-4 mb-14 flex-wrap">
               <Link
@@ -88,7 +88,7 @@ export default function Home() {
             <p className="text-[#A3A3A3] mb-12">Real products. Real code. No tutorials.</p>
           </FadeIn>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* CARD 1 */}
             <FadeIn delay={0}>
               <div className="project-card p-6 flex flex-col h-full">
@@ -163,11 +163,39 @@ export default function Home() {
                 </a>
               </div>
             </FadeIn>
+            {/* CARD 4 */}
+            <FadeIn delay={0.3}>
+              <div className="project-card p-6 flex flex-col h-full">
+                <div className="flex justify-between items-center mb-4">
+                  <span className="bg-[rgba(99,102,241,0.1)] text-[#6366F1] text-[10px] font-bold px-3 py-1 rounded-full uppercase">Web App</span>
+                  <span className="bg-[#052E16] text-[#22C55E] text-[10px] font-bold px-3 py-1 rounded-full uppercase">Shipped</span>
+                </div>
+                <h3 className="text-xl font-bold text-white mt-4 mb-2">Amul Kool Gold</h3>
+                <p className="text-sm text-[#A3A3A3] leading-relaxed flex-grow">
+                  A cinematic scroll-driven D2C concept storefront for a premium dairy beverage. Frame-sequence hero animation scrubbed by scroll, a four-flavour catalog, live cart, three-step checkout, and a complete order simulation — built to be clicked through, not just scrolled past.
+                </p>
+                <div className="border-t border-[#1F1F1F] my-4"></div>
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {['React', 'TypeScript', 'Framer Motion', 'React Context', 'Tailwind CSS', 'Scroll Animation', 'Vite'].map(tag => (
+                    <span key={tag} className="tech-tag text-[10px] font-mono px-2 py-0.5 rounded-full uppercase">{tag}</span>
+                  ))}
+                </div>
+                <div className="mt-4 flex flex-row gap-3">
+                  <a href="https://amul-kool-gold-animated-website.vercel.app/" target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center bg-[rgba(99,102,241,0.08)] border border-[rgba(99,102,241,0.3)] hover:bg-[rgba(99,102,241,0.15)] hover:border-[#6366F1] text-[#6366F1] rounded-lg px-4 py-2 transition-colors text-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-1.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                    Live Demo &rarr;
+                  </a>
+                  <a href="https://github.com/Pro-Prince/Amul-Kool-Gold-Animated-Website" target="_blank" rel="noopener noreferrer" className="flex-1 block text-center bg-transparent border border-[#3F3F46] hover:border-[#6366F1] text-[#FAFAFA] rounded-[8px] px-4 py-2 transition-colors text-sm">
+                    View on GitHub &rarr;
+                  </a>
+                </div>
+              </div>
+            </FadeIn>
           </div>
           
           <div className="mt-10 text-center">
             <Link to="/projects" className="inline-block bg-transparent border border-[#3F3F46] hover:border-[#6366F1] text-[#FAFAFA] rounded-[8px] px-6 py-3 transition-all font-semibold">
-              View All 5 Projects &rarr;
+              View All 6 Projects &rarr;
             </Link>
           </div>
         </div>

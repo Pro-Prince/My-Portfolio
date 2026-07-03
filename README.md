@@ -25,8 +25,6 @@ Personal portfolio built from scratch with React and TypeScript. Five pages cove
 
 🔗 **[prince-patel-portfolio.vercel.app](https://prince-patel-portfolio.vercel.app)**
 
-> Create a free account to access all features. Your data is private and protected by Supabase Row Level Security.
-
 ---
 
 ## Pages
@@ -90,6 +88,8 @@ src/
 │   └── useDynamicTitle.ts
 └── App.tsx
 ```
+
+---
 
 ## Author
 

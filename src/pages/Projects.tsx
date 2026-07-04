@@ -93,8 +93,8 @@ const projects = [
     description: "A fully-functional concept storefront built around a premium dairy beverage line. Unlike portfolio pieces that stop at a hero section, this ships an entire simulated commerce loop — a cinematic scroll-driven hero, a four-flavour catalog with pricing tiers, a working cart with live subtotal updates, a three-step checkout with field validation, and a branded trial-payment intercept with a full simulated receipt. Built to prove product-engineering competency, not just visual layout.",
     challenges: ["Scroll-driven canvas production failures", "Static mockup vs real commerce logic", "Simulated checkout without deceptive UX", "Consistent AI-generated product photography", "Navbar scene-continuous scroll transition"],
     tech: ["React", "TypeScript", "Vite", "Tailwind CSS", "Framer Motion", "React Context", "Scroll-Frame Animation", "Vercel", "Google AI Studio"],
-    github: "https://github.com/Pro-Prince/Amul-Kool-Gold-Animated-Website",
-    demo: "https://amul-kool-gold-animated-website.vercel.app/"
+    github: "https://github.com/Pro-Prince/Amul-Kool-Website",
+    demo: "https://amul-kool-gold-website.vercel.app/"
   }
 ];
 

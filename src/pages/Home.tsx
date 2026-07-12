@@ -106,8 +106,8 @@ export default function Home() {
                     <span key={tag} className="tech-tag text-[10px] font-mono px-2 py-0.5 rounded-full uppercase">{tag}</span>
                   ))}
                 </div>
-                <div className="mt-auto flex flex-col sm:flex-row gap-2 mt-4">
-                  <a href="https://github.com/Pro-Prince/HoverPick" target="_blank" rel="noreferrer" className="w-full block text-center bg-transparent border border-[#3F3F46] hover:border-[#6366F1] text-[#FAFAFA] rounded-[8px] px-4 py-2 transition-colors text-sm">
+                <div className="mt-auto flex flex-row gap-2 mt-4">
+                  <a href="https://github.com/Pro-Prince/HoverPick" target="_blank" rel="noreferrer" className="flex-1 flex items-center justify-center bg-transparent border border-[#3F3F46] hover:border-[#6366F1] text-[#FAFAFA] rounded-[8px] px-3 py-2 transition-colors text-sm whitespace-nowrap">
                     View on GitHub &rarr;
                   </a>
                 </div>
@@ -131,12 +131,12 @@ export default function Home() {
                     <span key={tag} className="tech-tag text-[10px] font-mono px-2 py-0.5 rounded-full uppercase">{tag}</span>
                   ))}
                 </div>
-                <div className="mt-auto flex flex-col sm:flex-row gap-2 mt-4">
-                  <a href="https://yoursoulsync.lovable.app" target="_blank" rel="noopener noreferrer" className="w-full sm:flex-1 flex items-center justify-center bg-[rgba(99,102,241,0.08)] border border-[rgba(99,102,241,0.3)] hover:bg-[rgba(99,102,241,0.15)] hover:border-[#6366F1] text-[#6366F1] rounded-lg px-4 py-2 transition-colors text-sm">
+                <div className="mt-auto flex flex-row gap-2 mt-4">
+                  <a href="https://yoursoulsync.lovable.app" target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center bg-[rgba(99,102,241,0.08)] border border-[rgba(99,102,241,0.3)] hover:bg-[rgba(99,102,241,0.15)] hover:border-[#6366F1] text-[#6366F1] rounded-lg px-3 py-2 transition-colors text-sm whitespace-nowrap">
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-1.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                     Live Demo &rarr;
                   </a>
-                  <a href="https://github.com/Pro-Prince/yoursoulsync" target="_blank" rel="noreferrer" className="w-full sm:flex-1 block text-center bg-transparent border border-[#3F3F46] hover:border-[#6366F1] text-[#FAFAFA] rounded-[8px] px-4 py-2 transition-colors text-sm">
+                  <a href="https://github.com/Pro-Prince/yoursoulsync" target="_blank" rel="noreferrer" className="flex-1 flex items-center justify-center bg-transparent border border-[#3F3F46] hover:border-[#6366F1] text-[#FAFAFA] rounded-[8px] px-3 py-2 transition-colors text-sm whitespace-nowrap">
                     View on GitHub &rarr;
                   </a>
                 </div>
@@ -160,12 +160,12 @@ export default function Home() {
                     <span key={tag} className="tech-tag text-[10px] font-mono px-2 py-0.5 rounded-full uppercase">{tag}</span>
                   ))}
                 </div>
-                <div className="mt-auto flex flex-col sm:flex-row gap-2 mt-4">
-                  <a href="https://yourlifetracker.lovable.app" target="_blank" rel="noopener noreferrer" className="w-full sm:flex-1 flex items-center justify-center bg-[rgba(99,102,241,0.08)] border border-[rgba(99,102,241,0.3)] hover:bg-[rgba(99,102,241,0.15)] hover:border-[#6366F1] text-[#6366F1] rounded-lg px-4 py-2 transition-colors text-sm">
+                <div className="mt-auto flex flex-row gap-2 mt-4">
+                  <a href="https://yourlifetracker.lovable.app" target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center bg-[rgba(99,102,241,0.08)] border border-[rgba(99,102,241,0.3)] hover:bg-[rgba(99,102,241,0.15)] hover:border-[#6366F1] text-[#6366F1] rounded-lg px-3 py-2 transition-colors text-sm whitespace-nowrap">
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-1.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                     Live Demo &rarr;
                   </a>
-                  <a href="https://github.com/Pro-Prince/yourlifetracker" target="_blank" rel="noreferrer" className="w-full sm:flex-1 block text-center bg-transparent border border-[#3F3F46] hover:border-[#6366F1] text-[#FAFAFA] rounded-[8px] px-4 py-2 transition-colors text-sm">
+                  <a href="https://github.com/Pro-Prince/yourlifetracker" target="_blank" rel="noreferrer" className="flex-1 flex items-center justify-center bg-transparent border border-[#3F3F46] hover:border-[#6366F1] text-[#FAFAFA] rounded-[8px] px-3 py-2 transition-colors text-sm whitespace-nowrap">
                     View on GitHub &rarr;
                   </a>
                 </div>
@@ -188,12 +188,12 @@ export default function Home() {
                     <span key={tag} className="tech-tag text-[10px] font-mono px-2 py-0.5 rounded-full uppercase">{tag}</span>
                   ))}
                 </div>
-                <div className="mt-auto flex flex-col sm:flex-row gap-2 mt-4">
-                  <a href="https://amul-kool-gold-website.vercel.app/" target="_blank" rel="noopener noreferrer" className="w-full sm:flex-1 flex items-center justify-center bg-[rgba(99,102,241,0.08)] border border-[rgba(99,102,241,0.3)] hover:bg-[rgba(99,102,241,0.15)] hover:border-[#6366F1] text-[#6366F1] rounded-lg px-4 py-2 transition-colors text-sm">
+                <div className="mt-auto flex flex-row gap-2 mt-4">
+                  <a href="https://amul-kool-gold-website.vercel.app/" target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center bg-[rgba(99,102,241,0.08)] border border-[rgba(99,102,241,0.3)] hover:bg-[rgba(99,102,241,0.15)] hover:border-[#6366F1] text-[#6366F1] rounded-lg px-3 py-2 transition-colors text-sm whitespace-nowrap">
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-1.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                     Live Demo &rarr;
                   </a>
-                  <a href="https://github.com/Pro-Prince/Amul-Kool-Website" target="_blank" rel="noopener noreferrer" className="w-full sm:flex-1 block text-center bg-transparent border border-[#3F3F46] hover:border-[#6366F1] text-[#FAFAFA] rounded-[8px] px-4 py-2 transition-colors text-sm">
+                  <a href="https://github.com/Pro-Prince/Amul-Kool-Website" target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center bg-transparent border border-[#3F3F46] hover:border-[#6366F1] text-[#FAFAFA] rounded-[8px] px-3 py-2 transition-colors text-sm whitespace-nowrap">
                     View on GitHub &rarr;
                   </a>
                 </div>
@@ -217,12 +217,12 @@ export default function Home() {
                     <span key={tag} className="tech-tag text-[10px] font-mono px-2 py-0.5 rounded-full uppercase">{tag}</span>
                   ))}
                 </div>
-                <div className="mt-auto flex flex-col sm:flex-row gap-2 mt-4">
-                  <a href="https://your-pdf-craft.vercel.app/" target="_blank" rel="noopener noreferrer" className="w-full sm:flex-1 flex items-center justify-center bg-[rgba(99,102,241,0.08)] border border-[rgba(99,102,241,0.3)] hover:bg-[rgba(99,102,241,0.15)] hover:border-[#6366F1] text-[#6366F1] rounded-lg px-4 py-2 transition-colors text-sm">
+                <div className="mt-auto flex flex-row gap-2 mt-4">
+                  <a href="https://your-pdf-craft.vercel.app/" target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center bg-[rgba(99,102,241,0.08)] border border-[rgba(99,102,241,0.3)] hover:bg-[rgba(99,102,241,0.15)] hover:border-[#6366F1] text-[#6366F1] rounded-lg px-3 py-2 transition-colors text-sm whitespace-nowrap">
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-1.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                     Live Demo &rarr;
                   </a>
-                  <a href="https://github.com/Pro-Prince/PDF-Craft" target="_blank" rel="noopener noreferrer" className="w-full sm:flex-1 block text-center bg-transparent border border-[#3F3F46] hover:border-[#6366F1] text-[#FAFAFA] rounded-[8px] px-4 py-2 transition-colors text-sm">
+                  <a href="https://github.com/Pro-Prince/PDF-Craft" target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center bg-transparent border border-[#3F3F46] hover:border-[#6366F1] text-[#FAFAFA] rounded-[8px] px-3 py-2 transition-colors text-sm whitespace-nowrap">
                     View on GitHub &rarr;
                   </a>
                 </div>

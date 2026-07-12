@@ -95,6 +95,21 @@ const projects = [
     tech: ["React", "TypeScript", "Vite", "Tailwind CSS", "Framer Motion", "React Context", "Scroll-Frame Animation", "Vercel", "Google AI Studio"],
     github: "https://github.com/Pro-Prince/Amul-Kool-Website",
     demo: "https://amul-kool-gold-website.vercel.app/"
+  },
+  {
+    id: "07",
+    category: "web",
+    categoryBadge: "Web App",
+    categoryBadgeStyle: "bg-indigo-400/10 text-[#6366F1] text-[10px] font-bold uppercase",
+    status: "Shipped",
+    statusBadgeStyle: "bg-green-950 text-[#22C55E] text-[10px] font-bold uppercase",
+    title: "PDF Craft",
+    tagline: "The simplest way to edit, annotate, and manage PDFs online.",
+    description: "PDF Craft is a modern, browser-based PDF editor built to make document editing fast, visual, and clutter-free. Instead of forcing users into desktop software or paywalled tools, it delivers a complete annotation and editing suite directly in the browser — upload, edit, sign, redact, and download, all without installing anything. Every tool works directly on the rendered page with no separate 'annotation mode', so what you place is what ends up in the final file. A persistent document library with live thumbnails and continuous autosave means nothing is ever lost between sessions.",
+    challenges: ["Full annotation suite with zero paywalls", "Every tool verified end-to-end", "In-browser signature pad — draw, upload, or type", "Pixel-perfect export via pdf-lib flattening", "Persistent library with autosave and thumbnails"],
+    tech: ["React", "Vite", "Tailwind CSS", "Supabase", "PostgreSQL", "pdf.js", "pdf-lib", "Google OAuth", "Row Level Security", "Vercel"],
+    github: "https://github.com/Pro-Prince/PDF-Craft",
+    demo: "https://your-pdf-craft.vercel.app/"
   }
 ];
 

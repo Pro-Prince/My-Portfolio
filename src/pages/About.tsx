@@ -186,6 +186,11 @@ export default function About() {
                 year: '2026',
                 title: 'Amul Kool Gold — D2C Concept Storefront',
                 description: 'Built a cinematic scroll-driven e-commerce concept storefront for a premium dairy beverage brand. Frame-sequence hero animation tied to scroll position, a full flavour catalog, working cart, three-step checkout with validation, and a complete order simulation from scroll to receipt.'
+              },
+              {
+                year: '2026',
+                title: 'PDF Craft — Browser-Based PDF Editor',
+                description: 'Built a full-featured browser-based PDF editor with a complete annotation toolkit — text editing, signatures, redaction, shapes, and stamps — plus secure document management and high-fidelity export using pdf.js and pdf-lib.'
               }
             ].map((event, i) => (
               <FadeIn key={i} delay={i * 0.1}>
@@ -212,11 +217,11 @@ export default function About() {
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <div className="bg-[#111111] border border-[#262626] rounded-xl p-5 text-center hover:border-[#3F3F46] transition-colors">
-                <div className="text-3xl font-bold text-[#6366F1] mb-1">6</div>
+                <div className="text-3xl font-bold text-[#6366F1] mb-1">7</div>
                 <div className="text-sm text-[#A3A3A3]">Public Repos</div>
               </div>
               <div className="bg-[#111111] border border-[#262626] rounded-xl p-5 text-center hover:border-[#3F3F46] transition-colors">
-                <div className="text-3xl font-bold text-[#22D3EE] mb-1">6+</div>
+                <div className="text-3xl font-bold text-[#22D3EE] mb-1">7+</div>
                 <div className="text-sm text-[#A3A3A3]">Products Shipped</div>
               </div>
               <div className="bg-[#111111] border border-[#262626] rounded-xl p-5 text-center hover:border-[#3F3F46] transition-colors">

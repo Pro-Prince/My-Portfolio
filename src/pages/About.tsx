@@ -169,8 +169,8 @@ export default function About() {
               },
               {
                 year: '2026',
-                title: 'SoulSync — Web App',
-                description: 'Built SoulSync web app. Integrated Gemini AI, Supabase backend, mood analytics, five premium themes, and a full emotional wellness experience.'
+                title: 'Soul Sync — Web App',
+                description: 'Built Soul Sync web app. Integrated Gemini AI, Supabase backend, mood analytics, five premium themes, and a full emotional wellness experience.'
               },
               {
                 year: '2026',
@@ -179,8 +179,8 @@ export default function About() {
               },
               {
                 year: '2026',
-                title: 'SoulSync — Android App',
-                description: 'Building SoulSync natively for Android with Kotlin, Jetpack Compose, and Gemini AI. Offline-first with local encryption.'
+                title: 'Soul Sync — Android App',
+                description: 'Shipped Soul Sync natively for Android using Kotlin and Jetpack Compose. AI-powered reflection engine, mood analytics, cycle tracking, memory scrapbook, and achievements — all offline-first with Room Database and Supabase cloud sync.'
               },
               {
                 year: '2026',

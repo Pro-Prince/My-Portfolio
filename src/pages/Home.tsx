@@ -121,7 +121,7 @@ export default function Home() {
                   <span className="bg-indigo-400/10 text-[#6366F1] text-[10px] font-bold px-3 py-1 rounded-full uppercase">Web App</span>
                   <span className="bg-green-950 text-[#22C55E] text-[10px] font-bold px-3 py-1 rounded-full uppercase">Shipped</span>
                 </div>
-                <h3 className="text-xl font-bold text-white mb-2">SoulSync</h3>
+                <h3 className="text-xl font-bold text-white mb-2">Soul Sync</h3>
                 <p className="text-sm text-[#A3A3A3] leading-relaxed flex-grow">
                   AI-powered emotional wellness platform. Journaling, mood tracking, Gemini AI reflections, and emotional analytics — all in one calm digital sanctuary. Built for web and Android.
                 </p>

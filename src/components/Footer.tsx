@@ -47,9 +47,9 @@ export default function Footer() {
             <div className="flex flex-col gap-3">
               <a href="https://github.com/Pro-Prince/HoverPick" target="_blank" rel="noopener noreferrer" className="text-sm text-[#A3A3A3] hover:text-white transition-colors">HoverPick</a>
               <a href="https://github.com/Pro-Prince/vtt-vision-to-text" target="_blank" rel="noopener noreferrer" className="text-sm text-[#A3A3A3] hover:text-white transition-colors">VTT Vision to Text</a>
-              <a href="https://github.com/Pro-Prince/yoursoulsync" target="_blank" rel="noopener noreferrer" className="text-sm text-[#A3A3A3] hover:text-white transition-colors">SoulSync Web</a>
+              <a href="https://github.com/Pro-Prince/yoursoulsync" target="_blank" rel="noopener noreferrer" className="text-sm text-[#A3A3A3] hover:text-white transition-colors">Soul Sync Web</a>
               <a href="https://github.com/Pro-Prince/yourlifetracker" target="_blank" rel="noopener noreferrer" className="text-sm text-[#A3A3A3] hover:text-white transition-colors">Life Tracker</a>
-              <a href="https://github.com/Pro-Prince/Soul-Sync-Android-App" target="_blank" rel="noopener noreferrer" className="text-sm text-[#A3A3A3] hover:text-white transition-colors">SoulSync Android</a>
+              <a href="https://github.com/Pro-Prince/Soul-Sync-Android-App" target="_blank" rel="noopener noreferrer" className="text-sm text-[#A3A3A3] hover:text-white transition-colors">Soul Sync Android</a>
               <a href="https://github.com/Pro-Prince/Amul-Kool-Website" target="_blank" rel="noopener noreferrer" className="text-sm text-[#A3A3A3] hover:text-white transition-colors">Amul Kool Gold</a>
               <a href="https://github.com/Pro-Prince/PDF-Craft" target="_blank" rel="noopener noreferrer" className="text-sm text-[#A3A3A3] hover:text-white transition-colors">PDF Craft</a>
             </div>

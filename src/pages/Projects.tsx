@@ -39,9 +39,9 @@ const projects = [
     categoryBadgeStyle: "bg-indigo-400/10 text-[#6366F1] text-[10px] font-bold uppercase",
     status: "Shipped",
     statusBadgeStyle: "bg-green-950 text-[#22C55E] text-[10px] font-bold uppercase",
-    title: "SoulSync — Web",
+    title: "Soul Sync — Web",
     tagline: "AI-powered emotional wellness journal and reflection platform.",
-    description: "SoulSync is a web application designed as a private emotional companion. Users write diary entries with rich text, track daily moods, receive personalized Gemini AI reflections, view emotional analytics, track menstrual cycles, store memories, and switch between five premium themes. Designed with Apple Health inspired minimalism — calm, intentional, distraction-free.",
+    description: "Soul Sync is a web application designed as a private emotional companion. Users write diary entries with rich text, track daily moods, receive personalized Gemini AI reflections, view emotional analytics, track menstrual cycles, store memories, and switch between five premium themes. Designed with Apple Health inspired minimalism — calm, intentional, distraction-free.",
     challenges: ["AI reflection with context memory", "Cycle tracking with emotional correlation", "Five-theme system with dark mode", "Supabase Row Level Security implementation"],
     tech: ["React", "TypeScript", "Vite", "Tailwind CSS", "shadcn/ui", "Supabase", "Google Gemini AI", "PostgreSQL", "Framer Motion"],
     github: "https://github.com/Pro-Prince/yoursoulsync",
@@ -67,18 +67,13 @@ const projects = [
     category: "android",
     categoryBadge: "Android",
     categoryBadgeStyle: "bg-orange-500/10 text-[#F59E0B] text-[10px] font-bold uppercase",
-    status: (
-      <>
-        <span className="inline-block w-2 h-2 rounded-full bg-[#F59E0B] mr-1.5 animate-pulse align-middle" />
-        In Progress
-      </>
-    ),
-    statusBadgeStyle: "bg-orange-950 text-[#F59E0B] text-[10px] font-bold uppercase",
-    title: "SoulSync — Android",
-    tagline: "Native emotional wellness OS built for Android.",
-    description: "The native Android version of SoulSync, rebuilt from scratch with Kotlin and Jetpack Compose. Offline-first architecture with local encrypted storage, Gemini AI integration for journal reflections, mood tracking, cycle tracking, and a calming Material 3 interface inspired by Apple Journal and Apple Health.",
-    challenges: ["Offline-first Room database architecture", "Local AES encryption", "Gemini AI on Android", "MVVM with Kotlin Coroutines and Flow"],
-    tech: ["Kotlin", "Jetpack Compose", "Room Database", "Gemini AI", "MVVM", "WorkManager", "Hilt DI", "Material 3", "Kotlin Coroutines", "Kotlin Flow"],
+    status: "Shipped",
+    statusBadgeStyle: "bg-green-950 text-[#22C55E] text-[10px] font-bold uppercase",
+    title: "Soul Sync — Android",
+    tagline: "Your personal AI-powered emotional wellness sanctuary.",
+    description: "Soul Sync Android is a native emotional wellness app built in Kotlin and Jetpack Compose, combining private journaling, AI emotional reflection, mood tracking, cycle awareness, memory scrapbook, achievements, and secure cloud sync into one calming offline-first sanctuary. An AI reflection engine analyzes journal entries and returns personalized, supportive responses instead of generic sentiment output, while Room Database and DataStore keep the full experience working without a connection.",
+    challenges: ["AI-powered emotional reflection engine", "Offline-first Room database architecture", "Narrative mood analytics over raw numbers", "User-isolated data privacy architecture", "Cycle tracking with emotional correlation"],
+    tech: ["Kotlin", "Jetpack Compose", "Material Design", "MVVM", "Repository Pattern", "Room Database", "Android DataStore", "Supabase", "PostgreSQL", "Dependency Injection"],
     github: "https://github.com/Pro-Prince/Soul-Sync-Android-App"
   },
   {

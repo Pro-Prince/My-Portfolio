@@ -1,9 +1,11 @@
-import { Github, Linkedin, Instagram, Puzzle, Bot, Zap } from 'lucide-react';
+import { Github, Linkedin, Instagram, Puzzle, Bot, Zap, X } from 'lucide-react';
+import { useState } from 'react';
 import FadeIn from '../components/FadeIn';
 import { useDynamicTitle } from '../hooks/useDynamicTitle';
 import XLogo from '../components/XLogo';
 
 export default function About() {
+  const [previewImage, setPreviewImage] = useState<string | null>(null);
   useDynamicTitle('About — Prince Patel');
 
   return (
@@ -149,36 +151,81 @@ export default function About() {
             <div className="text-xs font-semibold tracking-widest uppercase text-[#6366F1] mb-3">VERIFIED CREDENTIALS</div>
             <h2 className="text-2xl font-bold text-white mb-8">Google AI Credentials</h2>
             
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-              <a href="https://www.credly.com/badges/bdcf68d2-cc92-4561-862a-cbff3419d5ca/public_url" target="_blank" rel="noopener noreferrer" className="group bg-[#111111] border border-[#262626] rounded-xl p-3 hover:border-[#6366F1] transition-all hover:-translate-y-1 hover:shadow-[0_4px_20px_rgba(99,102,241,0.15)] flex flex-col items-center gap-1">
-                <img src="/badges/prompt-design-vertex-ai.png" alt="Prompt Design in Vertex AI" className="w-full rounded-lg overflow-hidden mb-1" />
-                <span className="text-[11px] font-medium text-[#A3A3A3] w-full text-center">Issued July 24, 2026</span>
-                <span className="text-xs font-semibold text-[#818CF8] group-hover:text-[#6366F1] transition-colors w-full text-center mt-1">Verify on Credly &rarr;</span>
-              </a>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
+              <div className="group bg-[#111111] border border-[#262626] rounded-xl p-4 hover:border-[#6366F1] transition-all hover:-translate-y-1 hover:shadow-[0_4px_20px_rgba(99,102,241,0.15)] flex flex-col items-center gap-3">
+                <button 
+                  onClick={() => setPreviewImage("/badges/prompt-design-vertex-ai.png")}
+                  className="w-full relative focus:outline-none focus:ring-2 focus:ring-[#6366F1] rounded-lg"
+                >
+                  <img src="/badges/prompt-design-vertex-ai.png" alt="Prompt Design in Vertex AI" className="w-full rounded-lg overflow-hidden cursor-pointer hover:opacity-90 transition-opacity" />
+                </button>
+                <div className="flex flex-col w-full h-full justify-between gap-3">
+                  <span className="text-[13px] font-medium text-[#FAFAFA] w-full text-center">Issued July 24, 2026</span>
+                  <a href="https://www.credly.com/badges/bdcf68d2-cc92-4561-862a-cbff3419d5ca/public_url" target="_blank" rel="noopener noreferrer" className="w-full flex items-center justify-center bg-[rgba(99,102,241,0.08)] border border-[rgba(99,102,241,0.3)] hover:bg-[rgba(99,102,241,0.15)] hover:border-[#6366F1] text-[#6366F1] rounded-lg px-3 py-2 transition-colors text-sm whitespace-nowrap mt-auto">
+                    Verify on Credly &rarr;
+                  </a>
+                </div>
+              </div>
 
-              <a href="https://www.credly.com/badges/5d38f23d-5d23-4671-96fd-8f586da15603/public_url" target="_blank" rel="noopener noreferrer" className="group bg-[#111111] border border-[#262626] rounded-xl p-3 hover:border-[#6366F1] transition-all hover:-translate-y-1 hover:shadow-[0_4px_20px_rgba(99,102,241,0.15)] flex flex-col items-center gap-1">
-                <img src="/badges/build-real-world-ai-gemini-imagen.png" alt="Build Real World AI Applications with Gemini and Imagen" className="w-full rounded-lg overflow-hidden mb-1" />
-                <span className="text-[11px] font-medium text-[#A3A3A3] w-full text-center">Issued July 26, 2026</span>
-                <span className="text-xs font-semibold text-[#818CF8] group-hover:text-[#6366F1] transition-colors w-full text-center mt-1">Verify on Credly &rarr;</span>
-              </a>
+              <div className="group bg-[#111111] border border-[#262626] rounded-xl p-4 hover:border-[#6366F1] transition-all hover:-translate-y-1 hover:shadow-[0_4px_20px_rgba(99,102,241,0.15)] flex flex-col items-center gap-3">
+                <button 
+                  onClick={() => setPreviewImage("/badges/build-real-world-ai-gemini-imagen.png")}
+                  className="w-full relative focus:outline-none focus:ring-2 focus:ring-[#6366F1] rounded-lg"
+                >
+                  <img src="/badges/build-real-world-ai-gemini-imagen.png" alt="Build Real World AI Applications with Gemini and Imagen" className="w-full rounded-lg overflow-hidden cursor-pointer hover:opacity-90 transition-opacity" />
+                </button>
+                <div className="flex flex-col w-full h-full justify-between gap-3">
+                  <span className="text-[13px] font-medium text-[#FAFAFA] w-full text-center">Issued July 26, 2026</span>
+                  <a href="https://www.credly.com/badges/5d38f23d-5d23-4671-96fd-8f586da15603/public_url" target="_blank" rel="noopener noreferrer" className="w-full flex items-center justify-center bg-[rgba(99,102,241,0.08)] border border-[rgba(99,102,241,0.3)] hover:bg-[rgba(99,102,241,0.15)] hover:border-[#6366F1] text-[#6366F1] rounded-lg px-3 py-2 transition-colors text-sm whitespace-nowrap mt-auto">
+                    Verify on Credly &rarr;
+                  </a>
+                </div>
+              </div>
 
-              <a href="https://www.credly.com/badges/5c94f0e3-2ad1-4960-a564-2baa5b138751/public_url" target="_blank" rel="noopener noreferrer" className="group bg-[#111111] border border-[#262626] rounded-xl p-3 hover:border-[#6366F1] transition-all hover:-translate-y-1 hover:shadow-[0_4px_20px_rgba(99,102,241,0.15)] flex flex-col items-center gap-1">
-                <img src="/badges/develop-genai-streamlit.png" alt="Develop GenAI Apps with Gemini and Streamlit" className="w-full rounded-lg overflow-hidden mb-1" />
-                <span className="text-[11px] font-medium text-[#A3A3A3] w-full text-center">Issued July 27, 2026</span>
-                <span className="text-xs font-semibold text-[#818CF8] group-hover:text-[#6366F1] transition-colors w-full text-center mt-1">Verify on Credly &rarr;</span>
-              </a>
+              <div className="group bg-[#111111] border border-[#262626] rounded-xl p-4 hover:border-[#6366F1] transition-all hover:-translate-y-1 hover:shadow-[0_4px_20px_rgba(99,102,241,0.15)] flex flex-col items-center gap-3">
+                <button 
+                  onClick={() => setPreviewImage("/badges/develop-genai-streamlit.png")}
+                  className="w-full relative focus:outline-none focus:ring-2 focus:ring-[#6366F1] rounded-lg"
+                >
+                  <img src="/badges/develop-genai-streamlit.png" alt="Develop GenAI Apps with Gemini and Streamlit" className="w-full rounded-lg overflow-hidden cursor-pointer hover:opacity-90 transition-opacity" />
+                </button>
+                <div className="flex flex-col w-full h-full justify-between gap-3">
+                  <span className="text-[13px] font-medium text-[#FAFAFA] w-full text-center">Issued July 27, 2026</span>
+                  <a href="https://www.credly.com/badges/5c94f0e3-2ad1-4960-a564-2baa5b138751/public_url" target="_blank" rel="noopener noreferrer" className="w-full flex items-center justify-center bg-[rgba(99,102,241,0.08)] border border-[rgba(99,102,241,0.3)] hover:bg-[rgba(99,102,241,0.15)] hover:border-[#6366F1] text-[#6366F1] rounded-lg px-3 py-2 transition-colors text-sm whitespace-nowrap mt-auto">
+                    Verify on Credly &rarr;
+                  </a>
+                </div>
+              </div>
 
-              <a href="https://www.credly.com/badges/7430f68f-a85c-4288-ac93-410f3faaecf8/public_url" target="_blank" rel="noopener noreferrer" className="group bg-[#111111] border border-[#262626] rounded-xl p-3 hover:border-[#6366F1] transition-all hover:-translate-y-1 hover:shadow-[0_4px_20px_rgba(99,102,241,0.15)] flex flex-col items-center gap-1">
-                <img src="/badges/gemini-enterprise-application.png" alt="Gemini for Enterprise Application Developers" className="w-full rounded-lg overflow-hidden mb-1" />
-                <span className="text-[11px] font-medium text-[#A3A3A3] w-full text-center">Issued August 1, 2026</span>
-                <span className="text-xs font-semibold text-[#818CF8] group-hover:text-[#6366F1] transition-colors w-full text-center mt-1">Verify on Credly &rarr;</span>
-              </a>
+              <div className="group bg-[#111111] border border-[#262626] rounded-xl p-4 hover:border-[#6366F1] transition-all hover:-translate-y-1 hover:shadow-[0_4px_20px_rgba(99,102,241,0.15)] flex flex-col items-center gap-3">
+                <button 
+                  onClick={() => setPreviewImage("/badges/gemini-enterprise-application.png")}
+                  className="w-full relative focus:outline-none focus:ring-2 focus:ring-[#6366F1] rounded-lg"
+                >
+                  <img src="/badges/gemini-enterprise-application.png" alt="Gemini for Enterprise Application Developers" className="w-full rounded-lg overflow-hidden cursor-pointer hover:opacity-90 transition-opacity" />
+                </button>
+                <div className="flex flex-col w-full h-full justify-between gap-3">
+                  <span className="text-[13px] font-medium text-[#FAFAFA] w-full text-center">Issued August 1, 2026</span>
+                  <a href="https://www.credly.com/badges/7430f68f-a85c-4288-ac93-410f3faaecf8/public_url" target="_blank" rel="noopener noreferrer" className="w-full flex items-center justify-center bg-[rgba(99,102,241,0.08)] border border-[rgba(99,102,241,0.3)] hover:bg-[rgba(99,102,241,0.15)] hover:border-[#6366F1] text-[#6366F1] rounded-lg px-3 py-2 transition-colors text-sm whitespace-nowrap mt-auto">
+                    Verify on Credly &rarr;
+                  </a>
+                </div>
+              </div>
 
-              <a href="https://www.credly.com/badges/1307f337-971f-41b9-8ebb-714c6467fecf/public_url" target="_blank" rel="noopener noreferrer" className="group bg-[#111111] border border-[#262626] rounded-xl p-3 hover:border-[#6366F1] transition-all hover:-translate-y-1 hover:shadow-[0_4px_20px_rgba(99,102,241,0.15)] flex flex-col items-center gap-1">
-                <img src="/badges/smart-cloud-vibe-coding-mcp.png" alt="Smart Cloud Vibe Coding MCP" className="w-full rounded-lg overflow-hidden mb-1" />
-                <span className="text-[11px] font-medium text-[#A3A3A3] w-full text-center">Issued August 3, 2026</span>
-                <span className="text-xs font-semibold text-[#818CF8] group-hover:text-[#6366F1] transition-colors w-full text-center mt-1">Verify on Credly &rarr;</span>
-              </a>
+              <div className="group bg-[#111111] border border-[#262626] rounded-xl p-4 hover:border-[#6366F1] transition-all hover:-translate-y-1 hover:shadow-[0_4px_20px_rgba(99,102,241,0.15)] flex flex-col items-center gap-3">
+                <button 
+                  onClick={() => setPreviewImage("/badges/smart-cloud-vibe-coding-mcp.png")}
+                  className="w-full relative focus:outline-none focus:ring-2 focus:ring-[#6366F1] rounded-lg"
+                >
+                  <img src="/badges/smart-cloud-vibe-coding-mcp.png" alt="Smart Cloud Vibe Coding MCP" className="w-full rounded-lg overflow-hidden cursor-pointer hover:opacity-90 transition-opacity" />
+                </button>
+                <div className="flex flex-col w-full h-full justify-between gap-3">
+                  <span className="text-[13px] font-medium text-[#FAFAFA] w-full text-center">Issued August 3, 2026</span>
+                  <a href="https://www.credly.com/badges/1307f337-971f-41b9-8ebb-714c6467fecf/public_url" target="_blank" rel="noopener noreferrer" className="w-full flex items-center justify-center bg-[rgba(99,102,241,0.08)] border border-[rgba(99,102,241,0.3)] hover:bg-[rgba(99,102,241,0.15)] hover:border-[#6366F1] text-[#6366F1] rounded-lg px-3 py-2 transition-colors text-sm whitespace-nowrap mt-auto">
+                    Verify on Credly &rarr;
+                  </a>
+                </div>
+              </div>
             </div>
             
             <div className="mt-8 text-center">
@@ -289,6 +336,32 @@ export default function About() {
         </div>
 
       </div>
+      
+      {/* IMAGE PREVIEW MODAL */}
+      {previewImage && (
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+          onClick={() => setPreviewImage(null)}
+        >
+          <div 
+            className="relative max-w-4xl w-full flex flex-col items-center justify-center"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button 
+              onClick={() => setPreviewImage(null)}
+              className="absolute -top-12 right-0 p-2 text-white hover:text-[#6366F1] transition-colors bg-black/50 hover:bg-black/80 rounded-full"
+              aria-label="Close preview"
+            >
+              <X size={24} />
+            </button>
+            <img 
+              src={previewImage} 
+              alt="Credential Preview" 
+              className="w-full max-h-[80vh] object-contain rounded-xl shadow-2xl"
+            />
+          </div>
+        </div>
+      )}
     </main>
   );
 }

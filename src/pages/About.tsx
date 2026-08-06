@@ -18,7 +18,7 @@ export default function About() {
               <img src="/prince-photo.jpg" alt="Prince Patel" className="w-full h-full object-cover rounded-full" />
             </div>
             <div className="mt-8 font-bold text-2xl text-white">Prince Patel</div>
-            <div className="text-base text-[#6366F1] mt-1">AI Builder</div>
+            <div className="text-base text-[#6366F1] mt-1">AI-Powered Product Developer</div>
             <div className="mt-6 flex justify-center gap-4">
               <a href="https://github.com/Pro-Prince" aria-label="GitHub profile" target="_blank" rel="noopener noreferrer" className="w-[40px] h-[40px] flex items-center justify-center rounded-full bg-[#1A1A1A] border border-[#262626] hover:border-[#6366F1] transition-colors text-white">
                 <Github size={20} />
@@ -39,7 +39,7 @@ export default function About() {
           <FadeIn>
             <div className="text-xs font-semibold tracking-widest uppercase text-[#6366F1] mb-3">ABOUT ME</div>
             <h1 className="text-4xl md:text-5xl font-extrabold text-white leading-tight mb-8">
-              Product Builder.
+              AI-Powered Product Developer.
             </h1>
             <p className="text-[#A3A3A3] leading-relaxed mb-5">
               I'm Prince Patel, a builder who builds real software. Not tutorials. Not clones. Real products that solve real problems and actually ship.

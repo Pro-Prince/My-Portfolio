@@ -29,8 +29,8 @@ export default function Home() {
                 That Actually <span className="text-[#6366F1]">Work.</span>
               </div>
             </h1>
-            <p className="mb-10 text-lg text-[#A3A3A3] leading-relaxed max-w-lg">
-              Builder turned product engineer. I've shipped 7 software products — Chrome extensions, full-stack web apps, and a native Android app — using AI as a force multiplier.
+            <p className="mb-10 text-lg md:text-xl text-[#A3A3A3] leading-relaxed max-w-xl">
+              I design and ship AI-powered products — Chrome extensions, full-stack web apps, and native Android apps. I use AI as a force multiplier to build faster and think bigger, not as a shortcut.
             </p>
             <div className="flex gap-4 mb-14 flex-wrap">
               <Link

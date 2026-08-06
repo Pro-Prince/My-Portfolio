@@ -30,7 +30,7 @@ export default function Home() {
               </div>
             </h1>
             <p className="mb-10 text-lg text-[#A3A3A3] leading-relaxed max-w-lg">
-              CS student turned product builder. I've shipped 7 software products — Chrome extensions, full-stack web apps, and a native Android app — using AI as a force multiplier.
+              Builder turned product engineer. I've shipped 7 software products — Chrome extensions, full-stack web apps, and a native Android app — using AI as a force multiplier.
             </p>
             <div className="flex gap-4 mb-14 flex-wrap">
               <Link

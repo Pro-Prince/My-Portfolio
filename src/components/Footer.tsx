@@ -11,7 +11,7 @@ export default function Footer() {
           <div>
             <div className="font-bold text-lg text-white mb-2">Prince Patel</div>
             <div className="text-sm text-[#A3A3A3] mb-6">
-              AI Builder. Product Developer. CS Student.
+              AI Builder. Product Developer.
             </div>
             <div className="flex gap-3">
               <a href="https://github.com/Pro-Prince" aria-label="GitHub profile" target="_blank" rel="noopener noreferrer" className="w-[36px] h-[36px] flex items-center justify-center rounded-full bg-[#111111] border border-[#262626] hover:border-[#6366F1] transition-colors text-white">

@@ -18,7 +18,7 @@ export default function About() {
               <img src="/prince-photo.jpg" alt="Prince Patel" className="w-full h-full object-cover rounded-full" />
             </div>
             <div className="mt-8 font-bold text-2xl text-white">Prince Patel</div>
-            <div className="text-base text-[#6366F1] mt-1">AI Builder & CS Student</div>
+            <div className="text-base text-[#6366F1] mt-1">AI Builder</div>
             <div className="mt-6 flex justify-center gap-4">
               <a href="https://github.com/Pro-Prince" aria-label="GitHub profile" target="_blank" rel="noopener noreferrer" className="w-[40px] h-[40px] flex items-center justify-center rounded-full bg-[#1A1A1A] border border-[#262626] hover:border-[#6366F1] transition-colors text-white">
                 <Github size={20} />
@@ -39,10 +39,10 @@ export default function About() {
           <FadeIn>
             <div className="text-xs font-semibold tracking-widest uppercase text-[#6366F1] mb-3">ABOUT ME</div>
             <h1 className="text-4xl md:text-5xl font-extrabold text-white leading-tight mb-8">
-              Builder first. Student second.
+              Product Builder.
             </h1>
             <p className="text-[#A3A3A3] leading-relaxed mb-5">
-              I'm Prince Patel, a CS student from India who builds real software. Not tutorials. Not clones. Real products that solve real problems and actually ship.
+              I'm Prince Patel, a builder who builds real software. Not tutorials. Not clones. Real products that solve real problems and actually ship.
             </p>
             <p className="text-[#A3A3A3] leading-relaxed mb-5">
               I've built Chrome extensions used for professional design and developer workflows, full-stack web apps with real AI integration and live backend infrastructure, and a native Android application. I use tools like Lovable, Google AI Studio, and Supabase not as shortcuts but as force multipliers to build faster and think bigger.
@@ -154,8 +154,8 @@ export default function About() {
             {[
               {
                 year: '2023',
-                title: 'Joined B.Tech CS',
-                description: 'Enrolled in a 4-year B.Tech in Computer Science. Started obsessing over how software actually works under the hood.'
+                title: 'Started B.Tech in Computer Science',
+                description: 'Enrolled in B.Tech Computer Science Engineering at PDEU, Gandhinagar, Gujarat. Started obsessing over how software actually works under the hood.'
               },
               {
                 year: '2026',

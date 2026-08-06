@@ -143,6 +143,52 @@ export default function About() {
           </div>
         </div>
 
+        {/* VERIFIED CREDENTIALS SECTION */}
+        <div className="py-16">
+          <FadeIn>
+            <div className="text-xs font-semibold tracking-widest uppercase text-[#6366F1] mb-3">VERIFIED CREDENTIALS</div>
+            <h2 className="text-2xl font-bold text-white mb-8">Google AI Credentials</h2>
+            
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+              <a href="https://www.credly.com/badges/bdcf68d2-cc92-4561-862a-cbff3419d5ca/public_url" target="_blank" rel="noopener noreferrer" className="group bg-[#111111] border border-[#262626] rounded-xl p-3 hover:border-[#6366F1] transition-all hover:-translate-y-1 hover:shadow-[0_4px_20px_rgba(99,102,241,0.15)] flex flex-col items-center gap-1">
+                <img src="/badges/prompt-design-vertex-ai.png" alt="Prompt Design in Vertex AI" className="w-full rounded-lg overflow-hidden mb-1" />
+                <span className="text-[11px] font-medium text-[#A3A3A3] w-full text-center">Issued July 24, 2026</span>
+                <span className="text-xs font-semibold text-[#818CF8] group-hover:text-[#6366F1] transition-colors w-full text-center mt-1">Verify on Credly &rarr;</span>
+              </a>
+
+              <a href="https://www.credly.com/badges/5d38f23d-5d23-4671-96fd-8f586da15603/public_url" target="_blank" rel="noopener noreferrer" className="group bg-[#111111] border border-[#262626] rounded-xl p-3 hover:border-[#6366F1] transition-all hover:-translate-y-1 hover:shadow-[0_4px_20px_rgba(99,102,241,0.15)] flex flex-col items-center gap-1">
+                <img src="/badges/build-real-world-ai-gemini-imagen.png" alt="Build Real World AI Applications with Gemini and Imagen" className="w-full rounded-lg overflow-hidden mb-1" />
+                <span className="text-[11px] font-medium text-[#A3A3A3] w-full text-center">Issued July 26, 2026</span>
+                <span className="text-xs font-semibold text-[#818CF8] group-hover:text-[#6366F1] transition-colors w-full text-center mt-1">Verify on Credly &rarr;</span>
+              </a>
+
+              <a href="https://www.credly.com/badges/5c94f0e3-2ad1-4960-a564-2baa5b138751/public_url" target="_blank" rel="noopener noreferrer" className="group bg-[#111111] border border-[#262626] rounded-xl p-3 hover:border-[#6366F1] transition-all hover:-translate-y-1 hover:shadow-[0_4px_20px_rgba(99,102,241,0.15)] flex flex-col items-center gap-1">
+                <img src="/badges/develop-genai-streamlit.png" alt="Develop GenAI Apps with Gemini and Streamlit" className="w-full rounded-lg overflow-hidden mb-1" />
+                <span className="text-[11px] font-medium text-[#A3A3A3] w-full text-center">Issued July 27, 2026</span>
+                <span className="text-xs font-semibold text-[#818CF8] group-hover:text-[#6366F1] transition-colors w-full text-center mt-1">Verify on Credly &rarr;</span>
+              </a>
+
+              <a href="https://www.credly.com/badges/7430f68f-a85c-4288-ac93-410f3faaecf8/public_url" target="_blank" rel="noopener noreferrer" className="group bg-[#111111] border border-[#262626] rounded-xl p-3 hover:border-[#6366F1] transition-all hover:-translate-y-1 hover:shadow-[0_4px_20px_rgba(99,102,241,0.15)] flex flex-col items-center gap-1">
+                <img src="/badges/gemini-enterprise-application.png" alt="Gemini for Enterprise Application Developers" className="w-full rounded-lg overflow-hidden mb-1" />
+                <span className="text-[11px] font-medium text-[#A3A3A3] w-full text-center">Issued August 1, 2026</span>
+                <span className="text-xs font-semibold text-[#818CF8] group-hover:text-[#6366F1] transition-colors w-full text-center mt-1">Verify on Credly &rarr;</span>
+              </a>
+
+              <a href="https://www.credly.com/badges/1307f337-971f-41b9-8ebb-714c6467fecf/public_url" target="_blank" rel="noopener noreferrer" className="group bg-[#111111] border border-[#262626] rounded-xl p-3 hover:border-[#6366F1] transition-all hover:-translate-y-1 hover:shadow-[0_4px_20px_rgba(99,102,241,0.15)] flex flex-col items-center gap-1">
+                <img src="/badges/smart-cloud-vibe-coding-mcp.png" alt="Smart Cloud Vibe Coding MCP" className="w-full rounded-lg overflow-hidden mb-1" />
+                <span className="text-[11px] font-medium text-[#A3A3A3] w-full text-center">Issued August 3, 2026</span>
+                <span className="text-xs font-semibold text-[#818CF8] group-hover:text-[#6366F1] transition-colors w-full text-center mt-1">Verify on Credly &rarr;</span>
+              </a>
+            </div>
+            
+            <div className="mt-8 text-center">
+              <a href="https://www.credly.com/users/pro-prince/badges/credly" target="_blank" rel="noopener noreferrer" className="text-sm text-[#6366F1] hover:underline">
+                View all credentials on Credly &rarr;
+              </a>
+            </div>
+          </FadeIn>
+        </div>
+
         {/* BUILDER TIMELINE SECTION */}
         <div className="pt-24 pb-16">
           <FadeIn>

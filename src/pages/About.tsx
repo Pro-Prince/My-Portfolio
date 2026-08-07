@@ -315,8 +315,8 @@ export default function About() {
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <div className="bg-[#111111] border border-[#262626] rounded-xl p-5 text-center hover:border-[#3F3F46] transition-colors">
-                <div className="text-3xl font-bold text-[#6366F1] mb-1">7</div>
-                <div className="text-sm text-[#A3A3A3]">Public Repos</div>
+                <div className="text-3xl font-bold text-[#6366F1] mb-1">8</div>
+                <div className="text-sm text-[#A3A3A3]">Repos</div>
               </div>
               <div className="bg-[#111111] border border-[#262626] rounded-xl p-5 text-center hover:border-[#3F3F46] transition-colors">
                 <div className="text-3xl font-bold text-[#22D3EE] mb-1">8+</div>

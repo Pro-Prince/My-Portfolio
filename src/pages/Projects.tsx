@@ -108,8 +108,8 @@ const projects = [
   },
   {
     id: "08",
-    category: "ai-tool",
-    categoryBadge: "AI Tool",
+    category: "ai-product",
+    categoryBadge: "AI Product",
     categoryBadgeStyle: "bg-[rgba(167,139,250,0.1)] text-[#A78BFA] text-[10px] font-bold uppercase",
     status: "Shipped",
     statusBadgeStyle: "bg-green-950 text-[#22C55E] text-[10px] font-bold uppercase",
@@ -157,7 +157,7 @@ export default function Projects() {
               { id: 'chrome', label: 'Chrome Extensions' },
               { id: 'web', label: 'Web Apps' },
               { id: 'android', label: 'Android' },
-              { id: 'ai-tool', label: 'AI Tools' }
+              { id: 'ai-product', label: 'AI Products' }
             ].map(tab => (
               <button
                 key={tab.id}
@@ -221,7 +221,7 @@ export default function Projects() {
                   </a>
                 )}
                 {project.gptLink && (
-                  <a href={project.gptLink} target="_blank" rel="noopener noreferrer" className="w-full flex items-center justify-center bg-[rgba(99,102,241,0.08)] border border-[rgba(99,102,241,0.3)] hover:bg-[rgba(99,102,241,0.15)] hover:border-[#6366F1] text-[#6366F1] rounded-lg px-4 py-2.5 transition-colors text-sm whitespace-nowrap">
+                  <a href={project.gptLink} target="_blank" rel="noopener noreferrer" className="w-full flex items-center justify-center bg-[rgba(99,102,241,0.08)] border border-[rgba(99,102,241,0.3)] hover:bg-[rgba(99,102,241,0.15)] hover:border-[#6366F1] text-[#6366F1] rounded-[8px] px-3 py-2 transition-colors text-sm whitespace-nowrap">
                     <ExternalLink size={14} className="mr-1.5" />
                     Try the GPT &rarr;
                   </a>

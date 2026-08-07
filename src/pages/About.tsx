@@ -284,6 +284,11 @@ export default function About() {
                 year: '2026',
                 title: 'PDF Craft — Browser-Based PDF Editor',
                 description: 'Built a full-featured browser-based PDF editor with a complete annotation toolkit — text editing, signatures, redaction, shapes, and stamps — plus secure document management and high-fidelity export using pdf.js and pdf-lib.'
+              },
+              {
+                year: '2026',
+                title: 'Interview Answer Auditor — Custom GPT',
+                description: 'Built a custom GPT that audits placement interview answers with structured scoring, a multi-turn follow-up chain, and an optional Brutal Mode. Published live on the GPT Store, designed specifically for engineering students in placement season.'
               }
             ].map((event, i) => (
               <FadeIn key={i} delay={i * 0.1}>
@@ -314,7 +319,7 @@ export default function About() {
                 <div className="text-sm text-[#A3A3A3]">Public Repos</div>
               </div>
               <div className="bg-[#111111] border border-[#262626] rounded-xl p-5 text-center hover:border-[#3F3F46] transition-colors">
-                <div className="text-3xl font-bold text-[#22D3EE] mb-1">7+</div>
+                <div className="text-3xl font-bold text-[#22D3EE] mb-1">8+</div>
                 <div className="text-sm text-[#A3A3A3]">Products Shipped</div>
               </div>
               <div className="bg-[#111111] border border-[#262626] rounded-xl p-5 text-center hover:border-[#3F3F46] transition-colors">

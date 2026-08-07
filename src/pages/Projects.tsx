@@ -105,6 +105,20 @@ const projects = [
     tech: ["React", "Vite", "Tailwind CSS", "Supabase", "PostgreSQL", "pdf.js", "pdf-lib", "Google OAuth", "Row Level Security", "Vercel"],
     github: "https://github.com/Pro-Prince/PDF-Craft",
     demo: "https://your-pdf-craft.vercel.app/"
+  },
+  {
+    id: "08",
+    category: "ai-tool",
+    categoryBadge: "AI Tool",
+    categoryBadgeStyle: "bg-[rgba(167,139,250,0.1)] text-[#A78BFA] text-[10px] font-bold uppercase",
+    status: "Shipped",
+    statusBadgeStyle: "bg-green-950 text-[#22C55E] text-[10px] font-bold uppercase",
+    title: "Interview Answer Auditor",
+    tagline: "A custom GPT that audits interview answers like a skeptical interviewer, not a hype machine.",
+    description: "Interview Answer Auditor is a custom GPT built on OpenAI's GPT platform that gives engineering students honest, structured feedback on placement interview answers. Instead of generic praise, it scores each answer, quotes back the exact weak line, explains why it fails, rewrites it using STAR structure, and predicts the follow-up question a real interviewer would ask to test whether the answer was memorized or genuinely understood. An optional Brutal Mode strips the softened rewrite for a blunt readiness verdict.",
+    challenges: ["Fixed audit format via system instructions", "Multi-turn follow-up chain up to 3 levels deep", "Brutal Mode as opt-in toggle not default tone", "Zero fabricated achievements rule", "Company-tier calibrated feedback"],
+    tech: ["OpenAI GPT Builder", "Prompt Engineering", "Custom Instructions", "Knowledge Base Curation", "Multi-Turn State Design", "GPT Store"],
+    gptLink: "https://chatgpt.com/g/g-6a756f5c7d6c81918067354f1bc5116c-interview-answer-auditor"
   }
 ];
 
@@ -142,7 +156,8 @@ export default function Projects() {
               { id: 'all', label: 'All' },
               { id: 'chrome', label: 'Chrome Extensions' },
               { id: 'web', label: 'Web Apps' },
-              { id: 'android', label: 'Android' }
+              { id: 'android', label: 'Android' },
+              { id: 'ai-tool', label: 'AI Tools' }
             ].map(tab => (
               <button
                 key={tab.id}
@@ -205,9 +220,17 @@ export default function Projects() {
                     Live Demo &rarr;
                   </a>
                 )}
-                <a href={project.github} target="_blank" rel="noreferrer" className={`flex-1 flex items-center justify-center bg-transparent border border-[#3F3F46] hover:border-[#6366F1] text-[#FAFAFA] rounded-[8px] px-3 py-2 transition-colors text-sm whitespace-nowrap`}>
-                  View on GitHub &rarr;
-                </a>
+                {project.gptLink && (
+                  <a href={project.gptLink} target="_blank" rel="noopener noreferrer" className="w-full flex items-center justify-center bg-[rgba(99,102,241,0.08)] border border-[rgba(99,102,241,0.3)] hover:bg-[rgba(99,102,241,0.15)] hover:border-[#6366F1] text-[#6366F1] rounded-lg px-4 py-2.5 transition-colors text-sm whitespace-nowrap">
+                    <ExternalLink size={14} className="mr-1.5" />
+                    Try the GPT &rarr;
+                  </a>
+                )}
+                {project.github && (
+                  <a href={project.github} target="_blank" rel="noreferrer" className={`flex-1 flex items-center justify-center bg-transparent border border-[#3F3F46] hover:border-[#6366F1] text-[#FAFAFA] rounded-[8px] px-3 py-2 transition-colors text-sm whitespace-nowrap`}>
+                    View on GitHub &rarr;
+                  </a>
+                )}
               </div>
             </div>
           </FadeIn>

@@ -8,10 +8,11 @@ import { Atom, FileCode2, Paintbrush, Database, Sparkles, FlaskConical, Smartpho
 export default function Home() {
   useDynamicTitle('Prince Patel — I Build Things That Actually Work');
 
-  const { count: count1, ref: ref1 } = useCountUp(7);
+  const { count: count1, ref: ref1 } = useCountUp(8);
   const { count: count2, ref: ref2 } = useCountUp(2);
   const { count: count3, ref: ref3 } = useCountUp(4);
   const { count: count4, ref: ref4 } = useCountUp(1);
+  const { count: count5, ref: ref5 } = useCountUp(1);
 
   return (
     <main className="pt-24 pb-16 md:pb-24">
@@ -46,7 +47,7 @@ export default function Home() {
                 Get In Touch
               </Link>
             </div>
-            <FadeIn delay={0.2} className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8">
+            <FadeIn delay={0.2} className="mt-12 grid grid-cols-2 sm:grid-cols-5 gap-6 sm:gap-8">
               <div className="flex flex-col">
                 <div className="text-4xl font-bold text-[#6366F1]">
                   <span ref={ref1}>{count1}</span>
@@ -70,6 +71,12 @@ export default function Home() {
                   <span ref={ref4}>{count4}</span>
                 </div>
                 <div className="text-sm text-[#A3A3A3] mt-1 font-medium">Android App</div>
+              </div>
+              <div className="flex flex-col">
+                <div className="text-4xl font-bold text-[#6366F1]">
+                  <span ref={ref5}>{count5}</span>
+                </div>
+                <div className="text-sm text-[#A3A3A3] mt-1 font-medium">AI Tool</div>
               </div>
             </FadeIn>
           </FadeIn>
@@ -228,11 +235,37 @@ export default function Home() {
                 </div>
               </div>
             </FadeIn>
+
+            {/* CARD 6 */}
+            <FadeIn delay={0.5}>
+              <div className="project-card p-6 flex flex-col h-full">
+                <div className="flex justify-between items-center mb-4">
+                  <span className="bg-[rgba(167,139,250,0.1)] text-[#A78BFA] text-[10px] font-bold px-3 py-1 rounded-full uppercase">AI Tool</span>
+                  <span className="bg-[#052E16] text-[#22C55E] text-[10px] font-bold px-3 py-1 rounded-full uppercase">Shipped</span>
+                </div>
+                <h3 className="text-xl font-bold text-white mt-4 mb-2">Interview Answer Auditor</h3>
+                <p className="text-sm text-[#A3A3A3] leading-relaxed flex-grow">
+                  A custom GPT that audits placement interview answers like a skeptical interviewer, not a hype machine. Scores each answer, flags the exact weak line, rewrites it, and predicts the follow-up question that would expose a memorized response.
+                </p>
+                <div className="border-t border-[#1F1F1F] my-4"></div>
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {['Prompt Engineering', 'GPT Builder', 'Custom Instructions', 'Knowledge Base Design'].map(tag => (
+                    <span key={tag} className="tech-tag text-[10px] font-mono px-2 py-0.5 rounded-full uppercase">{tag}</span>
+                  ))}
+                </div>
+                <div className="mt-auto flex flex-row gap-2 mt-4">
+                  <a href="https://chatgpt.com/g/g-6a756f5c7d6c81918067354f1bc5116c-interview-answer-auditor" target="_blank" rel="noopener noreferrer" className="w-full flex items-center justify-center bg-[rgba(99,102,241,0.08)] border border-[rgba(99,102,241,0.3)] hover:bg-[rgba(99,102,241,0.15)] hover:border-[#6366F1] text-[#6366F1] rounded-lg px-4 py-2.5 transition-colors text-sm whitespace-nowrap">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-1.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                    Try the GPT &rarr;
+                  </a>
+                </div>
+              </div>
+            </FadeIn>
           </div>
           
           <div className="mt-10 text-center">
             <Link to="/projects" className="inline-block bg-transparent border border-[#3F3F46] hover:border-[#6366F1] text-[#FAFAFA] rounded-[8px] px-6 py-3 transition-all font-semibold">
-              View All 7 Projects &rarr;
+              View All 8 Projects &rarr;
             </Link>
           </div>
         </div>

@@ -55,6 +55,24 @@ async function getVisitorIP() {
   }
 }
 
+async function getVisitorLocation() {
+  const cached = sessionStorage.getItem('visitor_location')
+  if (cached) return cached
+
+  try {
+    const response = await fetch('https://ipapi.co/json/')
+    const data = await response.json()
+    const location = [data.city, data.region, data.country_name]
+      .filter(Boolean)
+      .join(', ')
+    sessionStorage.setItem('visitor_location', location || 'Unknown')
+    return location || 'Unknown'
+  } catch (error) {
+    console.error('Failed to fetch visitor location:', error)
+    return 'Unknown'
+  }
+}
+
 export function useVisitLogger() {
   const location = useLocation()
   const lastLoggedRef = useRef<{ path: string; time: number }>({ path: '', time: 0 })
@@ -80,6 +98,7 @@ export function useVisitLogger() {
 
       try {
         const visitorIP = await getVisitorIP()
+        const visitorLocation = await getVisitorLocation()
 
         await supabase.from('page_visits').insert({
           page_path: location.pathname,
@@ -88,6 +107,7 @@ export function useVisitLogger() {
           browser: getBrowser(),
           session_id: getOrCreateSessionId(),
           ip_address: visitorIP,
+          location: visitorLocation,
         })
       } catch (error) {
         console.error('Visit logging failed:', error)

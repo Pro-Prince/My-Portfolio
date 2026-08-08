@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Lock, Users, TrendingUp, Mail, MailOpen, BarChart3, Inbox, MousePointerClick, AlertTriangle, Monitor, Smartphone, Tablet, ArrowRight, Menu, X, ChevronDown } from 'lucide-react';
+import { Lock, Users, TrendingUp, Mail, MailOpen, BarChart3, Inbox, MousePointerClick, AlertTriangle, Monitor, Smartphone, Tablet, ArrowRight, Menu, X, ChevronDown, MapPin } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import FadeIn from '../components/FadeIn';
@@ -15,6 +15,7 @@ type Visit = {
   browser: string;
   session_id?: string;
   ip_address?: string;
+  location?: string;
 };
 
 type Message = {
@@ -104,6 +105,12 @@ const VisitorRow: React.FC<{ visitor: any }> = ({ visitor }) => {
           </div>
           <div className="text-xs text-[#525252] truncate max-w-[120px]">{v.browser}</div>
           <div className="text-xs text-[#FAFAFA] whitespace-nowrap">{formatRelativeTime(v.created_at)}</div>
+          {v.location && v.location !== 'Unknown' && (
+            <div className="flex items-center gap-1">
+              <MapPin size={12} color="#525252" />
+              <div className="text-xs text-[#525252] truncate max-w-[150px]">{v.location}</div>
+            </div>
+          )}
           {visitor.isReturning && (
             <span className="bg-[rgba(99,102,241,0.1)] text-[#6366F1] text-[10px] uppercase font-bold tracking-wider rounded-full px-2 py-0.5">
               Returning

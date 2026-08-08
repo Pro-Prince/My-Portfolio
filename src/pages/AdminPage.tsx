@@ -76,6 +76,10 @@ function AdminDashboard({ onLock }: { onLock: () => void }) {
 
   useEffect(() => {
     const fetchData = async () => {
+      if (!supabase) {
+        setIsLoading(false);
+        return;
+      }
       setIsLoading(true);
       try {
         const { data: visitsData } = await supabase
@@ -132,23 +136,39 @@ function AdminDashboard({ onLock }: { onLock: () => void }) {
   }, []);
 
   const markAsRead = async (id: number) => {
+    if (!supabase) return;
     try {
-      await supabase.from('contact_messages').update({ is_read: true }).eq('id', id);
+      const { error } = await supabase.from('contact_messages').update({ is_read: true }).eq('id', id);
+      if (error) throw error;
       setMessages(messages.map(m => m.id === id ? { ...m, is_read: true } : m));
     } catch (error) {
       console.error('Error marking as read:', error);
     }
   };
   
-  const deleteMessage = async (id: number) => {
-    if (!window.confirm('Are you sure you want to delete this message?')) return;
+  const handleDeleteMessage = async (messageId: number) => {
+    if (!supabase) return
+    const confirmed = window.confirm(
+      'Delete this message permanently?'
+    )
+    if (!confirmed) return
+
     try {
-      await supabase.from('contact_messages').delete().eq('id', id);
-      setMessages(messages.filter(m => m.id !== id));
-    } catch (error) {
-      console.error('Error deleting message:', error);
+      const { error } = await supabase
+        .from('contact_messages')
+        .delete()
+        .eq('id', messageId)
+
+      if (error) throw error
+
+      setMessages((prev) =>
+        prev.filter((msg) => msg.id !== messageId)
+      )
+    } catch (err) {
+      console.error('Failed to delete message:', err)
+      alert('Could not delete message. Please try again.')
     }
-  };
+  }
 
   const todayDate = new Date().toISOString().split('T')[0];
   const visitorsToday = visits.filter(v => v.created_at.startsWith(todayDate)).length;
@@ -382,7 +402,7 @@ function AdminDashboard({ onLock }: { onLock: () => void }) {
                             Reply via Email
                           </a>
                           <button 
-                            onClick={() => deleteMessage(message.id)}
+                            onClick={() => handleDeleteMessage(message.id)}
                             className="text-xs px-3 py-1.5 text-red-400 border border-red-900/40 hover:bg-red-900/10 rounded-md transition-colors ml-auto md:ml-0"
                           >
                             Delete

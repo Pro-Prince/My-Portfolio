@@ -21,6 +21,8 @@ export function trackProjectClick(
   if (isDevOrPreviewEnvironment() || import.meta.env.DEV) {
     return
   }
+  
+  if (!supabase) return
 
   supabase
     .from('project_clicks')

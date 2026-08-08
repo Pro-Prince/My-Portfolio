@@ -53,6 +53,8 @@ export function useVisitLogger() {
       }
       lastLoggedRef.current = { path: location.pathname, time: now }
 
+      if (!supabase) return
+
       try {
         await supabase.from('page_visits').insert({
           page_path: location.pathname,

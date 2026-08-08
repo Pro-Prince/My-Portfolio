@@ -23,6 +23,10 @@ export default function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!supabase) {
+      alert('Contact form is currently disabled due to missing configuration. Please email directly instead.');
+      return;
+    }
     setIsSubmitting(true);
     try {
       const { error } = await supabase.from('contact_messages').insert({

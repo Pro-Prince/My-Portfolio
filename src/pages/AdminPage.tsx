@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Lock, Users, TrendingUp, Mail, MailOpen, BarChart3, Inbox, MousePointerClick, AlertTriangle, Monitor, Smartphone, Tablet, ArrowRight } from 'lucide-react';
+import { Lock, Users, TrendingUp, Mail, MailOpen, BarChart3, Inbox, MousePointerClick, AlertTriangle, Monitor, Smartphone, Tablet, ArrowRight, Menu, X } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import FadeIn from '../components/FadeIn';
@@ -92,23 +92,32 @@ function AdminDashboard({ onLock }: { onLock: () => void }) {
   const [chartData, setChartData] = useState<{ date: string; count: number }[]>([]);
   const [messages, setMessages] = useState<Message[]>([]);
   const [clicks, setClicks] = useState<Click[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
   const [activeTab, setActiveTab] = useState<'overview' | 'visitors' | 'messages' | 'engagement'>('overview');
   const [deleteTarget, setDeleteTarget] = useState<Message | null>(null);
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
       if (!supabase) {
-        setIsLoading(false);
         return;
       }
-      setIsLoading(true);
       try {
-        const { data: visitsData } = await supabase
-          .from('page_visits')
-          .select('*')
-          .order('created_at', { ascending: false })
-          .limit(100);
+        const [
+          { data: visitsData },
+          { data: messagesData },
+          { data: clicksData }
+        ] = await Promise.all([
+          supabase.from('page_visits').select('*').order('created_at', { ascending: false }).limit(100),
+          supabase.from('contact_messages').select('*').order('created_at', { ascending: false }),
+          supabase.from('project_clicks').select('*').order('created_at', { ascending: false })
+        ]);
           
         if (visitsData) {
           setVisits(visitsData);
@@ -140,24 +149,11 @@ function AdminDashboard({ onLock }: { onLock: () => void }) {
           setChartData(chartDataProcessed);
         }
 
-        const { data: messagesData } = await supabase
-          .from('contact_messages')
-          .select('*')
-          .order('created_at', { ascending: false });
-          
         if (messagesData) setMessages(messagesData);
-
-        const { data: clicksData } = await supabase
-          .from('project_clicks')
-          .select('*')
-          .order('created_at', { ascending: false });
-          
         if (clicksData) setClicks(clicksData);
 
       } catch (error) {
         console.error('Error fetching admin data:', error);
-      } finally {
-        setIsLoading(false);
       }
     };
     
@@ -219,25 +215,6 @@ function AdminDashboard({ onLock }: { onLock: () => void }) {
   const sortedProjects = (Object.entries(projectStats) as [string, { live_demo: number, github: number, gpt_link: number, total: number }][])
     .sort((a, b) => b[1].total - a[1].total);
 
-  if (isLoading) {
-    return (
-      <div className="min-h-screen bg-[#0A0A0A] text-white flex items-center justify-center">
-        <div className="flex flex-col gap-4 w-full max-w-6xl mx-auto px-8">
-          <div className="flex justify-between items-center mb-8 w-full">
-            <div className="h-8 w-24 bg-[#1A1A1A] animate-pulse rounded-lg"></div>
-            <div className="h-8 w-24 bg-[#1A1A1A] animate-pulse rounded-lg"></div>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 w-full mb-10">
-            {[...Array(4)].map((_, i) => (
-              <div key={i} className="h-28 bg-[#1A1A1A] animate-pulse rounded-xl"></div>
-            ))}
-          </div>
-          <div className="h-64 w-full bg-[#1A1A1A] animate-pulse rounded-xl"></div>
-        </div>
-      </div>
-    );
-  }
-
   const chartElement = (
     <ResponsiveContainer width="100%" height="100%">
       <LineChart data={chartData}>
@@ -267,46 +244,116 @@ function AdminDashboard({ onLock }: { onLock: () => void }) {
   );
 
   return (
-    <div className="min-h-screen bg-[#0A0A0A] text-white font-sans overflow-y-auto custom-scrollbar">
-      <div className="w-full flex justify-between items-center px-8 pt-6 pb-4 border-b border-[#1F1F1F] bg-[#0A0A0A]/95 backdrop-blur-md sticky top-0 z-50">
-        <h1 className="text-xl font-bold text-white">Admin</h1>
-        <button
-          onClick={onLock}
-          className="text-xs text-[#A3A3A3] hover:text-[#FAFAFA] bg-transparent border border-[#262626] hover:border-[#3F3F46] rounded-md px-3 py-1.5 transition-colors"
-        >
-          Lock Panel
-        </button>
-      </div>
-      
-      <div className="flex gap-1 border-b border-[#1F1F1F] px-8 overflow-x-auto no-scrollbar relative">
-        {(['overview', 'visitors', 'messages', 'engagement'] as const).map(tab => (
-          <button
-            key={tab}
-            onClick={() => setActiveTab(tab)}
-            className={`relative px-4 py-3 text-sm font-medium transition-all duration-200 flex items-center whitespace-nowrap
-            ${activeTab === tab ? 'text-white' : 'text-[#A3A3A3] hover:text-white'}`}
-          >
-            {tab.charAt(0).toUpperCase() + tab.slice(1)}
-            {tab === 'messages' && unreadMessages > 0 && (
-              <span className="ml-2 px-2 py-0.5 bg-[#6366F1] text-white text-[10px] font-bold rounded-full">
-                {unreadMessages}
-              </span>
-            )}
-            {activeTab === tab && (
-              <motion.div
-                layoutId="activeTabIndicator"
-                className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#6366F1]"
-                transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              />
-            )}
+    <div className="min-h-screen bg-[#0A0A0A] text-white font-sans">
+      <header
+        className={`fixed top-0 w-full h-16 z-50 transition-all duration-300 ${
+          scrolled ? 'bg-[#0A0A0A]/90 backdrop-blur-md border-b border-[#1F1F1F]' : 'bg-transparent border-b border-transparent'
+        }`}
+      >
+        <div className="max-w-6xl mx-auto px-6 h-full flex items-center justify-between">
+          <div className="font-semibold text-white text-base">
+            Admin
+          </div>
+
+          {/* Desktop */}
+          <div className="hidden md:flex items-center gap-8 h-full">
+            <div className="flex gap-6 h-full">
+              {(['overview', 'visitors', 'messages', 'engagement'] as const).map(tab => (
+                <button
+                  key={tab}
+                  onClick={() => setActiveTab(tab)}
+                  className={`relative h-full text-sm font-medium transition-colors flex items-center whitespace-nowrap
+                  ${activeTab === tab ? 'text-white' : 'text-[#A3A3A3] hover:text-white'}`}
+                >
+                  {tab.charAt(0).toUpperCase() + tab.slice(1)}
+                  {tab === 'messages' && unreadMessages > 0 && (
+                    <span className="ml-2 bg-[#6366F1] text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">
+                      {unreadMessages}
+                    </span>
+                  )}
+                  {activeTab === tab && (
+                    <motion.div
+                      layoutId="activeTabIndicator"
+                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#6366F1]"
+                      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                    />
+                  )}
+                </button>
+              ))}
+            </div>
+            
+            <button
+              onClick={onLock}
+              className="bg-[#6366F1] hover:bg-[#4F46E5] text-white px-5 py-2.5 rounded-[8px] text-sm font-medium transition-colors flex items-center gap-2"
+            >
+              <Lock size={16} />
+              Lock Panel
+            </button>
+          </div>
+
+          {/* Mobile Toggle */}
+          <button aria-label="Open navigation menu" className="md:hidden text-white" onClick={() => setIsOpen(true)}>
+            <Menu size={24} />
           </button>
-        ))}
+        </div>
+      </header>
+
+      {/* Mobile Menu */}
+      <div 
+        className="fixed inset-0 w-screen h-screen bg-[#0A0A0A] z-[200] isolate flex flex-col items-center justify-center pt-20 pb-8"
+        style={{
+          transform: isOpen ? 'translateX(0)' : 'translateX(100%)',
+          transition: 'transform 300ms cubic-bezier(0.4, 0, 0.2, 1)',
+          willChange: 'transform'
+        }}
+      >
+        <button
+          aria-label="Close navigation menu"
+          className="absolute top-5 right-6 text-white"
+          onClick={() => setIsOpen(false)}
+        >
+          <X size={24} />
+        </button>
+        <div className="flex flex-col items-center gap-8 w-full px-6">
+          {(['overview', 'visitors', 'messages', 'engagement'] as const).map(tab => (
+            <button
+              key={tab}
+              onClick={() => {
+                setActiveTab(tab);
+                setIsOpen(false);
+              }}
+              className={`text-2xl transition-colors flex items-center ${activeTab === tab ? 'text-white' : 'text-[#A3A3A3] hover:text-white'}`}
+            >
+              {tab.charAt(0).toUpperCase() + tab.slice(1)}
+              {tab === 'messages' && unreadMessages > 0 && (
+                <span className="ml-3 bg-[#6366F1] text-white text-xs font-bold px-2 py-0.5 rounded-full">
+                  {unreadMessages}
+                </span>
+              )}
+            </button>
+          ))}
+          
+          <div className="mt-auto mb-8 w-full max-w-[280px]">
+            <div className="border-t border-[#1F1F1F] w-full my-8" />
+            <button
+              onClick={() => {
+                setIsOpen(false);
+                onLock();
+              }}
+              className="w-full flex items-center justify-center gap-2 bg-[#6366F1] hover:bg-[#4F46E5] text-white px-5 py-3 rounded-xl text-sm font-medium transition-colors"
+            >
+              <Lock size={16} />
+              Lock Panel
+            </button>
+          </div>
+        </div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 md:px-8 py-8 pb-20">
-        {activeTab === 'overview' && (
-          <FadeIn>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+      <div className="max-w-6xl mx-auto px-4 md:px-8 pt-24 pb-20">
+        <>
+          {activeTab === 'overview' && (
+              <FadeIn>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
               <StatCard value={visits.length} label="Total Visitors" icon={Users} />
               <StatCard value={visitorsToday} label="Visitors Today" icon={TrendingUp} />
               <StatCard value={messages.length} label="Total Messages" icon={Mail} />
@@ -548,6 +595,7 @@ function AdminDashboard({ onLock }: { onLock: () => void }) {
             )}
           </FadeIn>
         )}
+        </>
       </div>
 
       <AnimatePresence>
@@ -598,17 +646,13 @@ function AdminDashboard({ onLock }: { onLock: () => void }) {
 }
 
 export default function AdminPage() {
-  const [isUnlocked, setIsUnlocked] = useState(false);
+  const [isUnlocked, setIsUnlocked] = useState(
+    () => sessionStorage.getItem('admin_unlocked') === 'true'
+  );
   const [pin, setPin] = useState('');
   const [shakeError, setShakeError] = useState(false);
   const [successFlash, setSuccessFlash] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    if (sessionStorage.getItem('admin_unlocked') === 'true') {
-      setIsUnlocked(true);
-    }
-  }, []);
 
   const handlePinChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value.replace(/[^0-9]/g, '');

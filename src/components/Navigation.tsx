@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { Menu, X, Github, Linkedin, Instagram } from 'lucide-react';
+import { motion } from 'framer-motion';
 import XLogo from './XLogo';
 
 export default function Navigation() {
@@ -33,19 +34,32 @@ export default function Navigation() {
         </Link>
 
         {/* Desktop */}
-        <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <NavLink
-              key={link.path}
-              to={link.path}
-              end={link.path === '/'}
-              className={({ isActive }) =>
-                `text-sm font-medium transition-colors ${isActive ? 'text-white' : 'nav-link'}`
-              }
-            >
-              {link.label}
-            </NavLink>
-          ))}
+        <div className="hidden md:flex items-center gap-8 h-full">
+          <div className="flex gap-6 h-full">
+            {navLinks.map((link) => (
+              <NavLink
+                key={link.path}
+                to={link.path}
+                end={link.path === '/'}
+                className={({ isActive }) =>
+                  `relative h-full flex items-center text-sm font-medium transition-colors ${isActive ? 'text-white' : 'text-[#A3A3A3] hover:text-white'}`
+                }
+              >
+                {({ isActive }) => (
+                  <>
+                    {link.label}
+                    {isActive && (
+                      <motion.div
+                        layoutId="activeNavIndicator"
+                        className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#6366F1]"
+                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                      />
+                    )}
+                  </>
+                )}
+              </NavLink>
+            ))}
+          </div>
           <Link
             to="/contact"
             className="bg-[#6366F1] hover:bg-[#4F46E5] text-white px-5 py-2.5 rounded-[8px] text-sm font-medium transition-colors"

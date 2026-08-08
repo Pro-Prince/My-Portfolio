@@ -24,9 +24,14 @@ export function trackProjectClick(
   
   if (!supabase) return
 
-  supabase
-    .from('project_clicks')
-    .insert({ project_name: projectName, button_type: buttonType })
-    .then(() => {})
-    .catch((err) => console.error('Click tracking failed:', err))
+  const track = async () => {
+    try {
+      await supabase
+        .from('project_clicks')
+        .insert({ project_name: projectName, button_type: buttonType })
+    } catch (err) {
+      console.error('Click tracking failed:', err)
+    }
+  }
+  track()
 }

@@ -32,6 +32,14 @@ function isDevOrPreviewEnvironment() {
   return blockedPatterns.some(pattern => hostname.includes(pattern))
 }
 
+function getOrCreateSessionId() {
+  const existing = sessionStorage.getItem('visitor_session_id')
+  if (existing) return existing
+  const newId = crypto.randomUUID()
+  sessionStorage.setItem('visitor_session_id', newId)
+  return newId
+}
+
 export function useVisitLogger() {
   const location = useLocation()
   const lastLoggedRef = useRef<{ path: string; time: number }>({ path: '', time: 0 })
@@ -61,6 +69,7 @@ export function useVisitLogger() {
           referrer: document.referrer || 'Direct',
           device_type: getDeviceType(),
           browser: getBrowser(),
+          session_id: getOrCreateSessionId(),
         })
       } catch (error) {
         console.error('Visit logging failed:', error)

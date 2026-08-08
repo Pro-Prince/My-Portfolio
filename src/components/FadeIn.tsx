@@ -1,9 +1,11 @@
+import React from 'react';
 import { motion } from 'framer-motion';
 
 interface FadeInProps {
   children: React.ReactNode;
   delay?: number;
   className?: string;
+  key?: React.Key;
 }
 
 export default function FadeIn({ children, delay = 0, className }: FadeInProps) {

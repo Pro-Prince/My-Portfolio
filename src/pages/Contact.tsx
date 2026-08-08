@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Mail, Linkedin, Github, Instagram, CheckCircle } from 'lucide-react';
 import FadeIn from '../components/FadeIn';
 import { useDynamicTitle } from '../hooks/useDynamicTitle';

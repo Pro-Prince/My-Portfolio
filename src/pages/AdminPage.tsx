@@ -1,9 +1,10 @@
-import { useState, useEffect, useRef } from 'react';
-import { Lock, Users, TrendingUp, Mail, MailOpen, BarChart3, Inbox, MousePointerClick } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Lock, Users, TrendingUp, Mail, MailOpen, BarChart3, Inbox, MousePointerClick, AlertTriangle, Monitor, Smartphone, Tablet, ArrowRight } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import FadeIn from '../components/FadeIn';
 import { useCountUp } from '../hooks/useCountUp';
+import { motion, AnimatePresence } from 'framer-motion';
 
 type Visit = {
   id: number;
@@ -12,6 +13,7 @@ type Visit = {
   referrer: string;
   device_type: string;
   browser: string;
+  session_id?: string;
 };
 
 type Message = {
@@ -45,10 +47,29 @@ function formatRelativeTime(dateString: string) {
   return `${diffInDays}d ago`;
 }
 
+function getDateGroupLabel(dateString: string) {
+  const date = new Date(dateString);
+  const now = new Date();
+  const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const startOfYesterday = new Date(startOfToday);
+  startOfYesterday.setDate(startOfYesterday.getDate() - 1);
+  const startOfVisitDay = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+
+  if (startOfVisitDay.getTime() === startOfToday.getTime()) return 'Today';
+  if (startOfVisitDay.getTime() === startOfYesterday.getTime()) return 'Yesterday';
+
+  return date.toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+  });
+}
+
 function StatCard({ value, label, icon: Icon }: { value: number, label: string, icon: any }) {
   const { count, ref } = useCountUp(value, 1000);
   return (
-    <div ref={ref as React.RefObject<HTMLDivElement>} className="bg-[#111111] border border-[#262626] hover:border-[#3F3F46] hover:-translate-y-0.5 transition-all rounded-xl p-5 relative">
+    <div ref={ref as React.RefObject<HTMLDivElement>} className="bg-[#111111] border border-[#262626] hover:border-[#3F3F46] hover:-translate-y-0.5 transition-all rounded-xl p-5 relative overflow-hidden group">
+      <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#6366F1] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
       <Icon size={18} color="#6366F1" className="absolute top-5 right-5" />
       <div className="text-3xl font-bold text-[#6366F1]">{count}</div>
       <div className="text-sm text-[#A3A3A3] mt-1">{label}</div>
@@ -73,6 +94,7 @@ function AdminDashboard({ onLock }: { onLock: () => void }) {
   const [clicks, setClicks] = useState<Click[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [activeTab, setActiveTab] = useState<'overview' | 'visitors' | 'messages' | 'engagement'>('overview');
+  const [deleteTarget, setDeleteTarget] = useState<Message | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -97,14 +119,21 @@ function AdminDashboard({ onLock }: { onLock: () => void }) {
             return d.toISOString().split('T')[0];
           }).reverse();
           
-          const countsByDate = visitsData.reduce((acc, visit) => {
+          // Group by session_id to get unique sessions per day
+          const uniqueSessions = new Set<string>();
+          const countsByDate: Record<string, number> = {};
+          
+          visitsData.forEach(visit => {
             const date = visit.created_at.split('T')[0];
-            acc[date] = (acc[date] || 0) + 1;
-            return acc;
-          }, {} as Record<string, number>);
+            const sessionKey = visit.session_id ? `${date}-${visit.session_id}` : `unknown-${visit.id}`;
+            if (!uniqueSessions.has(sessionKey)) {
+              uniqueSessions.add(sessionKey);
+              countsByDate[date] = (countsByDate[date] || 0) + 1;
+            }
+          });
           
           const chartDataProcessed = last30Days.map(date => ({
-            date: date.substring(5),
+            date: date,
             count: countsByDate[date] || 0
           }));
           
@@ -148,10 +177,6 @@ function AdminDashboard({ onLock }: { onLock: () => void }) {
   
   const handleDeleteMessage = async (messageId: number) => {
     if (!supabase) return
-    const confirmed = window.confirm(
-      'Delete this message permanently?'
-    )
-    if (!confirmed) return
 
     try {
       const { error } = await supabase
@@ -171,14 +196,14 @@ function AdminDashboard({ onLock }: { onLock: () => void }) {
   }
 
   const todayDate = new Date().toISOString().split('T')[0];
-  const visitorsToday = visits.filter(v => v.created_at.startsWith(todayDate)).length;
+  const visitorsToday = new Set(visits.filter(v => v.created_at.startsWith(todayDate)).map(v => v.session_id || v.id.toString())).size;
   const unreadMessages = messages.filter(m => !m.is_read).length;
 
   const pageCounts = visits.reduce((acc, v) => {
     acc[v.page_path] = (acc[v.page_path] || 0) + 1;
     return acc;
   }, {} as Record<string, number>);
-  const topPages = Object.entries(pageCounts)
+  const topPages = (Object.entries(pageCounts) as [string, number][])
     .sort((a, b) => b[1] - a[1])
     .slice(0, 5);
 
@@ -191,13 +216,24 @@ function AdminDashboard({ onLock }: { onLock: () => void }) {
     return acc;
   }, {} as Record<string, { live_demo: number, github: number, gpt_link: number, total: number }>);
   
-  const sortedProjects = Object.entries(projectStats)
+  const sortedProjects = (Object.entries(projectStats) as [string, { live_demo: number, github: number, gpt_link: number, total: number }][])
     .sort((a, b) => b[1].total - a[1].total);
 
   if (isLoading) {
     return (
       <div className="min-h-screen bg-[#0A0A0A] text-white flex items-center justify-center">
-        <div className="text-[#A3A3A3]">Loading dashboard...</div>
+        <div className="flex flex-col gap-4 w-full max-w-6xl mx-auto px-8">
+          <div className="flex justify-between items-center mb-8 w-full">
+            <div className="h-8 w-24 bg-[#1A1A1A] animate-pulse rounded-lg"></div>
+            <div className="h-8 w-24 bg-[#1A1A1A] animate-pulse rounded-lg"></div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 w-full mb-10">
+            {[...Array(4)].map((_, i) => (
+              <div key={i} className="h-28 bg-[#1A1A1A] animate-pulse rounded-xl"></div>
+            ))}
+          </div>
+          <div className="h-64 w-full bg-[#1A1A1A] animate-pulse rounded-xl"></div>
+        </div>
       </div>
     );
   }
@@ -206,7 +242,20 @@ function AdminDashboard({ onLock }: { onLock: () => void }) {
     <ResponsiveContainer width="100%" height="100%">
       <LineChart data={chartData}>
         <CartesianGrid strokeDasharray="3 3" stroke="#1F1F1F" vertical={false} />
-        <XAxis dataKey="date" stroke="#525252" fontSize={12} tickLine={false} axisLine={false} />
+        <XAxis 
+          dataKey="date" 
+          stroke="#525252" 
+          fontSize={11} 
+          tickLine={false} 
+          axisLine={false}
+          tickFormatter={(value) =>
+            new Date(value).toLocaleDateString('en-US', {
+              month: 'short',
+              day: 'numeric',
+              year: 'numeric',
+            })
+          }
+        />
         <YAxis stroke="#525252" fontSize={12} tickLine={false} axisLine={false} />
         <Tooltip 
           contentStyle={{ backgroundColor: '#1A1A1A', borderColor: '#262626', color: '#FAFAFA' }}
@@ -218,8 +267,8 @@ function AdminDashboard({ onLock }: { onLock: () => void }) {
   );
 
   return (
-    <div className="min-h-screen bg-[#0A0A0A] text-white font-sans overflow-y-auto">
-      <div className="w-full flex justify-between items-center px-8 pt-6 pb-4">
+    <div className="min-h-screen bg-[#0A0A0A] text-white font-sans overflow-y-auto custom-scrollbar">
+      <div className="w-full flex justify-between items-center px-8 pt-6 pb-4 border-b border-[#1F1F1F] bg-[#0A0A0A]/95 backdrop-blur-md sticky top-0 z-50">
         <h1 className="text-xl font-bold text-white">Admin</h1>
         <button
           onClick={onLock}
@@ -229,19 +278,26 @@ function AdminDashboard({ onLock }: { onLock: () => void }) {
         </button>
       </div>
       
-      <div className="flex gap-1 border-b border-[#1F1F1F] px-8 overflow-x-auto no-scrollbar">
+      <div className="flex gap-1 border-b border-[#1F1F1F] px-8 overflow-x-auto no-scrollbar relative">
         {(['overview', 'visitors', 'messages', 'engagement'] as const).map(tab => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
-            className={`px-4 py-3 text-sm font-medium border-b-2 transition-all duration-200 flex items-center whitespace-nowrap
-            ${activeTab === tab ? 'text-white border-b-[#6366F1]' : 'text-[#A3A3A3] border-b-transparent hover:text-white'}`}
+            className={`relative px-4 py-3 text-sm font-medium transition-all duration-200 flex items-center whitespace-nowrap
+            ${activeTab === tab ? 'text-white' : 'text-[#A3A3A3] hover:text-white'}`}
           >
             {tab.charAt(0).toUpperCase() + tab.slice(1)}
             {tab === 'messages' && unreadMessages > 0 && (
               <span className="ml-2 px-2 py-0.5 bg-[#6366F1] text-white text-[10px] font-bold rounded-full">
                 {unreadMessages}
               </span>
+            )}
+            {activeTab === tab && (
+              <motion.div
+                layoutId="activeTabIndicator"
+                className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#6366F1]"
+                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              />
             )}
           </button>
         ))}
@@ -301,9 +357,9 @@ function AdminDashboard({ onLock }: { onLock: () => void }) {
 
         {activeTab === 'visitors' && (
           <FadeIn>
-            <h2 className="text-xl font-bold text-white mb-4">Visitor Analytics</h2>
+            <h2 className="text-xl font-bold text-white mb-6">Visitor Analytics</h2>
             
-            <div className="bg-[#111111] border border-[#262626] rounded-xl p-6 mb-6">
+            <div className="bg-[#111111] border border-[#262626] rounded-xl p-6 mb-10">
               {visits.length === 0 ? (
                 <EmptyState icon={BarChart3} message="No visitor data yet." />
               ) : (
@@ -313,56 +369,98 @@ function AdminDashboard({ onLock }: { onLock: () => void }) {
               )}
             </div>
 
-            {topPages.length > 0 && (
-              <div className="mb-6">
-                <div className="text-sm font-medium text-white mb-3">Top Pages</div>
-                <div className="flex flex-col gap-2">
-                  {topPages.map(([path, count]) => (
-                    <div key={path} className="flex justify-between items-center text-sm">
-                      <span className="text-[#A3A3A3]">{path}</span>
-                      <span className="text-[#FAFAFA] font-mono">{count}</span>
-                    </div>
+            {(() => {
+              if (visits.length === 0) return null;
+              
+              const sessionsMap = new Map<string, {
+                session_id: string;
+                dateLabel: string;
+                dateValue: Date;
+                firstVisitTime: string;
+                device: string;
+                browser: string;
+                pages: string[];
+              }>();
+
+              visits.forEach(visit => {
+                const sid = visit.session_id || `unknown-${visit.id}`;
+                if (!sessionsMap.has(sid)) {
+                  sessionsMap.set(sid, {
+                    session_id: sid,
+                    dateLabel: getDateGroupLabel(visit.created_at),
+                    dateValue: new Date(visit.created_at.split('T')[0]),
+                    firstVisitTime: visit.created_at,
+                    device: visit.device_type,
+                    browser: visit.browser,
+                    pages: [visit.page_path],
+                  });
+                } else {
+                  const s = sessionsMap.get(sid)!;
+                  s.firstVisitTime = visit.created_at;
+                  s.device = visit.device_type;
+                  s.browser = visit.browser;
+                  s.pages.unshift(visit.page_path);
+                }
+              });
+
+              const groups: Record<string, any[]> = {};
+              Array.from(sessionsMap.values()).forEach(s => {
+                if (!groups[s.dateLabel]) groups[s.dateLabel] = [];
+                groups[s.dateLabel].push(s);
+              });
+
+              const sortedGroups = Object.entries(groups).sort((a, b) => b[1][0].dateValue.getTime() - a[1][0].dateValue.getTime());
+
+              return (
+                <div className="mb-10">
+                  {sortedGroups.map(([label, sessions], i) => (
+                    <details key={label} open className="group mb-6">
+                      <summary className="cursor-pointer text-xs font-semibold uppercase tracking-widest text-[#6366F1] mb-3 select-none flex items-center">
+                        {label} · {sessions.length} visitor{sessions.length === 1 ? '' : 's'}
+                        <div className="ml-2 h-[1px] bg-[#1F1F1F] flex-grow"></div>
+                      </summary>
+                      <div className="flex flex-col">
+                        {sessions.map((s: any) => (
+                          <div key={s.session_id} className="bg-[#111111] border border-[#262626] rounded-xl p-3 mb-2 flex flex-col md:flex-row md:items-center justify-between gap-3">
+                            <div className="flex items-center gap-3">
+                              <div className="text-[#A3A3A3]">
+                                {s.device === 'Mobile' ? <Smartphone size={16} /> : s.device === 'Tablet' ? <Tablet size={16} /> : <Monitor size={16} />}
+                              </div>
+                              <div className="text-xs text-[#FAFAFA] whitespace-nowrap">{formatRelativeTime(s.firstVisitTime)}</div>
+                              <div className="text-xs text-[#525252] truncate max-w-[120px]">{s.browser}</div>
+                            </div>
+                            <div className="flex flex-wrap items-center gap-1.5 justify-start md:justify-end">
+                              {s.pages.slice(0, 3).map((page: string, idx: number) => (
+                                <div key={idx} className="flex items-center gap-1.5">
+                                  <span className="bg-[#1A1A1A] border border-[#262626] text-[#A3A3A3] text-xs px-2 py-0.5 rounded-full truncate max-w-[150px]">{page}</span>
+                                  {idx < Math.min(s.pages.length, 3) - 1 && <ArrowRight size={12} className="text-[#3F3F46]" />}
+                                </div>
+                              ))}
+                              {s.pages.length > 3 && (
+                                <>
+                                  <ArrowRight size={12} className="text-[#3F3F46]" />
+                                  <span className="text-[#525252] text-xs px-1">+{s.pages.length - 3} more</span>
+                                </>
+                              )}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </details>
                   ))}
                 </div>
-              </div>
-            )}
-
-            {visits.length > 0 && (
-              <div className="bg-[#111111] border border-[#262626] rounded-xl overflow-x-auto mt-6">
-                <table className="w-full text-left border-collapse min-w-[600px]">
-                  <thead>
-                    <tr className="bg-[#1A1A1A] text-xs uppercase tracking-widest text-[#525252]">
-                      <th className="px-4 py-3 font-medium">Time</th>
-                      <th className="px-4 py-3 font-medium">Page</th>
-                      <th className="px-4 py-3 font-medium">Referrer</th>
-                      <th className="px-4 py-3 font-medium">Device</th>
-                      <th className="px-4 py-3 font-medium">Browser</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {visits.slice(0, 20).map((visit) => (
-                      <tr key={visit.id} className="text-sm text-[#A3A3A3] border-b border-[#1F1F1F] hover:bg-[#1A1A1A] transition-colors">
-                        <td className="px-4 py-3 whitespace-nowrap">{formatRelativeTime(visit.created_at)}</td>
-                        <td className="px-4 py-3 truncate max-w-[150px]">{visit.page_path}</td>
-                        <td className="px-4 py-3 truncate max-w-[150px]">{visit.referrer}</td>
-                        <td className="px-4 py-3">{visit.device_type}</td>
-                        <td className="px-4 py-3">{visit.browser}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            )}
+              );
+            })()}
           </FadeIn>
         )}
 
         {activeTab === 'messages' && (
           <FadeIn>
-            <h2 className="text-xl font-bold text-white mb-4">Messages</h2>
+            <h2 className="text-xl font-bold text-white mb-6">Messages</h2>
             {messages.length === 0 ? (
               <EmptyState icon={Inbox} message="No messages yet." />
             ) : (
-              <div>
+              <div className="mb-10">
                 {messages.map((message, index) => {
                   const isNew = (new Date().getTime() - new Date(message.created_at).getTime()) < 60 * 60 * 1000;
                   return (
@@ -402,7 +500,7 @@ function AdminDashboard({ onLock }: { onLock: () => void }) {
                             Reply via Email
                           </a>
                           <button 
-                            onClick={() => handleDeleteMessage(message.id)}
+                            onClick={() => setDeleteTarget(message)}
                             className="text-xs px-3 py-1.5 text-red-400 border border-red-900/40 hover:bg-red-900/10 rounded-md transition-colors ml-auto md:ml-0"
                           >
                             Delete
@@ -419,11 +517,11 @@ function AdminDashboard({ onLock }: { onLock: () => void }) {
 
         {activeTab === 'engagement' && (
           <FadeIn>
-            <h2 className="text-xl font-bold text-white mb-4">Project Engagement</h2>
+            <h2 className="text-xl font-bold text-white mb-6">Project Engagement</h2>
             {clicks.length === 0 ? (
               <EmptyState icon={MousePointerClick} message="No engagement data yet." />
             ) : (
-              <div className="bg-[#111111] border border-[#262626] rounded-xl overflow-x-auto">
+              <div className="bg-[#111111] border border-[#262626] rounded-xl overflow-x-auto mb-10">
                 <table className="w-full text-left border-collapse min-w-[500px]">
                   <thead>
                     <tr className="bg-[#1A1A1A] text-xs uppercase tracking-widest text-[#525252]">
@@ -451,6 +549,50 @@ function AdminDashboard({ onLock }: { onLock: () => void }) {
           </FadeIn>
         )}
       </div>
+
+      <AnimatePresence>
+        {deleteTarget && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/70 backdrop-blur-sm z-[300] flex items-center justify-center"
+            onClick={() => setDeleteTarget(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              transition={{ duration: 0.15 }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-[#111111] border border-[#262626] rounded-2xl p-6 max-w-sm mx-4 w-full"
+            >
+              <AlertTriangle size={28} color="#F59E0B" className="mb-4" />
+              <h3 className="text-lg font-semibold text-white mb-2">Delete this message?</h3>
+              <p className="text-sm text-[#A3A3A3] mb-6">
+                This will permanently delete the message from <span className="font-semibold text-white">{deleteTarget.name}</span>. This cannot be undone.
+              </p>
+              <div className="flex gap-3">
+                <button
+                  onClick={() => setDeleteTarget(null)}
+                  className="flex-1 py-2 px-4 rounded-md text-sm font-medium text-[#A3A3A3] hover:text-white bg-transparent hover:bg-[#1F1F1F] transition-colors"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={() => {
+                    handleDeleteMessage(deleteTarget.id);
+                    setDeleteTarget(null);
+                  }}
+                  className="flex-1 py-2 px-4 rounded-md text-sm font-medium bg-red-600/10 border border-red-900/40 text-red-400 hover:bg-red-600/20 transition-colors"
+                >
+                  Delete
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

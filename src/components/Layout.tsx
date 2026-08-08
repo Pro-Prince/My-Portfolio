@@ -2,8 +2,10 @@ import { Outlet } from 'react-router-dom';
 import Navigation from './Navigation';
 import Footer from './Footer';
 import BackToTop from './BackToTop';
+import { useVisitLogger } from '../hooks/useVisitLogger';
 
 export default function Layout() {
+  useVisitLogger();
   return (
     <div className="min-h-screen flex flex-col font-sans relative overflow-x-hidden overflow-y-auto">
       {/* Background Decoration */}

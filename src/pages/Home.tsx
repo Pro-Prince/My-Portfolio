@@ -4,6 +4,7 @@ import FadeIn from '../components/FadeIn';
 import { useCountUp } from '../hooks/useCountUp';
 import { useDynamicTitle } from '../hooks/useDynamicTitle';
 import { Atom, FileCode2, Paintbrush, Database, Sparkles, FlaskConical, Smartphone, LayoutTemplate, Puzzle, BarChart3, Heart, Type } from 'lucide-react';
+import { trackProjectClick } from '../hooks/useTrackClick';
 
 export default function Home() {
   useDynamicTitle('Prince Patel — I Build Things That Actually Work');
@@ -114,7 +115,7 @@ export default function Home() {
                   ))}
                 </div>
                 <div className="mt-auto flex flex-row gap-2 mt-4">
-                  <a href="https://github.com/Pro-Prince/HoverPick" target="_blank" rel="noreferrer" className="flex-1 flex items-center justify-center bg-transparent border border-[#3F3F46] hover:border-[#6366F1] text-[#FAFAFA] rounded-[8px] px-3 py-2 transition-colors text-sm whitespace-nowrap">
+                  <a href="https://github.com/Pro-Prince/HoverPick" onClick={() => trackProjectClick('HoverPick', 'github')} target="_blank" rel="noreferrer" className="flex-1 flex items-center justify-center bg-transparent border border-[#3F3F46] hover:border-[#6366F1] text-[#FAFAFA] rounded-[8px] px-3 py-2 transition-colors text-sm whitespace-nowrap">
                     View on GitHub &rarr;
                   </a>
                 </div>
@@ -139,11 +140,11 @@ export default function Home() {
                   ))}
                 </div>
                 <div className="mt-auto flex flex-row gap-2 mt-4">
-                  <a href="https://yoursoulsync.lovable.app" target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center bg-[rgba(99,102,241,0.08)] border border-[rgba(99,102,241,0.3)] hover:bg-[rgba(99,102,241,0.15)] hover:border-[#6366F1] text-[#6366F1] rounded-lg px-3 py-2 transition-colors text-sm whitespace-nowrap">
+                  <a href="https://yoursoulsync.lovable.app" onClick={() => trackProjectClick('Soul Sync', 'live_demo')} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center bg-[rgba(99,102,241,0.08)] border border-[rgba(99,102,241,0.3)] hover:bg-[rgba(99,102,241,0.15)] hover:border-[#6366F1] text-[#6366F1] rounded-lg px-3 py-2 transition-colors text-sm whitespace-nowrap">
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-1.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                     Live Demo &rarr;
                   </a>
-                  <a href="https://github.com/Pro-Prince/yoursoulsync" target="_blank" rel="noreferrer" className="flex-1 flex items-center justify-center bg-transparent border border-[#3F3F46] hover:border-[#6366F1] text-[#FAFAFA] rounded-[8px] px-3 py-2 transition-colors text-sm whitespace-nowrap">
+                  <a href="https://github.com/Pro-Prince/yoursoulsync" onClick={() => trackProjectClick('Soul Sync', 'github')} target="_blank" rel="noreferrer" className="flex-1 flex items-center justify-center bg-transparent border border-[#3F3F46] hover:border-[#6366F1] text-[#FAFAFA] rounded-[8px] px-3 py-2 transition-colors text-sm whitespace-nowrap">
                     View on GitHub &rarr;
                   </a>
                 </div>
@@ -168,11 +169,11 @@ export default function Home() {
                   ))}
                 </div>
                 <div className="mt-auto flex flex-row gap-2 mt-4">
-                  <a href="https://yourlifetracker.lovable.app" target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center bg-[rgba(99,102,241,0.08)] border border-[rgba(99,102,241,0.3)] hover:bg-[rgba(99,102,241,0.15)] hover:border-[#6366F1] text-[#6366F1] rounded-lg px-3 py-2 transition-colors text-sm whitespace-nowrap">
+                  <a href="https://yourlifetracker.lovable.app" onClick={() => trackProjectClick('Life Tracker — LifeOS', 'live_demo')} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center bg-[rgba(99,102,241,0.08)] border border-[rgba(99,102,241,0.3)] hover:bg-[rgba(99,102,241,0.15)] hover:border-[#6366F1] text-[#6366F1] rounded-lg px-3 py-2 transition-colors text-sm whitespace-nowrap">
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-1.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                     Live Demo &rarr;
                   </a>
-                  <a href="https://github.com/Pro-Prince/yourlifetracker" target="_blank" rel="noreferrer" className="flex-1 flex items-center justify-center bg-transparent border border-[#3F3F46] hover:border-[#6366F1] text-[#FAFAFA] rounded-[8px] px-3 py-2 transition-colors text-sm whitespace-nowrap">
+                  <a href="https://github.com/Pro-Prince/yourlifetracker" onClick={() => trackProjectClick('Life Tracker — LifeOS', 'github')} target="_blank" rel="noreferrer" className="flex-1 flex items-center justify-center bg-transparent border border-[#3F3F46] hover:border-[#6366F1] text-[#FAFAFA] rounded-[8px] px-3 py-2 transition-colors text-sm whitespace-nowrap">
                     View on GitHub &rarr;
                   </a>
                 </div>
@@ -196,11 +197,11 @@ export default function Home() {
                   ))}
                 </div>
                 <div className="mt-auto flex flex-row gap-2 mt-4">
-                  <a href="https://amul-kool-gold-website.vercel.app/" target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center bg-[rgba(99,102,241,0.08)] border border-[rgba(99,102,241,0.3)] hover:bg-[rgba(99,102,241,0.15)] hover:border-[#6366F1] text-[#6366F1] rounded-lg px-3 py-2 transition-colors text-sm whitespace-nowrap">
+                  <a href="https://amul-kool-gold-website.vercel.app/" onClick={() => trackProjectClick('Amul Kool Gold', 'live_demo')} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center bg-[rgba(99,102,241,0.08)] border border-[rgba(99,102,241,0.3)] hover:bg-[rgba(99,102,241,0.15)] hover:border-[#6366F1] text-[#6366F1] rounded-lg px-3 py-2 transition-colors text-sm whitespace-nowrap">
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-1.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                     Live Demo &rarr;
                   </a>
-                  <a href="https://github.com/Pro-Prince/Amul-Kool-Website" target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center bg-transparent border border-[#3F3F46] hover:border-[#6366F1] text-[#FAFAFA] rounded-[8px] px-3 py-2 transition-colors text-sm whitespace-nowrap">
+                  <a href="https://github.com/Pro-Prince/Amul-Kool-Website" onClick={() => trackProjectClick('Amul Kool Gold', 'github')} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center bg-transparent border border-[#3F3F46] hover:border-[#6366F1] text-[#FAFAFA] rounded-[8px] px-3 py-2 transition-colors text-sm whitespace-nowrap">
                     View on GitHub &rarr;
                   </a>
                 </div>
@@ -225,11 +226,11 @@ export default function Home() {
                   ))}
                 </div>
                 <div className="mt-auto flex flex-row gap-2 mt-4">
-                  <a href="https://your-pdf-craft.vercel.app/" target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center bg-[rgba(99,102,241,0.08)] border border-[rgba(99,102,241,0.3)] hover:bg-[rgba(99,102,241,0.15)] hover:border-[#6366F1] text-[#6366F1] rounded-lg px-3 py-2 transition-colors text-sm whitespace-nowrap">
+                  <a href="https://your-pdf-craft.vercel.app/" onClick={() => trackProjectClick('PDF Craft', 'live_demo')} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center bg-[rgba(99,102,241,0.08)] border border-[rgba(99,102,241,0.3)] hover:bg-[rgba(99,102,241,0.15)] hover:border-[#6366F1] text-[#6366F1] rounded-lg px-3 py-2 transition-colors text-sm whitespace-nowrap">
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-1.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                     Live Demo &rarr;
                   </a>
-                  <a href="https://github.com/Pro-Prince/PDF-Craft" target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center bg-transparent border border-[#3F3F46] hover:border-[#6366F1] text-[#FAFAFA] rounded-[8px] px-3 py-2 transition-colors text-sm whitespace-nowrap">
+                  <a href="https://github.com/Pro-Prince/PDF-Craft" onClick={() => trackProjectClick('PDF Craft', 'github')} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center bg-transparent border border-[#3F3F46] hover:border-[#6366F1] text-[#FAFAFA] rounded-[8px] px-3 py-2 transition-colors text-sm whitespace-nowrap">
                     View on GitHub &rarr;
                   </a>
                 </div>
@@ -254,7 +255,7 @@ export default function Home() {
                   ))}
                 </div>
                 <div className="mt-auto flex flex-row gap-2 mt-4">
-                  <a href="https://chatgpt.com/g/g-6a756f5c7d6c81918067354f1bc5116c-interview-answer-auditor" target="_blank" rel="noopener noreferrer" className="w-full flex items-center justify-center bg-[rgba(99,102,241,0.08)] border border-[rgba(99,102,241,0.3)] hover:bg-[rgba(99,102,241,0.15)] hover:border-[#6366F1] text-[#6366F1] rounded-[8px] px-3 py-2 transition-colors text-sm whitespace-nowrap">
+                  <a href="https://chatgpt.com/g/g-6a756f5c7d6c81918067354f1bc5116c-interview-answer-auditor" onClick={() => trackProjectClick('Interview Answer Auditor', 'gpt_link')} target="_blank" rel="noopener noreferrer" className="w-full flex items-center justify-center bg-[rgba(99,102,241,0.08)] border border-[rgba(99,102,241,0.3)] hover:bg-[rgba(99,102,241,0.15)] hover:border-[#6366F1] text-[#6366F1] rounded-[8px] px-3 py-2 transition-colors text-sm whitespace-nowrap">
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-1.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                     Try the GPT &rarr;
                   </a>

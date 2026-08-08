@@ -3,15 +3,42 @@ import { Mail, Linkedin, Github, Instagram, CheckCircle } from 'lucide-react';
 import FadeIn from '../components/FadeIn';
 import { useDynamicTitle } from '../hooks/useDynamicTitle';
 import XLogo from '../components/XLogo';
+import { supabase } from '../lib/supabase';
 
 export default function Contact() {
   useDynamicTitle('Contact — Prince Patel');
-  const [isSent, setIsSent] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSent(true);
-    // Normally you'd handle actual submission here
+    setIsSubmitting(true);
+    try {
+      const { error } = await supabase.from('contact_messages').insert({
+        name: formData.name,
+        email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+      });
+      if (error) throw error;
+      setIsSuccess(true);
+    } catch (error) {
+      console.error('Message send failed:', error);
+      alert('Something went wrong. Please email directly instead.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -113,32 +140,32 @@ export default function Contact() {
                 <form onSubmit={handleSubmit}>
                   <div className="mb-5">
                     <div className="text-xs text-[#525252] uppercase tracking-widest mb-2">NAME</div>
-                    <input type="text" placeholder="Your Name" autoComplete="name" required className="w-full bg-[#1A1A1A] border border-[#262626] rounded-xl px-4 py-3 text-[#FAFAFA] placeholder-[#525252] text-sm focus:outline-none focus:border-[#6366F1] transition-colors" />
+                    <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Your Name" autoComplete="name" required className="w-full bg-[#1A1A1A] border border-[#262626] rounded-xl px-4 py-3 text-[#FAFAFA] placeholder-[#525252] text-sm focus:outline-none focus:border-[#6366F1] transition-colors" />
                   </div>
                   
                   <div className="mb-5">
                     <div className="text-xs text-[#525252] uppercase tracking-widest mb-2">EMAIL</div>
-                    <input type="email" placeholder="your@email.com" autoComplete="email" required className="w-full bg-[#1A1A1A] border border-[#262626] rounded-xl px-4 py-3 text-[#FAFAFA] placeholder-[#525252] text-sm focus:outline-none focus:border-[#6366F1] transition-colors" />
+                    <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="your@email.com" autoComplete="email" required className="w-full bg-[#1A1A1A] border border-[#262626] rounded-xl px-4 py-3 text-[#FAFAFA] placeholder-[#525252] text-sm focus:outline-none focus:border-[#6366F1] transition-colors" />
                   </div>
 
                   <div className="mb-5">
                     <div className="text-xs text-[#525252] uppercase tracking-widest mb-2">SUBJECT</div>
-                    <input type="text" placeholder="What is this about?" autoComplete="off" required className="w-full bg-[#1A1A1A] border border-[#262626] rounded-xl px-4 py-3 text-[#FAFAFA] placeholder-[#525252] text-sm focus:outline-none focus:border-[#6366F1] transition-colors" />
+                    <input type="text" name="subject" value={formData.subject} onChange={handleChange} placeholder="What is this about?" autoComplete="off" required className="w-full bg-[#1A1A1A] border border-[#262626] rounded-xl px-4 py-3 text-[#FAFAFA] placeholder-[#525252] text-sm focus:outline-none focus:border-[#6366F1] transition-colors" />
                   </div>
 
                   <div className="mb-5">
                     <div className="text-xs text-[#525252] uppercase tracking-widest mb-2">MESSAGE</div>
-                    <textarea rows={5} placeholder="Tell me about your project or opportunity..." autoComplete="off" required className="w-full bg-[#1A1A1A] border border-[#262626] rounded-xl px-4 py-3 text-[#FAFAFA] placeholder-[#525252] text-sm focus:outline-none focus:border-[#6366F1] transition-colors resize-y"></textarea>
+                    <textarea rows={5} name="message" value={formData.message} onChange={handleChange} placeholder="Tell me about your project or opportunity..." autoComplete="off" required className="w-full bg-[#1A1A1A] border border-[#262626] rounded-xl px-4 py-3 text-[#FAFAFA] placeholder-[#525252] text-sm focus:outline-none focus:border-[#6366F1] transition-colors resize-y"></textarea>
                   </div>
 
-                {isSent ? (
+                {isSuccess ? (
                   <div className="mt-2 bg-[#052E16] border border-[#22C55E] rounded-xl p-4 text-[#22C55E] text-sm text-center flex flex-col items-center gap-2">
                     <CheckCircle size={24} />
                     Message sent! I will reply within 24 hours.
                   </div>
                 ) : (
-                  <button type="submit" className="w-full mt-2 bg-[#6366F1] text-white rounded-lg px-5 py-3 hover:bg-[#4F46E5] transition-colors font-medium text-sm">
-                    Send Message &rarr;
+                  <button type="submit" disabled={isSubmitting} className="w-full mt-2 bg-[#6366F1] text-white rounded-lg px-5 py-3 hover:bg-[#4F46E5] disabled:opacity-70 disabled:cursor-not-allowed transition-colors font-medium text-sm">
+                    {isSubmitting ? 'Sending...' : 'Send Message \u2192'}
                   </button>
                 )}
               </form>

@@ -7,12 +7,14 @@ import About from './pages/About';
 import Blog from './pages/Blog';
 import Contact from './pages/Contact';
 import NotFound from './pages/NotFound';
+import AdminPage from './pages/AdminPage';
 
 export default function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
       <Routes>
+        <Route path="/admin" element={<AdminPage />} />
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="projects" element={<Projects />} />

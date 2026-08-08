@@ -108,7 +108,7 @@ const VisitorRow: React.FC<{ visitor: any }> = ({ visitor }) => {
           {v.location && v.location !== 'Unknown' && (
             <div className="flex items-center gap-1">
               <MapPin size={12} color="#525252" />
-              <div className="text-xs text-[#525252] truncate max-w-[150px]">{v.location}</div>
+              <div className="text-xs text-[#525252]">{v.location}</div>
             </div>
           )}
           {visitor.isReturning && (

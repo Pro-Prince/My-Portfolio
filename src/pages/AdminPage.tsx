@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Lock, Users, TrendingUp, Mail, MailOpen, BarChart3, Inbox, MousePointerClick, AlertTriangle, Monitor, Smartphone, Tablet, ArrowRight, Menu, X } from 'lucide-react';
+import { Lock, Users, TrendingUp, Mail, MailOpen, BarChart3, Inbox, MousePointerClick, AlertTriangle, Monitor, Smartphone, Tablet, ArrowRight, Menu, X, ChevronDown } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import FadeIn from '../components/FadeIn';
@@ -14,6 +14,7 @@ type Visit = {
   device_type: string;
   browser: string;
   session_id?: string;
+  ip_address?: string;
 };
 
 type Message = {
@@ -87,6 +88,67 @@ function EmptyState({ icon: Icon, message }: { icon: any, message: string }) {
   );
 }
 
+const VisitorRow: React.FC<{ visitor: any }> = ({ visitor }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const v = visitor.mostRecentVisit;
+  
+  return (
+    <div className="mb-2">
+      <div 
+        onClick={() => setIsExpanded(!isExpanded)}
+        className="bg-[#111111] border border-[#262626] rounded-lg p-3 flex items-center justify-between cursor-pointer hover:border-[#3F3F46] transition-colors"
+      >
+        <div className="flex items-center gap-3">
+          <div className="text-[#A3A3A3]">
+            {v.device_type === 'Mobile' ? <Smartphone size={16} /> : v.device_type === 'Tablet' ? <Tablet size={16} /> : <Monitor size={16} />}
+          </div>
+          <div className="text-xs text-[#525252] truncate max-w-[120px]">{v.browser}</div>
+          <div className="text-xs text-[#FAFAFA] whitespace-nowrap">{formatRelativeTime(v.created_at)}</div>
+          {visitor.isReturning && (
+            <span className="bg-[rgba(99,102,241,0.1)] text-[#6366F1] text-[10px] uppercase font-bold tracking-wider rounded-full px-2 py-0.5">
+              Returning
+            </span>
+          )}
+        </div>
+        <div className="flex items-center gap-4">
+          <div className="text-xs text-[#A3A3A3]">{visitor.totalViews} page view{visitor.totalViews !== 1 ? 's' : ''}</div>
+          <ChevronDown size={16} className={`text-[#525252] transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`} />
+        </div>
+      </div>
+      
+      <AnimatePresence>
+        {isExpanded && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            className="overflow-hidden"
+          >
+            <div className="pl-4 border-l-2 border-[#262626] ml-4 mt-2 mb-4 flex flex-col gap-4">
+              {visitor.sessions.map((s: any, idx: number) => (
+                <div key={idx} className="flex flex-col gap-2">
+                  <div className="text-xs text-[#525252]">
+                    {new Date(s.firstVisitTime).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}{' '}
+                    {new Date(s.firstVisitTime).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}
+                  </div>
+                  <div className="flex flex-wrap items-center gap-1.5">
+                    {s.pages.map((page: string, pIdx: number) => (
+                      <div key={pIdx} className="flex items-center gap-1.5">
+                        <span className="bg-[#1A1A1A] border border-[#262626] text-[#A3A3A3] text-xs px-2 py-0.5 rounded-full truncate max-w-[150px]">{page}</span>
+                        {pIdx < s.pages.length - 1 && <ArrowRight size={12} className="text-[#3F3F46]" />}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
 function AdminDashboard({ onLock }: { onLock: () => void }) {
   const [visits, setVisits] = useState<Visit[]>([]);
   const [chartData, setChartData] = useState<{ date: string; count: number }[]>([]);
@@ -128,15 +190,15 @@ function AdminDashboard({ onLock }: { onLock: () => void }) {
             return d.toISOString().split('T')[0];
           }).reverse();
           
-          // Group by session_id to get unique sessions per day
-          const uniqueSessions = new Set<string>();
+          // Group by ip_address to get unique ips per day
+          const uniqueIps = new Set<string>();
           const countsByDate: Record<string, number> = {};
           
           visitsData.forEach(visit => {
             const date = visit.created_at.split('T')[0];
-            const sessionKey = visit.session_id ? `${date}-${visit.session_id}` : `unknown-${visit.id}`;
-            if (!uniqueSessions.has(sessionKey)) {
-              uniqueSessions.add(sessionKey);
+            const ipKey = visit.ip_address ? `${date}-${visit.ip_address}` : `unknown-${visit.id}`;
+            if (!uniqueIps.has(ipKey)) {
+              uniqueIps.add(ipKey);
               countsByDate[date] = (countsByDate[date] || 0) + 1;
             }
           });
@@ -192,7 +254,8 @@ function AdminDashboard({ onLock }: { onLock: () => void }) {
   }
 
   const todayDate = new Date().toISOString().split('T')[0];
-  const visitorsToday = new Set(visits.filter(v => v.created_at.startsWith(todayDate)).map(v => v.session_id || v.id.toString())).size;
+  const visitorsToday = new Set(visits.filter(v => v.created_at.startsWith(todayDate)).map(v => v.ip_address || v.id.toString())).size;
+  const totalVisitors = new Set(visits.map(v => v.ip_address || v.id.toString())).size;
   const unreadMessages = messages.filter(m => !m.is_read).length;
 
   const pageCounts = visits.reduce((acc, v) => {
@@ -354,7 +417,7 @@ function AdminDashboard({ onLock }: { onLock: () => void }) {
           {activeTab === 'overview' && (
               <FadeIn>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
-              <StatCard value={visits.length} label="Total Visitors" icon={Users} />
+              <StatCard value={totalVisitors} label="Total Visitors" icon={Users} />
               <StatCard value={visitorsToday} label="Visitors Today" icon={TrendingUp} />
               <StatCard value={messages.length} label="Total Messages" icon={Mail} />
               <StatCard value={unreadMessages} label="Unread Messages" icon={MailOpen} />
@@ -419,78 +482,72 @@ function AdminDashboard({ onLock }: { onLock: () => void }) {
             {(() => {
               if (visits.length === 0) return null;
               
-              const sessionsMap = new Map<string, {
-                session_id: string;
-                dateLabel: string;
-                dateValue: Date;
-                firstVisitTime: string;
-                device: string;
-                browser: string;
-                pages: string[];
-              }>();
-
+              // 1. Group all visits by IP address
+              const ipMap = new Map<string, Visit[]>();
               visits.forEach(visit => {
-                const sid = visit.session_id || `unknown-${visit.id}`;
-                if (!sessionsMap.has(sid)) {
-                  sessionsMap.set(sid, {
-                    session_id: sid,
-                    dateLabel: getDateGroupLabel(visit.created_at),
-                    dateValue: new Date(visit.created_at.split('T')[0]),
-                    firstVisitTime: visit.created_at,
-                    device: visit.device_type,
-                    browser: visit.browser,
-                    pages: [visit.page_path],
-                  });
-                } else {
-                  const s = sessionsMap.get(sid)!;
-                  s.firstVisitTime = visit.created_at;
-                  s.device = visit.device_type;
-                  s.browser = visit.browser;
-                  s.pages.unshift(visit.page_path);
-                }
+                const ip = visit.ip_address || `unknown-${visit.id}`;
+                if (!ipMap.has(ip)) ipMap.set(ip, []);
+                ipMap.get(ip)!.push(visit);
+              });
+              
+              const visitorsList = Array.from(ipMap.entries()).map(([ip, ipVisits]) => {
+                // sort chronologically (oldest first for correct session flow)
+                ipVisits.sort((a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime());
+                
+                const firstVisitTime = ipVisits[0].created_at;
+                const mostRecentVisit = ipVisits[ipVisits.length - 1];
+                
+                const sessionsMap = new Map<string, { session_id: string; firstVisitTime: string; pages: string[] }>();
+                ipVisits.forEach(v => {
+                  const sid = v.session_id || `unknown-${v.id}`;
+                  if (!sessionsMap.has(sid)) {
+                     sessionsMap.set(sid, { session_id: sid, firstVisitTime: v.created_at, pages: [v.page_path] });
+                  } else {
+                     sessionsMap.get(sid)!.pages.push(v.page_path);
+                  }
+                });
+                
+                // sort sessions most recent first
+                const sessions = Array.from(sessionsMap.values()).sort((a, b) => new Date(b.firstVisitTime).getTime() - new Date(a.firstVisitTime).getTime());
+                
+                const dateLabel = getDateGroupLabel(mostRecentVisit.created_at);
+                const mostRecentDate = new Date(mostRecentVisit.created_at.split('T')[0]);
+                
+                const firstVisitDateStr = firstVisitTime.split('T')[0];
+                const lastVisitDateStr = mostRecentVisit.created_at.split('T')[0];
+                const isReturning = firstVisitDateStr !== lastVisitDateStr;
+                
+                return {
+                  ip,
+                  mostRecentVisit,
+                  firstVisitTime,
+                  isReturning,
+                  totalViews: ipVisits.length,
+                  sessions,
+                  dateLabel,
+                  mostRecentDate
+                };
               });
 
-              const groups: Record<string, any[]> = {};
-              Array.from(sessionsMap.values()).forEach(s => {
-                if (!groups[s.dateLabel]) groups[s.dateLabel] = [];
-                groups[s.dateLabel].push(s);
+              const groups: Record<string, typeof visitorsList> = {};
+              visitorsList.forEach(v => {
+                if (!groups[v.dateLabel]) groups[v.dateLabel] = [];
+                groups[v.dateLabel].push(v);
               });
 
-              const sortedGroups = Object.entries(groups).sort((a, b) => b[1][0].dateValue.getTime() - a[1][0].dateValue.getTime());
+              const sortedGroups = Object.entries(groups).sort((a, b) => b[1][0].mostRecentDate.getTime() - a[1][0].mostRecentDate.getTime());
 
               return (
                 <div className="mb-10">
-                  {sortedGroups.map(([label, sessions], i) => (
+                  {sortedGroups.map(([label, vList], i) => (
                     <details key={label} open className="group mb-6">
                       <summary className="cursor-pointer text-xs font-semibold uppercase tracking-widest text-[#6366F1] mb-3 select-none flex items-center">
-                        {label} · {sessions.length} visitor{sessions.length === 1 ? '' : 's'}
+                        {label} · {vList.length} visitor{vList.length === 1 ? '' : 's'}
                         <div className="ml-2 h-[1px] bg-[#1F1F1F] flex-grow"></div>
                       </summary>
                       <div className="flex flex-col">
-                        {sessions.map((s: any) => (
-                          <div key={s.session_id} className="bg-[#111111] border border-[#262626] rounded-xl p-3 mb-2 flex flex-col md:flex-row md:items-center justify-between gap-3">
-                            <div className="flex items-center gap-3">
-                              <div className="text-[#A3A3A3]">
-                                {s.device === 'Mobile' ? <Smartphone size={16} /> : s.device === 'Tablet' ? <Tablet size={16} /> : <Monitor size={16} />}
-                              </div>
-                              <div className="text-xs text-[#FAFAFA] whitespace-nowrap">{formatRelativeTime(s.firstVisitTime)}</div>
-                              <div className="text-xs text-[#525252] truncate max-w-[120px]">{s.browser}</div>
-                            </div>
-                            <div className="flex flex-wrap items-center gap-1.5 justify-start md:justify-end">
-                              {s.pages.slice(0, 3).map((page: string, idx: number) => (
-                                <div key={idx} className="flex items-center gap-1.5">
-                                  <span className="bg-[#1A1A1A] border border-[#262626] text-[#A3A3A3] text-xs px-2 py-0.5 rounded-full truncate max-w-[150px]">{page}</span>
-                                  {idx < Math.min(s.pages.length, 3) - 1 && <ArrowRight size={12} className="text-[#3F3F46]" />}
-                                </div>
-                              ))}
-                              {s.pages.length > 3 && (
-                                <>
-                                  <ArrowRight size={12} className="text-[#3F3F46]" />
-                                  <span className="text-[#525252] text-xs px-1">+{s.pages.length - 3} more</span>
-                                </>
-                              )}
-                            </div>
-                          </div>
+                        {vList.sort((a, b) => new Date(b.mostRecentVisit.created_at).getTime() - new Date(a.mostRecentVisit.created_at).getTime()).map(visitor => (
+                          <VisitorRow key={visitor.ip} visitor={visitor} />
                         ))}
                       </div>
                     </details>

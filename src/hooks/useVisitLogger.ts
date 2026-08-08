@@ -40,6 +40,21 @@ function getOrCreateSessionId() {
   return newId
 }
 
+async function getVisitorIP() {
+  const cached = sessionStorage.getItem('visitor_ip')
+  if (cached) return cached
+
+  try {
+    const response = await fetch('https://api.ipify.org?format=json')
+    const data = await response.json()
+    sessionStorage.setItem('visitor_ip', data.ip)
+    return data.ip
+  } catch (error) {
+    console.error('Failed to fetch visitor IP:', error)
+    return 'unknown'
+  }
+}
+
 export function useVisitLogger() {
   const location = useLocation()
   const lastLoggedRef = useRef<{ path: string; time: number }>({ path: '', time: 0 })
@@ -64,12 +79,15 @@ export function useVisitLogger() {
       if (!supabase) return
 
       try {
+        const visitorIP = await getVisitorIP()
+
         await supabase.from('page_visits').insert({
           page_path: location.pathname,
           referrer: document.referrer || 'Direct',
           device_type: getDeviceType(),
           browser: getBrowser(),
           session_id: getOrCreateSessionId(),
+          ip_address: visitorIP,
         })
       } catch (error) {
         console.error('Visit logging failed:', error)

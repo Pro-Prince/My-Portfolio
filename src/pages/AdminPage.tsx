@@ -450,11 +450,21 @@ function AdminDashboard({ onLock }: { onLock: () => void }) {
               year: 'numeric',
             })
           }
+          minTickGap={35}
         />
         <YAxis stroke="#525252" fontSize={12} tickLine={false} axisLine={false} />
         <Tooltip 
           contentStyle={{ backgroundColor: '#1A1A1A', borderColor: '#262626', color: '#FAFAFA' }}
           itemStyle={{ color: '#6366F1' }}
+          labelFormatter={(value) => {
+            const date = new Date(value as string);
+            return date.toLocaleDateString('en-US', {
+              weekday: 'short',
+              month: 'short',
+              day: 'numeric',
+              year: 'numeric'
+            });
+          }}
         />
         <Line type="monotone" dataKey="count" stroke="#6366F1" strokeWidth={2} dot={false} activeDot={{ r: 4 }} />
       </LineChart>

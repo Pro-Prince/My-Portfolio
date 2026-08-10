@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Lock, Users, TrendingUp, Mail, MailOpen, BarChart3, Inbox, MousePointerClick, AlertTriangle, Monitor, Smartphone, Tablet, ArrowRight, Menu, X, ChevronDown, MapPin } from 'lucide-react';
+import { Lock, Users, TrendingUp, Mail, MailOpen, BarChart3, Inbox, MousePointerClick, AlertTriangle, Monitor, Smartphone, Tablet, ArrowRight, Menu, X, ChevronDown, MapPin, Link2, Globe, Search } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import FadeIn from '../components/FadeIn';
@@ -67,6 +67,48 @@ function getDateGroupLabel(dateString: string) {
   });
 }
 
+function getDisplayLocation(location: string | undefined) {
+  if (!location || location.trim() === '' || location === 'Unknown') {
+    return 'Unknown location';
+  }
+  return location;
+}
+
+function getReferrerSource(referrer: string | undefined) {
+  if (!referrer || referrer === 'Direct') return 'Direct';
+
+  try {
+    const hostname = new URL(referrer).hostname.replace('www.', '');
+
+    const sourceMap: Record<string, string> = {
+      'linkedin.com': 'LinkedIn',
+      'l.instagram.com': 'Instagram',
+      'instagram.com': 'Instagram',
+      'twitter.com': 'X (Twitter)',
+      'x.com': 'X (Twitter)',
+      'github.com': 'GitHub',
+      'google.com': 'Google',
+      'bing.com': 'Bing',
+      'facebook.com': 'Facebook',
+      'l.facebook.com': 'Facebook',
+      'reddit.com': 'Reddit',
+      'chatgpt.com': 'ChatGPT',
+      'youtube.com': 'YouTube',
+      'whatsapp.com': 'WhatsApp',
+      't.co': 'X (Twitter)',
+    };
+
+    for (const key in sourceMap) {
+      if (hostname.includes(key)) return sourceMap[key];
+    }
+
+    const mainPart = hostname.split('.')[0];
+    return mainPart.charAt(0).toUpperCase() + mainPart.slice(1);
+  } catch {
+    return 'Direct';
+  }
+}
+
 function StatCard({ value, label, icon: Icon }: { value: number, label: string, icon: any }) {
   const { count, ref } = useCountUp(value, 1000);
   return (
@@ -93,32 +135,46 @@ const VisitorRow: React.FC<{ visitor: any }> = ({ visitor }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const v = visitor.mostRecentVisit;
   
+  const mostRecentSession = visitor.sessions[0];
+  const sourceName = getReferrerSource(mostRecentSession?.referrer);
+  
   return (
     <div className="mb-2">
       <div 
         onClick={() => setIsExpanded(!isExpanded)}
         className="bg-[#111111] border border-[#262626] rounded-lg p-3 flex items-center justify-between cursor-pointer hover:border-[#3F3F46] transition-colors"
       >
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 flex-wrap">
           <div className="text-[#A3A3A3]">
             {v.device_type === 'Mobile' ? <Smartphone size={16} /> : v.device_type === 'Tablet' ? <Tablet size={16} /> : <Monitor size={16} />}
           </div>
           <div className="text-xs text-[#525252] truncate max-w-[120px]">{v.browser}</div>
           <div className="text-xs text-[#FAFAFA] whitespace-nowrap">{formatRelativeTime(v.created_at)}</div>
-          {v.location && v.location !== 'Unknown' && (
-            <div className="flex items-center gap-1">
-              <MapPin size={12} color="#525252" />
-              <div className="text-xs text-[#525252]">{v.location}</div>
+          
+          <div className="flex items-center gap-1">
+            <MapPin size={12} color="#525252" />
+            <div className={`text-xs ${getDisplayLocation(v.location) === 'Unknown location' ? 'text-[#3F3F46] italic' : 'text-[#525252]'}`}>
+              {getDisplayLocation(v.location)}
             </div>
-          )}
+          </div>
+          
           {visitor.isReturning && (
             <span className="bg-[rgba(99,102,241,0.1)] text-[#6366F1] text-[10px] uppercase font-bold tracking-wider rounded-full px-2 py-0.5">
               Returning
             </span>
           )}
+          
+          {sourceName === 'Direct' ? (
+            <span className="text-xs text-[#525252]">Direct</span>
+          ) : (
+            <span className="inline-flex items-center gap-1 bg-[rgba(99,102,241,0.1)] text-[#6366F1] text-xs rounded-full px-2 py-0.5">
+              {['LinkedIn', 'Instagram', 'X (Twitter)', 'GitHub', 'Facebook', 'YouTube', 'WhatsApp', 'Reddit'].includes(sourceName) ? <Globe size={12} /> : ['Google', 'Bing', 'ChatGPT'].includes(sourceName) ? <Search size={12} /> : <Link2 size={12} />}
+              {sourceName}
+            </span>
+          )}
         </div>
-        <div className="flex items-center gap-4">
-          <div className="text-xs text-[#A3A3A3]">{visitor.totalViews} page view{visitor.totalViews !== 1 ? 's' : ''}</div>
+        <div className="flex items-center gap-4 pl-4 shrink-0">
+          <div className="text-xs text-[#A3A3A3] whitespace-nowrap">{visitor.totalViews} page view{visitor.totalViews !== 1 ? 's' : ''}</div>
           <ChevronDown size={16} className={`text-[#525252] transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`} />
         </div>
       </div>
@@ -504,11 +560,11 @@ function AdminDashboard({ onLock }: { onLock: () => void }) {
                 const firstVisitTime = ipVisits[0].created_at;
                 const mostRecentVisit = ipVisits[ipVisits.length - 1];
                 
-                const sessionsMap = new Map<string, { session_id: string; firstVisitTime: string; pages: string[] }>();
+                const sessionsMap = new Map<string, { session_id: string; firstVisitTime: string; pages: string[]; referrer: string }>();
                 ipVisits.forEach(v => {
                   const sid = v.session_id || `unknown-${v.id}`;
                   if (!sessionsMap.has(sid)) {
-                     sessionsMap.set(sid, { session_id: sid, firstVisitTime: v.created_at, pages: [v.page_path] });
+                     sessionsMap.set(sid, { session_id: sid, firstVisitTime: v.created_at, pages: [v.page_path], referrer: v.referrer });
                   } else {
                      sessionsMap.get(sid)!.pages.push(v.page_path);
                   }

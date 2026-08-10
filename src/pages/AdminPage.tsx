@@ -78,35 +78,87 @@ function getReferrerSource(referrer: string | undefined) {
   if (!referrer || referrer === 'Direct') return 'Direct';
 
   try {
+    new URL(referrer);
+  } catch {
+    return referrer
+      .split(/[_\s]+/)
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+  }
+
+  try {
     const hostname = new URL(referrer).hostname.replace('www.', '');
 
     const sourceMap: Record<string, string> = {
       'linkedin.com': 'LinkedIn',
-      'l.instagram.com': 'Instagram',
+      'lnkd.in': 'LinkedIn',
       'instagram.com': 'Instagram',
+      'l.instagram.com': 'Instagram',
       'twitter.com': 'X (Twitter)',
       'x.com': 'X (Twitter)',
+      't.co': 'X (Twitter)',
       'github.com': 'GitHub',
-      'google.com': 'Google',
+      'gist.github.com': 'GitHub',
+      'google.com': 'Google Search',
+      'google.co.in': 'Google Search',
       'bing.com': 'Bing',
+      'duckduckgo.com': 'DuckDuckGo',
       'facebook.com': 'Facebook',
       'l.facebook.com': 'Facebook',
+      'm.facebook.com': 'Facebook',
       'reddit.com': 'Reddit',
       'chatgpt.com': 'ChatGPT',
+      'chat.openai.com': 'ChatGPT',
       'youtube.com': 'YouTube',
+      'youtu.be': 'YouTube',
       'whatsapp.com': 'WhatsApp',
-      't.co': 'X (Twitter)',
+      'web.whatsapp.com': 'WhatsApp',
+      'telegram.org': 'Telegram',
+      't.me': 'Telegram',
+      'discord.com': 'Discord',
+      'medium.com': 'Medium',
+      'dev.to': 'Dev.to',
+      'hashnode.com': 'Hashnode',
+      'producthunt.com': 'Product Hunt',
+      'news.ycombinator.com': 'Hacker News',
+      'vercel.app': 'Vercel Preview',
+      'notion.so': 'Notion',
+      'gmail.com': 'Gmail',
+      'mail.google.com': 'Gmail',
+      'outlook.com': 'Outlook',
+      'outlook.live.com': 'Outlook',
     };
 
     for (const key in sourceMap) {
       if (hostname.includes(key)) return sourceMap[key];
     }
 
-    const mainPart = hostname.split('.')[0];
-    return mainPart.charAt(0).toUpperCase() + mainPart.slice(1);
+    return 'Unknown';
   } catch {
     return 'Direct';
   }
+}
+
+function formatPagePath(path: string) {
+  if (path === '/') return 'Home Page';
+  
+  let cleanPath = path;
+  if (cleanPath.length > 1 && cleanPath.endsWith('/')) {
+    cleanPath = cleanPath.slice(0, -1);
+  }
+  
+  if (cleanPath === '/about') return 'About Page';
+  if (cleanPath === '/projects') return 'Projects Page';
+  if (cleanPath === '/blog') return 'Blog Page';
+  if (cleanPath === '/contact') return 'Contact Page';
+  if (cleanPath === '/admin') return 'Admin Page';
+  
+  const parts = cleanPath.split('/').filter(Boolean);
+  if (parts.length > 0) {
+    return parts.map(p => p.charAt(0).toUpperCase() + p.slice(1)).join(' / ');
+  }
+  
+  return path;
 }
 
 function StatCard({ value, label, icon: Icon }: { value: number, label: string, icon: any }) {
@@ -197,7 +249,7 @@ const VisitorRow: React.FC<{ visitor: any }> = ({ visitor }) => {
                   <div className="flex flex-wrap items-center gap-1.5">
                     {s.pages.map((page: string, pIdx: number) => (
                       <div key={pIdx} className="flex items-center gap-1.5">
-                        <span className="bg-[#1A1A1A] border border-[#262626] text-[#A3A3A3] text-xs px-2 py-0.5 rounded-full truncate max-w-[150px]">{page}</span>
+                        <span className="bg-[#1A1A1A] border border-[#262626] text-[#A3A3A3] text-xs px-2 py-0.5 rounded-full truncate max-w-[150px]">{formatPagePath(page)}</span>
                         {pIdx < s.pages.length - 1 && <ArrowRight size={12} className="text-[#3F3F46]" />}
                       </div>
                     ))}
@@ -213,10 +265,30 @@ const VisitorRow: React.FC<{ visitor: any }> = ({ visitor }) => {
 }
 
 function AdminDashboard({ onLock }: { onLock: () => void }) {
-  const [visits, setVisits] = useState<Visit[]>([]);
-  const [chartData, setChartData] = useState<{ date: string; count: number }[]>([]);
-  const [messages, setMessages] = useState<Message[]>([]);
-  const [clicks, setClicks] = useState<Click[]>([]);
+  const [visits, setVisits] = useState<Visit[]>(() => {
+    try {
+      const cached = localStorage.getItem('admin_visits');
+      return cached ? JSON.parse(cached) : [];
+    } catch { return []; }
+  });
+  const [chartData, setChartData] = useState<{ date: string; count: number }[]>(() => {
+    try {
+      const cached = localStorage.getItem('admin_chartData');
+      return cached ? JSON.parse(cached) : [];
+    } catch { return []; }
+  });
+  const [messages, setMessages] = useState<Message[]>(() => {
+    try {
+      const cached = localStorage.getItem('admin_messages');
+      return cached ? JSON.parse(cached) : [];
+    } catch { return []; }
+  });
+  const [clicks, setClicks] = useState<Click[]>(() => {
+    try {
+      const cached = localStorage.getItem('admin_clicks');
+      return cached ? JSON.parse(cached) : [];
+    } catch { return []; }
+  });
   const [activeTab, setActiveTab] = useState<'overview' | 'visitors' | 'messages' | 'engagement'>('overview');
   const [deleteTarget, setDeleteTarget] = useState<Message | null>(null);
   const [isOpen, setIsOpen] = useState(false);
@@ -246,6 +318,7 @@ function AdminDashboard({ onLock }: { onLock: () => void }) {
           
         if (visitsData) {
           setVisits(visitsData);
+          localStorage.setItem('admin_visits', JSON.stringify(visitsData));
           
           const last30Days = [...Array(30)].map((_, i) => {
             const d = new Date();
@@ -272,10 +345,17 @@ function AdminDashboard({ onLock }: { onLock: () => void }) {
           }));
           
           setChartData(chartDataProcessed);
+          localStorage.setItem('admin_chartData', JSON.stringify(chartDataProcessed));
         }
 
-        if (messagesData) setMessages(messagesData);
-        if (clicksData) setClicks(clicksData);
+        if (messagesData) {
+          setMessages(messagesData);
+          localStorage.setItem('admin_messages', JSON.stringify(messagesData));
+        }
+        if (clicksData) {
+          setClicks(clicksData);
+          localStorage.setItem('admin_clicks', JSON.stringify(clicksData));
+        }
 
       } catch (error) {
         console.error('Error fetching admin data:', error);
@@ -283,6 +363,18 @@ function AdminDashboard({ onLock }: { onLock: () => void }) {
     };
     
     fetchData();
+
+    if (!supabase) return;
+
+    const channel = supabase.channel('admin_updates')
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'page_visits' }, () => fetchData())
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'contact_messages' }, () => fetchData())
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'project_clicks' }, () => fetchData())
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
   }, []);
 
   const markAsRead = async (id: number) => {
@@ -476,8 +568,7 @@ function AdminDashboard({ onLock }: { onLock: () => void }) {
       </div>
 
       <div className="max-w-6xl mx-auto px-4 md:px-8 pt-24 pb-20">
-        <>
-          {activeTab === 'overview' && (
+        {activeTab === 'overview' && (
               <FadeIn>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
               <StatCard value={totalVisitors} label="Total Visitors" icon={Users} />
@@ -715,7 +806,6 @@ function AdminDashboard({ onLock }: { onLock: () => void }) {
             )}
           </FadeIn>
         )}
-        </>
       </div>
 
       <AnimatePresence>

@@ -94,6 +94,30 @@ async function getVisitorLocation() {
   return 'Unknown'
 }
 
+// To precisely track a specific shared link, append
+// UTM parameters to the portfolio URL before sharing:
+// Example — LinkedIn post:
+// https://prince-patel-portfolio.vercel.app/?utm_source=linkedin_post
+// Example — resume PDF footer link:
+// https://prince-patel-portfolio.vercel.app/?utm_source=resume_pdf&utm_medium=footer_link
+// Example — X bio link:
+// https://prince-patel-portfolio.vercel.app/?utm_source=x_bio
+// These will display in the admin panel exactly as
+// tagged, taking priority over the generic domain
+// referrer.
+function getUTMSource() {
+  const params = new URLSearchParams(window.location.search)
+  const utmSource = params.get('utm_source')
+  const utmMedium = params.get('utm_medium')
+
+  if (!utmSource) return null
+
+  if (utmMedium) {
+    return `${utmSource} (${utmMedium})`
+  }
+  return utmSource
+}
+
 export function useVisitLogger() {
   const location = useLocation()
   const lastLoggedRef = useRef<{ path: string; time: number }>({ path: '', time: 0 })
@@ -120,10 +144,13 @@ export function useVisitLogger() {
       try {
         const visitorIP = await getVisitorIP()
         const visitorLocation = await getVisitorLocation()
+        
+        const utmSource = getUTMSource()
+        const finalReferrer = utmSource || document.referrer || 'Direct'
 
         await supabase.from('page_visits').insert({
           page_path: location.pathname,
-          referrer: document.referrer || 'Direct',
+          referrer: finalReferrer,
           device_type: getDeviceType(),
           browser: getBrowser(),
           session_id: getOrCreateSessionId(),

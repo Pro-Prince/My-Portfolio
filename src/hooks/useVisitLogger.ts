@@ -59,18 +59,39 @@ async function getVisitorLocation() {
   const cached = sessionStorage.getItem('visitor_location')
   if (cached) return cached
 
+  // Try primary service: ipapi.co
   try {
     const response = await fetch('https://ipapi.co/json/')
     const data = await response.json()
-    const location = [data.city, data.region, data.country_name]
-      .filter(Boolean)
-      .join(', ')
-    sessionStorage.setItem('visitor_location', location || 'Unknown')
-    return location || 'Unknown'
+    if (data.city) {
+      const location = [data.city, data.region, data.country_name]
+        .filter(Boolean)
+        .join(', ')
+      sessionStorage.setItem('visitor_location', location)
+      return location
+    }
   } catch (error) {
-    console.error('Failed to fetch visitor location:', error)
-    return 'Unknown'
+    console.error('Primary geolocation service failed:', error)
   }
+
+  // Fallback service: ipwho.is
+  try {
+    const response = await fetch('https://ipwho.is/')
+    const data = await response.json()
+    if (data.success !== false && data.city) {
+      const location = [data.city, data.region, data.country]
+        .filter(Boolean)
+        .join(', ')
+      sessionStorage.setItem('visitor_location', location)
+      return location
+    }
+  } catch (error) {
+    console.error('Fallback geolocation service failed:', error)
+  }
+
+  // Both services failed — return Unknown, do not block visit logging
+  sessionStorage.setItem('visitor_location', 'Unknown')
+  return 'Unknown'
 }
 
 export function useVisitLogger() {

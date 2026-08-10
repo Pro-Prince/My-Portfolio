@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Github, Linkedin, Instagram } from 'lucide-react';
 import XLogo from './XLogo';
+import { projects } from '../data/projects';
 
 export default function Footer() {
   return (
@@ -45,15 +46,24 @@ export default function Footer() {
           <div>
             <div className="text-xs uppercase tracking-widest text-[#525252] mb-4">PROJECTS</div>
             <div className="flex flex-col gap-3">
-              <a href="https://github.com/Pro-Prince/HoverPick" target="_blank" rel="noopener noreferrer" className="text-sm text-[#A3A3A3] hover:text-white transition-colors">HoverPick</a>
-              <a href="https://github.com/Pro-Prince/vtt-vision-to-text" target="_blank" rel="noopener noreferrer" className="text-sm text-[#A3A3A3] hover:text-white transition-colors">VTT Vision to Text</a>
-              <a href="https://github.com/Pro-Prince/yoursoulsync" target="_blank" rel="noopener noreferrer" className="text-sm text-[#A3A3A3] hover:text-white transition-colors">Soul Sync Web</a>
-              <a href="https://github.com/Pro-Prince/yourlifetracker" target="_blank" rel="noopener noreferrer" className="text-sm text-[#A3A3A3] hover:text-white transition-colors">Life Tracker</a>
-              <a href="https://github.com/Pro-Prince/Soul-Sync-Android-App" target="_blank" rel="noopener noreferrer" className="text-sm text-[#A3A3A3] hover:text-white transition-colors">Soul Sync Android</a>
-              <a href="https://github.com/Pro-Prince/Amul-Kool-Website" target="_blank" rel="noopener noreferrer" className="text-sm text-[#A3A3A3] hover:text-white transition-colors">Amul Kool Gold</a>
-              <a href="https://github.com/Pro-Prince/PDF-Craft" target="_blank" rel="noopener noreferrer" className="text-sm text-[#A3A3A3] hover:text-white transition-colors">PDF Craft</a>
-              <a href="https://chatgpt.com/g/g-6a756f5c7d6c81918067354f1bc5116c-interview-answer-auditor" target="_blank" rel="noopener noreferrer" className="text-sm text-[#A3A3A3] hover:text-white transition-colors">Interview Answer Auditor</a>
-              <a href="https://github.com/Pro-Prince/Aura-Weather" target="_blank" rel="noopener noreferrer" className="text-sm text-[#A3A3A3] hover:text-white transition-colors">Aura Weather</a>
+              {[...projects]
+                .sort((a, b) => new Date(b.dateAdded).getTime() - new Date(a.dateAdded).getTime())
+                .slice(0, 5)
+                .map((project) => (
+                  <a 
+                    key={project.name}
+                    href={project.liveUrl || project.githubUrl} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="text-sm text-[#A3A3A3] hover:text-white transition-colors"
+                  >
+                    {project.name}
+                  </a>
+                ))
+              }
+              <Link to="/projects" className="text-sm text-[#6366F1] hover:underline mt-1">
+                View All Projects &rarr;
+              </Link>
             </div>
           </div>
         </div>

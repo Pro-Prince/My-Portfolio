@@ -289,6 +289,11 @@ export default function About() {
                 year: '2026',
                 title: 'Interview Answer Auditor — Custom GPT',
                 description: 'Built a custom GPT that audits placement interview answers with structured scoring, a multi-turn follow-up chain, and an optional Brutal Mode. Published live on the GPT Store, designed specifically for engineering students in placement season.'
+              },
+              {
+                year: '2026',
+                title: 'Aura Weather — Glassmorphic Weather PWA',
+                description: 'Built a fully client-side weather PWA with live global forecasts, air quality, and UV data from Open-Meteo. Zero backend, zero ongoing cost, with a frosted-glass interface that reacts to real weather conditions and installs to the home screen like a native app.'
               }
             ].map((event, i) => (
               <FadeIn key={i} delay={i * 0.1}>
@@ -319,7 +324,7 @@ export default function About() {
                 <div className="text-sm text-[#A3A3A3]">Repos</div>
               </div>
               <div className="bg-[#111111] border border-[#262626] rounded-xl p-5 text-center hover:border-[#3F3F46] transition-colors">
-                <div className="text-3xl font-bold text-[#22D3EE] mb-1">8+</div>
+                <div className="text-3xl font-bold text-[#22D3EE] mb-1">9+</div>
                 <div className="text-sm text-[#A3A3A3]">Products Shipped</div>
               </div>
               <div className="bg-[#111111] border border-[#262626] rounded-xl p-5 text-center hover:border-[#3F3F46] transition-colors">

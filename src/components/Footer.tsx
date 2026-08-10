@@ -53,6 +53,7 @@ export default function Footer() {
               <a href="https://github.com/Pro-Prince/Amul-Kool-Website" target="_blank" rel="noopener noreferrer" className="text-sm text-[#A3A3A3] hover:text-white transition-colors">Amul Kool Gold</a>
               <a href="https://github.com/Pro-Prince/PDF-Craft" target="_blank" rel="noopener noreferrer" className="text-sm text-[#A3A3A3] hover:text-white transition-colors">PDF Craft</a>
               <a href="https://chatgpt.com/g/g-6a756f5c7d6c81918067354f1bc5116c-interview-answer-auditor" target="_blank" rel="noopener noreferrer" className="text-sm text-[#A3A3A3] hover:text-white transition-colors">Interview Answer Auditor</a>
+              <a href="https://github.com/Pro-Prince/Aura-Weather" target="_blank" rel="noopener noreferrer" className="text-sm text-[#A3A3A3] hover:text-white transition-colors">Aura Weather</a>
             </div>
           </div>
         </div>

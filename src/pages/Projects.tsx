@@ -120,6 +120,37 @@ const projects = [
     challenges: ["Fixed audit format via system instructions", "Multi-turn follow-up chain up to 3 levels deep", "Brutal Mode as opt-in toggle not default tone", "Zero fabricated achievements rule", "Company-tier calibrated feedback"],
     tech: ["OpenAI GPT Builder", "Prompt Engineering", "Custom Instructions", "Knowledge Base Curation", "Multi-Turn State Design", "GPT Store"],
     gptLink: "https://chatgpt.com/g/g-6a756f5c7d6c81918067354f1bc5116c-interview-answer-auditor"
+  },
+  {
+    id: "09",
+    category: "web",
+    categoryBadge: "Web App",
+    categoryBadgeStyle: "bg-indigo-400/10 text-[#6366F1] text-[10px] font-bold uppercase",
+    status: "Shipped",
+    statusBadgeStyle: "bg-green-950 text-[#22C55E] text-[10px] font-bold uppercase",
+    title: "Aura Weather",
+    tagline: "A glassmorphic weather app that costs nothing to run.",
+    description: "Aura Weather is a browser-based weather app built to feel like a premium native product while running entirely for free. Instead of routing through a backend or an API key tier, it fetches live global weather data directly from the client, wraps it in a frosted-glass interface, and installs straight to a phone's home screen like a native app. The background gradient and particle motion shift based on real conditions and each location's actual sunrise and sunset time, not a static template or a fixed clock assumption.",
+    challenges: [
+      "Fully client-side architecture — zero backend cost",
+      "Glass surfaces verified for contrast on every state",
+      "Real sunrise/sunset driven day-night detection",
+      "Performant particle animation on mid-range mobile",
+      "Installable PWA with offline app shell"
+    ],
+    tech: [
+      "React",
+      "Vite",
+      "Tailwind CSS",
+      "Open-Meteo Forecast API",
+      "Open-Meteo Geocoding API",
+      "Open-Meteo Air Quality API",
+      "Geolocation API",
+      "vite-plugin-pwa",
+      "Vercel"
+    ],
+    github: "https://github.com/Pro-Prince/Aura-Weather",
+    demo: "https://aura-weather-sync.vercel.app/"
   }
 ];
 
@@ -214,9 +245,9 @@ export default function Projects() {
                 </div>
               </div>
               
-              <div className="mt-auto flex flex-row gap-2 mt-4">
+              <div className="mt-auto flex flex-col sm:flex-row gap-3 mt-4">
                 {project.demo && (
-                  <a href={project.demo} onClick={() => trackProjectClick(project.title, 'live_demo')} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center bg-[rgba(99,102,241,0.08)] border border-[rgba(99,102,241,0.3)] hover:bg-[rgba(99,102,241,0.15)] hover:border-[#6366F1] text-[#6366F1] rounded-lg px-3 py-2 transition-colors text-sm whitespace-nowrap">
+                  <a href={project.demo} onClick={() => trackProjectClick(project.title, 'live_demo')} target="_blank" rel="noopener noreferrer" className="w-full sm:flex-1 flex items-center justify-center bg-[rgba(99,102,241,0.08)] border border-[rgba(99,102,241,0.3)] hover:bg-[rgba(99,102,241,0.15)] hover:border-[#6366F1] text-[#6366F1] rounded-lg px-3 py-2 transition-colors text-sm whitespace-nowrap">
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-1.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                     Live Demo &rarr;
                   </a>
@@ -228,7 +259,7 @@ export default function Projects() {
                   </a>
                 )}
                 {project.github && (
-                  <a href={project.github} onClick={() => trackProjectClick(project.title, 'github')} target="_blank" rel="noreferrer" className={`flex-1 flex items-center justify-center bg-transparent border border-[#3F3F46] hover:border-[#6366F1] text-[#FAFAFA] rounded-[8px] px-3 py-2 transition-colors text-sm whitespace-nowrap`}>
+                  <a href={project.github} onClick={() => trackProjectClick(project.title, 'github')} target="_blank" rel="noreferrer" className={`w-full sm:flex-1 flex items-center justify-center bg-transparent border border-[#3F3F46] hover:border-[#6366F1] text-[#FAFAFA] rounded-[8px] px-3 py-2 transition-colors text-sm whitespace-nowrap`}>
                     View on GitHub &rarr;
                   </a>
                 )}

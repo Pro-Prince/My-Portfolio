@@ -3,15 +3,15 @@ import { motion } from 'framer-motion';
 import FadeIn from '../components/FadeIn';
 import { useCountUp } from '../hooks/useCountUp';
 import { useDynamicTitle } from '../hooks/useDynamicTitle';
-import { Atom, FileCode2, Paintbrush, Database, Sparkles, FlaskConical, Smartphone, LayoutTemplate, Puzzle, BarChart3, Heart, Type } from 'lucide-react';
+import { Atom, FileCode2, Paintbrush, Database, Sparkles, FlaskConical, Smartphone, LayoutTemplate, Puzzle, BarChart3, Heart, Type, ExternalLink } from 'lucide-react';
 import { trackProjectClick } from '../hooks/useTrackClick';
 
 export default function Home() {
   useDynamicTitle('Prince Patel — I Build Things That Actually Work');
 
-  const { count: count1, ref: ref1 } = useCountUp(8);
+  const { count: count1, ref: ref1 } = useCountUp(9);
   const { count: count2, ref: ref2 } = useCountUp(2);
-  const { count: count3, ref: ref3 } = useCountUp(4);
+  const { count: count3, ref: ref3 } = useCountUp(5);
   const { count: count4, ref: ref4 } = useCountUp(1);
   const { count: count5, ref: ref5 } = useCountUp(1);
 
@@ -262,11 +262,40 @@ export default function Home() {
                 </div>
               </div>
             </FadeIn>
+
+            {/* CARD 7 — AURA WEATHER */}
+            <FadeIn delay={0.6}>
+              <div className="project-card p-6 flex flex-col h-full">
+                <div className="flex justify-between items-center mb-4">
+                  <span className="bg-[rgba(99,102,241,0.1)] text-[#6366F1] text-xs font-bold px-3 py-1 rounded-full uppercase">Web App</span>
+                  <span className="bg-[#052E16] text-[#22C55E] text-xs font-bold px-3 py-1 rounded-full uppercase">Shipped</span>
+                </div>
+                <h3 className="text-xl font-bold text-white mt-4 mb-2">Aura Weather</h3>
+                <p className="text-sm text-[#A3A3A3] leading-relaxed flex-grow">
+                  A glassmorphic weather PWA that runs entirely client-side — live global forecasts, air quality, and UV data, with a background that shifts gradient and motion based on real conditions and real sunrise/sunset times. Installs to the home screen like a native app, with zero backend and zero ongoing cost.
+                </p>
+                <div className="border-t border-[#1F1F1F] my-4"></div>
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {['React', 'Vite', 'Tailwind CSS', 'Open-Meteo API', 'PWA'].map(tag => (
+                    <span key={tag} className="tech-tag text-[10px] font-mono px-2 py-0.5 rounded-full uppercase">{tag}</span>
+                  ))}
+                </div>
+                <div className="mt-auto flex flex-col sm:flex-row gap-2 mt-4">
+                  <a href="https://aura-weather-sync.vercel.app/" onClick={() => trackProjectClick('Aura Weather', 'live_demo')} target="_blank" rel="noopener noreferrer" className="w-full sm:flex-1 flex items-center justify-center bg-[rgba(99,102,241,0.08)] border border-[rgba(99,102,241,0.3)] hover:bg-[rgba(99,102,241,0.15)] hover:border-[#6366F1] text-[#6366F1] rounded-lg px-4 py-2 text-sm font-medium transition-colors whitespace-nowrap">
+                    <ExternalLink size={14} className="mr-1.5" />
+                    Live Demo &rarr;
+                  </a>
+                  <a href="https://github.com/Pro-Prince/Aura-Weather" onClick={() => trackProjectClick('Aura Weather', 'github')} target="_blank" rel="noopener noreferrer" className="w-full sm:flex-1 flex items-center justify-center bg-transparent border border-[#3F3F46] hover:border-[#6366F1] text-[#FAFAFA] rounded-[8px] px-3 py-2 transition-colors text-sm whitespace-nowrap">
+                    View on GitHub &rarr;
+                  </a>
+                </div>
+              </div>
+            </FadeIn>
           </div>
           
           <div className="mt-10 text-center">
             <Link to="/projects" className="inline-block bg-transparent border border-[#3F3F46] hover:border-[#6366F1] text-[#FAFAFA] rounded-[8px] px-6 py-3 transition-all font-semibold">
-              View All 8 Projects &rarr;
+              View All 9 Projects &rarr;
             </Link>
           </div>
         </div>

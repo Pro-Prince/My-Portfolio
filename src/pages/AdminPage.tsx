@@ -77,66 +77,62 @@ function getDisplayLocation(location: string | undefined) {
 function getReferrerSource(referrer: string | undefined) {
   if (!referrer || referrer === 'Direct') return 'Direct';
 
+  let hostname = referrer;
   try {
-    new URL(referrer);
+    hostname = new URL(referrer).hostname.replace('www.', '');
   } catch {
-    return referrer
-      .split(/[_\s]+/)
-      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(' ');
+    // Keep raw referrer string if not a valid URL
   }
 
-  try {
-    const hostname = new URL(referrer).hostname.replace('www.', '');
+  const sourceMap: Record<string, string> = {
+    'linkedin.com': 'LinkedIn',
+    'lnkd.in': 'LinkedIn',
+    'instagram.com': 'Instagram',
+    'l.instagram.com': 'Instagram',
+    'ig(social)': 'Instagram',
+    'ig': 'Instagram',
+    'twitter.com': 'X (Twitter)',
+    'x.com': 'X (Twitter)',
+    't.co': 'X (Twitter)',
+    'github.com': 'GitHub',
+    'gist.github.com': 'GitHub',
+    'google.com': 'Google Search',
+    'google.co.in': 'Google Search',
+    'bing.com': 'Bing',
+    'duckduckgo.com': 'DuckDuckGo',
+    'facebook.com': 'Facebook',
+    'l.facebook.com': 'Facebook',
+    'm.facebook.com': 'Facebook',
+    'reddit.com': 'Reddit',
+    'chatgpt.com': 'ChatGPT',
+    'chat.openai.com': 'ChatGPT',
+    'youtube.com': 'YouTube',
+    'youtu.be': 'YouTube',
+    'whatsapp.com': 'WhatsApp',
+    'web.whatsapp.com': 'WhatsApp',
+    'telegram.org': 'Telegram',
+    't.me': 'Telegram',
+    'discord.com': 'Discord',
+    'medium.com': 'Medium',
+    'dev.to': 'Dev.to',
+    'hashnode.com': 'Hashnode',
+    'producthunt.com': 'Product Hunt',
+    'news.ycombinator.com': 'Hacker News',
+    'vercel.app': 'Vercel Preview',
+    'notion.so': 'Notion',
+    'gmail.com': 'Gmail',
+    'mail.google.com': 'Gmail',
+    'outlook.com': 'Outlook',
+    'outlook.live.com': 'Outlook',
+  };
 
-    const sourceMap: Record<string, string> = {
-      'linkedin.com': 'LinkedIn',
-      'lnkd.in': 'LinkedIn',
-      'instagram.com': 'Instagram',
-      'l.instagram.com': 'Instagram',
-      'twitter.com': 'X (Twitter)',
-      'x.com': 'X (Twitter)',
-      't.co': 'X (Twitter)',
-      'github.com': 'GitHub',
-      'gist.github.com': 'GitHub',
-      'google.com': 'Google Search',
-      'google.co.in': 'Google Search',
-      'bing.com': 'Bing',
-      'duckduckgo.com': 'DuckDuckGo',
-      'facebook.com': 'Facebook',
-      'l.facebook.com': 'Facebook',
-      'm.facebook.com': 'Facebook',
-      'reddit.com': 'Reddit',
-      'chatgpt.com': 'ChatGPT',
-      'chat.openai.com': 'ChatGPT',
-      'youtube.com': 'YouTube',
-      'youtu.be': 'YouTube',
-      'whatsapp.com': 'WhatsApp',
-      'web.whatsapp.com': 'WhatsApp',
-      'telegram.org': 'Telegram',
-      't.me': 'Telegram',
-      'discord.com': 'Discord',
-      'medium.com': 'Medium',
-      'dev.to': 'Dev.to',
-      'hashnode.com': 'Hashnode',
-      'producthunt.com': 'Product Hunt',
-      'news.ycombinator.com': 'Hacker News',
-      'vercel.app': 'Vercel Preview',
-      'notion.so': 'Notion',
-      'gmail.com': 'Gmail',
-      'mail.google.com': 'Gmail',
-      'outlook.com': 'Outlook',
-      'outlook.live.com': 'Outlook',
-    };
+  const lowerHostname = hostname.toLowerCase();
 
-    for (const key in sourceMap) {
-      if (hostname.includes(key)) return sourceMap[key];
-    }
-
-    return 'Unknown';
-  } catch {
-    return 'Direct';
+  for (const key in sourceMap) {
+    if (lowerHostname.includes(key)) return sourceMap[key];
   }
+
+  return 'Unknown';
 }
 
 function formatPagePath(path: string) {

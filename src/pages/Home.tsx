@@ -7,7 +7,7 @@ import { Atom, FileCode2, Paintbrush, Database, Sparkles, FlaskConical, Smartpho
 import { trackProjectClick } from '../hooks/useTrackClick';
 
 export default function Home() {
-  useDynamicTitle('Prince Patel — I Build Things That Actually Work');
+  useDynamicTitle('Prince Patel - I Build Things That Actually Work');
 
   const { count: count1, ref: ref1 } = useCountUp(9);
   const { count: count2, ref: ref2 } = useCountUp(2);
@@ -32,7 +32,7 @@ export default function Home() {
               </div>
             </h1>
             <p className="mb-10 text-lg md:text-xl text-[#A3A3A3] leading-relaxed max-w-xl">
-              I design and ship AI-powered products — Chrome extensions, full-stack web apps, and native Android apps. I use AI as a force multiplier to build faster and think bigger, not as a shortcut.
+              I design and ship AI-powered products - Chrome extensions, full-stack web apps, and native Android apps. I use AI as a force multiplier to build faster and think bigger, not as a shortcut.
             </p>
             <div className="flex gap-4 mb-14 flex-wrap">
               <Link
@@ -131,7 +131,7 @@ export default function Home() {
                 </div>
                 <h3 className="text-xl font-bold text-white mb-2">Soul Sync</h3>
                 <p className="text-sm text-[#A3A3A3] leading-relaxed flex-grow">
-                  AI-powered emotional wellness platform. Journaling, mood tracking, Gemini AI reflections, and emotional analytics — all in one calm digital sanctuary. Built for web and Android.
+                  AI-powered emotional wellness platform. Journaling, mood tracking, Gemini AI reflections, and emotional analytics - all in one calm digital sanctuary. Built for web and Android.
                 </p>
                 <div className="border-t border-[#1F1F1F] my-4"></div>
                 <div className="flex flex-wrap gap-2 mb-4">
@@ -158,7 +158,7 @@ export default function Home() {
                   <span className="bg-indigo-400/10 text-[#6366F1] text-[10px] font-bold px-3 py-1 rounded-full uppercase">Web App</span>
                   <span className="bg-green-950 text-[#22C55E] text-[10px] font-bold px-3 py-1 rounded-full uppercase">Shipped</span>
                 </div>
-                <h3 className="text-xl font-bold text-white mb-2">Life Tracker — LifeOS</h3>
+                <h3 className="text-xl font-bold text-white mb-2">Life Tracker - LifeOS</h3>
                 <p className="text-sm text-[#A3A3A3] leading-relaxed flex-grow">
                   A full-stack personal OS unifying habit tracking, expense management, and health analytics into a single intelligent dashboard with real-time insights.
                 </p>
@@ -169,11 +169,11 @@ export default function Home() {
                   ))}
                 </div>
                 <div className="mt-auto flex flex-row gap-2 mt-4">
-                  <a href="https://yourlifetracker.lovable.app" onClick={() => trackProjectClick('Life Tracker — LifeOS', 'live_demo')} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center bg-[rgba(99,102,241,0.08)] border border-[rgba(99,102,241,0.3)] hover:bg-[rgba(99,102,241,0.15)] hover:border-[#6366F1] text-[#6366F1] rounded-lg px-3 py-2 transition-colors text-sm whitespace-nowrap">
+                  <a href="https://yourlifetracker.lovable.app" onClick={() => trackProjectClick('Life Tracker - LifeOS', 'live_demo')} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center bg-[rgba(99,102,241,0.08)] border border-[rgba(99,102,241,0.3)] hover:bg-[rgba(99,102,241,0.15)] hover:border-[#6366F1] text-[#6366F1] rounded-lg px-3 py-2 transition-colors text-sm whitespace-nowrap">
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-1.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                     Live Demo &rarr;
                   </a>
-                  <a href="https://github.com/Pro-Prince/yourlifetracker" onClick={() => trackProjectClick('Life Tracker — LifeOS', 'github')} target="_blank" rel="noreferrer" className="flex-1 flex items-center justify-center bg-transparent border border-[#3F3F46] hover:border-[#6366F1] text-[#FAFAFA] rounded-[8px] px-3 py-2 transition-colors text-sm whitespace-nowrap">
+                  <a href="https://github.com/Pro-Prince/yourlifetracker" onClick={() => trackProjectClick('Life Tracker - LifeOS', 'github')} target="_blank" rel="noreferrer" className="flex-1 flex items-center justify-center bg-transparent border border-[#3F3F46] hover:border-[#6366F1] text-[#FAFAFA] rounded-[8px] px-3 py-2 transition-colors text-sm whitespace-nowrap">
                     View on GitHub &rarr;
                   </a>
                 </div>
@@ -188,7 +188,7 @@ export default function Home() {
                 </div>
                 <h3 className="text-xl font-bold text-white mt-4 mb-2">Amul Kool Gold</h3>
                 <p className="text-sm text-[#A3A3A3] leading-relaxed flex-grow">
-                  A cinematic scroll-driven D2C concept storefront for a premium dairy beverage. Frame-sequence hero animation scrubbed by scroll, a four-flavour catalog, live cart, three-step checkout, and a complete order simulation — built to be clicked through, not just scrolled past.
+                  A cinematic scroll-driven D2C concept storefront for a premium dairy beverage. Frame-sequence hero animation scrubbed by scroll, a four-flavour catalog, live cart, three-step checkout, and a complete order simulation - built to be clicked through, not just scrolled past.
                 </p>
                 <div className="border-t border-[#1F1F1F] my-4"></div>
                 <div className="flex flex-wrap gap-2 mb-4">
@@ -217,7 +217,7 @@ export default function Home() {
                 </div>
                 <h3 className="text-xl font-bold text-white mt-4 mb-2">PDF Craft</h3>
                 <p className="text-sm text-[#A3A3A3] leading-relaxed flex-grow">
-                  A browser-based PDF editor with a full annotation toolkit — edit text, sign, redact, stamp, and export a flattened high-fidelity PDF without installing anything. Documents autosave to a secure per-user library, so nothing is ever lost between sessions.
+                  A browser-based PDF editor with a full annotation toolkit - edit text, sign, redact, stamp, and export a flattened high-fidelity PDF without installing anything. Documents autosave to a secure per-user library, so nothing is ever lost between sessions.
                 </p>
                 <div className="border-t border-[#1F1F1F] my-4"></div>
                 <div className="flex flex-wrap gap-2 mb-4">

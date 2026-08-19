@@ -6,7 +6,7 @@ import XLogo from '../components/XLogo';
 import { supabase } from '../lib/supabase';
 
 export default function Contact() {
-  useDynamicTitle('Contact — Prince Patel');
+  useDynamicTitle('Contact - Prince Patel');
   const [isSuccess, setIsSuccess] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   
@@ -58,7 +58,7 @@ export default function Contact() {
 
         <div className="grid grid-cols-1 md:grid-cols-[44%_56%] gap-12">
           
-          {/* LEFT COLUMN — Contact method cards */}
+          {/* LEFT COLUMN - Contact method cards */}
           <div>
             <div className="flex flex-col gap-4">
               <FadeIn delay={0}>
@@ -135,7 +135,7 @@ export default function Contact() {
             </FadeIn>
           </div>
 
-          {/* RIGHT COLUMN — Contact Form */}
+          {/* RIGHT COLUMN - Contact Form */}
           <FadeIn delay={0.1}>
             <div>
               <div className="bg-[#111111] border border-[#262626] rounded-2xl p-8">

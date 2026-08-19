@@ -6,7 +6,7 @@ import XLogo from '../components/XLogo';
 
 export default function About() {
   const [previewImage, setPreviewImage] = useState<string | null>(null);
-  useDynamicTitle('About — Prince Patel');
+  useDynamicTitle('About - Prince Patel');
 
   return (
     <main className="pt-24 pb-16 md:pb-24">
@@ -50,7 +50,7 @@ export default function About() {
               I've built Chrome extensions used for professional design and developer workflows, full-stack web apps with real AI integration and live backend infrastructure, and a native Android application. I use tools like Lovable, Google AI Studio, and Supabase not as shortcuts but as force multipliers to build faster and think bigger.
             </p>
             <p className="text-[#A3A3A3] leading-relaxed">
-              My goal is to keep shipping, keep learning in public, and eventually create a space where others can learn the same way I did — by building real things.
+              My goal is to keep shipping, keep learning in public, and eventually create a space where others can learn the same way I did - by building real things.
             </p>
           </FadeIn>
         </div>
@@ -252,47 +252,47 @@ export default function About() {
               },
               {
                 year: '2026',
-                title: 'HoverPick — Chrome Extension',
+                title: 'HoverPick - Chrome Extension',
                 description: 'Built and shipped HoverPick. A precision color picker for designers and developers using screen-capture pixel sampling directly inside the browser.'
               },
               {
                 year: '2026',
-                title: 'VTT Vision to Text — Chrome Extension',
+                title: 'VTT Vision to Text - Chrome Extension',
                 description: 'Built and shipped VTT. A local OCR tool that extracts text from any visible screen content with zero cloud uploads and full privacy.'
               },
               {
                 year: '2026',
-                title: 'Soul Sync — Web App',
+                title: 'Soul Sync - Web App',
                 description: 'Built Soul Sync web app. Integrated Gemini AI, Supabase backend, mood analytics, five premium themes, and a full emotional wellness experience.'
               },
               {
                 year: '2026',
-                title: 'Life Tracker — LifeOS',
+                title: 'Life Tracker - LifeOS',
                 description: 'Built Life Tracker. A full-stack personal OS combining habit tracking, expense management, and health analytics with real-time data visualizations.'
               },
               {
                 year: '2026',
-                title: 'Soul Sync — Android App',
-                description: 'Shipped Soul Sync natively for Android using Kotlin and Jetpack Compose. AI-powered reflection engine, mood analytics, cycle tracking, memory scrapbook, and achievements — all offline-first with Room Database and Supabase cloud sync.'
+                title: 'Soul Sync - Android App',
+                description: 'Shipped Soul Sync natively for Android using Kotlin and Jetpack Compose. AI-powered reflection engine, mood analytics, cycle tracking, memory scrapbook, and achievements - all offline-first with Room Database and Supabase cloud sync.'
               },
               {
                 year: '2026',
-                title: 'Amul Kool Gold — D2C Concept Storefront',
+                title: 'Amul Kool Gold - D2C Concept Storefront',
                 description: 'Built a cinematic scroll-driven e-commerce concept storefront for a premium dairy beverage brand. Frame-sequence hero animation tied to scroll position, a full flavour catalog, working cart, three-step checkout with validation, and a complete order simulation from scroll to receipt.'
               },
               {
                 year: '2026',
-                title: 'PDF Craft — Browser-Based PDF Editor',
-                description: 'Built a full-featured browser-based PDF editor with a complete annotation toolkit — text editing, signatures, redaction, shapes, and stamps — plus secure document management and high-fidelity export using pdf.js and pdf-lib.'
+                title: 'PDF Craft - Browser-Based PDF Editor',
+                description: 'Built a full-featured browser-based PDF editor with a complete annotation toolkit - text editing, signatures, redaction, shapes, and stamps - plus secure document management and high-fidelity export using pdf.js and pdf-lib.'
               },
               {
                 year: '2026',
-                title: 'Interview Answer Auditor — Custom GPT',
+                title: 'Interview Answer Auditor - Custom GPT',
                 description: 'Built a custom GPT that audits placement interview answers with structured scoring, a multi-turn follow-up chain, and an optional Brutal Mode. Published live on the GPT Store, designed specifically for engineering students in placement season.'
               },
               {
                 year: '2026',
-                title: 'Aura Weather — Glassmorphic Weather PWA',
+                title: 'Aura Weather - Glassmorphic Weather PWA',
                 description: 'Built a fully client-side weather PWA with live global forecasts, air quality, and UV data from Open-Meteo. Zero backend, zero ongoing cost, with a frosted-glass interface that reacts to real weather conditions and installs to the home screen like a native app.'
               }
             ].map((event, i) => (

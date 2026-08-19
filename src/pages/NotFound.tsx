@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useDynamicTitle } from '../hooks/useDynamicTitle';
 
 export default function NotFound() {
-  useDynamicTitle('404 — Prince Patel');
+  useDynamicTitle('404 - Prince Patel');
 
   return (
     <main className="min-h-screen flex flex-col items-center justify-center text-center px-6 relative overflow-hidden">

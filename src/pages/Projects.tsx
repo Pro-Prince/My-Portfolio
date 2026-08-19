@@ -26,9 +26,9 @@ const projects = [
     categoryBadgeStyle: "bg-cyan-400/10 text-[#22D3EE] text-[10px] font-bold uppercase",
     status: "Shipped",
     statusBadgeStyle: "bg-green-950 text-[#22C55E] text-[10px] font-bold uppercase",
-    title: "VTT — Vision to Text",
+    title: "VTT - Vision to Text",
     tagline: "Select any screen area. Get the text instantly.",
-    description: "VTT removes the screenshot-upload-OCR workflow entirely. Press Ctrl+Shift+X, drag to select any visible region of any webpage, and the extension extracts the text, cleans the formatting, and copies it to the clipboard automatically. Works on images, PDFs, videos, infographics, rendered web content, and AI interfaces. All processing is fully local — nothing ever leaves the device.",
+    description: "VTT removes the screenshot-upload-OCR workflow entirely. Press Ctrl+Shift+X, drag to select any visible region of any webpage, and the extension extracts the text, cleans the formatting, and copies it to the clipboard automatically. Works on images, PDFs, videos, infographics, rendered web content, and AI interfaces. All processing is fully local - nothing ever leaves the device.",
     challenges: ["Hybrid DOM and OCR extraction", "Smart formatting preservation", "Manifest V3 offscreen architecture", "Multi-language support (English, Hindi, Gujarati)"],
     tech: ["JavaScript", "Chrome MV3", "Tesseract.js", "Canvas API", "Service Workers", "Offscreen Documents", "Clipboard API", "Runtime Messaging"],
     github: "https://github.com/Pro-Prince/vtt-vision-to-text"
@@ -40,9 +40,9 @@ const projects = [
     categoryBadgeStyle: "bg-indigo-400/10 text-[#6366F1] text-[10px] font-bold uppercase",
     status: "Shipped",
     statusBadgeStyle: "bg-green-950 text-[#22C55E] text-[10px] font-bold uppercase",
-    title: "Soul Sync — Web",
+    title: "Soul Sync - Web",
     tagline: "AI-powered emotional wellness journal and reflection platform.",
-    description: "Soul Sync is a web application designed as a private emotional companion. Users write diary entries with rich text, track daily moods, receive personalized Gemini AI reflections, view emotional analytics, track menstrual cycles, store memories, and switch between five premium themes. Designed with Apple Health inspired minimalism — calm, intentional, distraction-free.",
+    description: "Soul Sync is a web application designed as a private emotional companion. Users write diary entries with rich text, track daily moods, receive personalized Gemini AI reflections, view emotional analytics, track menstrual cycles, store memories, and switch between five premium themes. Designed with Apple Health inspired minimalism - calm, intentional, distraction-free.",
     challenges: ["AI reflection with context memory", "Cycle tracking with emotional correlation", "Five-theme system with dark mode", "Supabase Row Level Security implementation"],
     tech: ["React", "TypeScript", "Vite", "Tailwind CSS", "shadcn/ui", "Supabase", "Google Gemini AI", "PostgreSQL", "Framer Motion"],
     github: "https://github.com/Pro-Prince/yoursoulsync",
@@ -55,7 +55,7 @@ const projects = [
     categoryBadgeStyle: "bg-indigo-400/10 text-[#6366F1] text-[10px] font-bold uppercase",
     status: "Shipped",
     statusBadgeStyle: "bg-green-950 text-[#22C55E] text-[10px] font-bold uppercase",
-    title: "Life Tracker — LifeOS",
+    title: "Life Tracker - LifeOS",
     tagline: "Your personal operating system for habits, finances, and health.",
     description: "Life Tracker is a full-stack personal management platform unifying three life domains. Spreadsheet-style habit grids with streak tracking and heatmaps, monthly expense reports with category breakdowns, nutrition and workout logging with macro tracking, and analytics dashboards that turn raw daily data into actionable personal growth insights.",
     challenges: ["Spreadsheet-style habit grid architecture", "Nutrition estimation engine from food entries", "Three-module unified UX design", "Analytics aggregation with heatmaps"],
@@ -70,7 +70,7 @@ const projects = [
     categoryBadgeStyle: "bg-orange-500/10 text-[#F59E0B] text-[10px] font-bold uppercase",
     status: "Shipped",
     statusBadgeStyle: "bg-green-950 text-[#22C55E] text-[10px] font-bold uppercase",
-    title: "Soul Sync — Android",
+    title: "Soul Sync - Android",
     tagline: "Your personal AI-powered emotional wellness sanctuary.",
     description: "Soul Sync Android is a native emotional wellness app built in Kotlin and Jetpack Compose, combining private journaling, AI emotional reflection, mood tracking, cycle awareness, memory scrapbook, achievements, and secure cloud sync into one calming offline-first sanctuary. An AI reflection engine analyzes journal entries and returns personalized, supportive responses instead of generic sentiment output, while Room Database and DataStore keep the full experience working without a connection.",
     challenges: ["AI-powered emotional reflection engine", "Offline-first Room database architecture", "Narrative mood analytics over raw numbers", "User-isolated data privacy architecture", "Cycle tracking with emotional correlation"],
@@ -86,7 +86,7 @@ const projects = [
     statusBadgeStyle: "bg-green-950 text-[#22C55E] text-[10px] font-bold uppercase",
     title: "Amul Kool Gold",
     tagline: "Cinematic scroll-driven D2C storefront. Built to be clicked, not just scrolled.",
-    description: "A fully-functional concept storefront built around a premium dairy beverage line. Unlike portfolio pieces that stop at a hero section, this ships an entire simulated commerce loop — a cinematic scroll-driven hero, a four-flavour catalog with pricing tiers, a working cart with live subtotal updates, a three-step checkout with field validation, and a branded trial-payment intercept with a full simulated receipt. Built to prove product-engineering competency, not just visual layout.",
+    description: "A fully-functional concept storefront built around a premium dairy beverage line. Unlike portfolio pieces that stop at a hero section, this ships an entire simulated commerce loop - a cinematic scroll-driven hero, a four-flavour catalog with pricing tiers, a working cart with live subtotal updates, a three-step checkout with field validation, and a branded trial-payment intercept with a full simulated receipt. Built to prove product-engineering competency, not just visual layout.",
     challenges: ["Scroll-driven canvas production failures", "Static mockup vs real commerce logic", "Simulated checkout without deceptive UX", "Consistent AI-generated product photography", "Navbar scene-continuous scroll transition"],
     tech: ["React", "TypeScript", "Vite", "Tailwind CSS", "Framer Motion", "React Context", "Scroll-Frame Animation", "Vercel", "Google AI Studio"],
     github: "https://github.com/Pro-Prince/Amul-Kool-Website",
@@ -101,8 +101,8 @@ const projects = [
     statusBadgeStyle: "bg-green-950 text-[#22C55E] text-[10px] font-bold uppercase",
     title: "PDF Craft",
     tagline: "The simplest way to edit, annotate, and manage PDFs online.",
-    description: "PDF Craft is a modern, browser-based PDF editor built to make document editing fast, visual, and clutter-free. Instead of forcing users into desktop software or paywalled tools, it delivers a complete annotation and editing suite directly in the browser — upload, edit, sign, redact, and download, all without installing anything. Every tool works directly on the rendered page with no separate 'annotation mode', so what you place is what ends up in the final file. A persistent document library with live thumbnails and continuous autosave means nothing is ever lost between sessions.",
-    challenges: ["Full annotation suite with zero paywalls", "Every tool verified end-to-end", "In-browser signature pad — draw, upload, or type", "Pixel-perfect export via pdf-lib flattening", "Persistent library with autosave and thumbnails"],
+    description: "PDF Craft is a modern, browser-based PDF editor built to make document editing fast, visual, and clutter-free. Instead of forcing users into desktop software or paywalled tools, it delivers a complete annotation and editing suite directly in the browser - upload, edit, sign, redact, and download, all without installing anything. Every tool works directly on the rendered page with no separate 'annotation mode', so what you place is what ends up in the final file. A persistent document library with live thumbnails and continuous autosave means nothing is ever lost between sessions.",
+    challenges: ["Full annotation suite with zero paywalls", "Every tool verified end-to-end", "In-browser signature pad - draw, upload, or type", "Pixel-perfect export via pdf-lib flattening", "Persistent library with autosave and thumbnails"],
     tech: ["React", "Vite", "Tailwind CSS", "Supabase", "PostgreSQL", "pdf.js", "pdf-lib", "Google OAuth", "Row Level Security", "Vercel"],
     github: "https://github.com/Pro-Prince/PDF-Craft",
     demo: "https://your-pdf-craft.vercel.app/"
@@ -132,7 +132,7 @@ const projects = [
     tagline: "A glassmorphic weather app that costs nothing to run.",
     description: "Aura Weather is a browser-based weather app built to feel like a premium native product while running entirely for free. Instead of routing through a backend or an API key tier, it fetches live global weather data directly from the client, wraps it in a frosted-glass interface, and installs straight to a phone's home screen like a native app. The background gradient and particle motion shift based on real conditions and each location's actual sunrise and sunset time, not a static template or a fixed clock assumption.",
     challenges: [
-      "Fully client-side architecture — zero backend cost",
+      "Fully client-side architecture - zero backend cost",
       "Glass surfaces verified for contrast on every state",
       "Real sunrise/sunset driven day-night detection",
       "Performant particle animation on mid-range mobile",
@@ -155,7 +155,7 @@ const projects = [
 ];
 
 export default function Projects() {
-  useDynamicTitle('Projects — Prince Patel');
+  useDynamicTitle('Projects - Prince Patel');
   const [filter, setFilter] = useState("all");
   const [activeFilter, setActiveFilter] = useState("all");
   const [fading, setFading] = useState(false);

@@ -89,18 +89,18 @@ async function getVisitorLocation() {
     console.error('Fallback geolocation service failed:', error)
   }
 
-  // Both services failed — return Unknown, do not block visit logging
+  // Both services failed - return Unknown, do not block visit logging
   sessionStorage.setItem('visitor_location', 'Unknown')
   return 'Unknown'
 }
 
 // To precisely track a specific shared link, append
 // UTM parameters to the portfolio URL before sharing:
-// Example — LinkedIn post:
+// Example - LinkedIn post:
 // https://prince-patel-portfolio.vercel.app/?utm_source=linkedin_post
-// Example — resume PDF footer link:
+// Example - resume PDF footer link:
 // https://prince-patel-portfolio.vercel.app/?utm_source=resume_pdf&utm_medium=footer_link
-// Example — X bio link:
+// Example - X bio link:
 // https://prince-patel-portfolio.vercel.app/?utm_source=x_bio
 // These will display in the admin panel exactly as
 // tagged, taking priority over the generic domain

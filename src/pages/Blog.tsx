@@ -3,7 +3,7 @@ import { useDynamicTitle } from '../hooks/useDynamicTitle';
 import { PenLine } from 'lucide-react';
 
 export default function Blog() {
-  useDynamicTitle('Blog — Prince Patel');
+  useDynamicTitle('Blog - Prince Patel');
 
   return (
     <main className="pt-24 pb-16 md:pb-24 py-24">

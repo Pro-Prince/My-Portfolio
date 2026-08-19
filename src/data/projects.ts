@@ -25,7 +25,7 @@ export const projects: ProjectData[] = [
     order: 1
   },
   {
-    name: "VTT — Vision to Text",
+    name: "VTT - Vision to Text",
     category: "chrome",
     status: "shipped",
     githubUrl: "https://github.com/Pro-Prince/vtt-vision-to-text",
@@ -33,7 +33,7 @@ export const projects: ProjectData[] = [
     order: 2
   },
   {
-    name: "Soul Sync — Web",
+    name: "Soul Sync - Web",
     category: "web",
     status: "shipped",
     liveUrl: "https://yoursoulsync.lovable.app",
@@ -42,7 +42,7 @@ export const projects: ProjectData[] = [
     order: 3
   },
   {
-    name: "Life Tracker — LifeOS",
+    name: "Life Tracker - LifeOS",
     category: "web",
     status: "shipped",
     liveUrl: "https://yourlifetracker.lovable.app",
@@ -51,7 +51,7 @@ export const projects: ProjectData[] = [
     order: 4
   },
   {
-    name: "Soul Sync — Android",
+    name: "Soul Sync - Android",
     category: "android",
     status: "shipped",
     githubUrl: "https://github.com/Pro-Prince/Soul-Sync-Android-App",

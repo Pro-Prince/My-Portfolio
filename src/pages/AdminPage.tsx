@@ -157,6 +157,23 @@ function formatPagePath(path: string) {
   return path;
 }
 
+function normalizeProjectName(rawName: string): string {
+  if (!rawName) return 'Unknown Project';
+  const name = rawName.trim();
+  
+  if (name.startsWith('HoverPick')) return 'HoverPick';
+  if (name.startsWith('VTT')) return 'VTT - Vision to Text';
+  if (name.toLowerCase().includes('android') || name === 'Soul Sync - Android') return 'Soul Sync - Android';
+  if (name.includes('Soul Sync')) return 'Soul Sync - Web';
+  if (name.startsWith('Life Tracker')) return 'Life Tracker - LifeOS';
+  if (name.startsWith('Amul Kool')) return 'Amul Kool Gold';
+  if (name.startsWith('PDF Craft')) return 'PDF Craft';
+  if (name.startsWith('Interview Answer Auditor')) return 'Interview Answer Auditor';
+  if (name.startsWith('Aura Weather')) return 'Aura Weather';
+  
+  return name;
+}
+
 function StatCard({ value, label, icon: Icon }: { value: number, label: string, icon: any }) {
   const { count, ref } = useCountUp(value, 1000);
   return (
@@ -418,11 +435,14 @@ function AdminDashboard({ onLock }: { onLock: () => void }) {
     .slice(0, 5);
 
   const projectStats = clicks.reduce((acc, click) => {
-    if (!acc[click.project_name]) {
-      acc[click.project_name] = { live_demo: 0, github: 0, gpt_link: 0, total: 0 };
+    const normalizedName = normalizeProjectName(click.project_name);
+    if (!acc[normalizedName]) {
+      acc[normalizedName] = { live_demo: 0, github: 0, gpt_link: 0, total: 0 };
     }
-    acc[click.project_name][click.button_type]++;
-    acc[click.project_name].total++;
+    if (click.button_type && acc[normalizedName][click.button_type] !== undefined) {
+      acc[normalizedName][click.button_type]++;
+    }
+    acc[normalizedName].total++;
     return acc;
   }, {} as Record<string, { live_demo: number, github: number, gpt_link: number, total: number }>);
   

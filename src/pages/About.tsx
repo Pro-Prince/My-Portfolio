@@ -294,6 +294,11 @@ export default function About() {
                 year: '2026',
                 title: 'Aura Weather',
                 description: 'Built a fully client-side weather PWA with live global forecasts, air quality, and UV data from Open-Meteo. Zero backend, zero ongoing cost, with a frosted-glass interface that reacts to real weather conditions and installs to the home screen like a native app.'
+              },
+              {
+                year: '2026',
+                title: 'Lyra - AI Companion',
+                description: 'Shipped Lyra, a real-time 3D AI companion with voice, persistent memory, emotion-driven expressions, and a living room environment she moves within. Built on Three.js and VRM character rendering with Mixamo motion-capture retargeting, Supabase-backed accounts, and a fully local-first data model.'
               }
             ].map((event, i) => (
               <FadeIn key={i} delay={i * 0.1}>
@@ -320,11 +325,11 @@ export default function About() {
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <div className="bg-[#111111] border border-[#262626] rounded-xl p-5 text-center hover:border-[#3F3F46] transition-colors">
-                <div className="text-3xl font-bold text-[#6366F1] mb-1">9</div>
+                <div className="text-3xl font-bold text-[#6366F1] mb-1">10</div>
                 <div className="text-sm text-[#A3A3A3]">Repos</div>
               </div>
               <div className="bg-[#111111] border border-[#262626] rounded-xl p-5 text-center hover:border-[#3F3F46] transition-colors">
-                <div className="text-3xl font-bold text-[#22D3EE] mb-1">9+</div>
+                <div className="text-3xl font-bold text-[#22D3EE] mb-1">10+</div>
                 <div className="text-sm text-[#A3A3A3]">Products Shipped</div>
               </div>
               <div className="bg-[#111111] border border-[#262626] rounded-xl p-5 text-center hover:border-[#3F3F46] transition-colors">

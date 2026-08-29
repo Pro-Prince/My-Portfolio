@@ -151,6 +151,39 @@ const projects = [
     ],
     github: "https://github.com/Pro-Prince/Aura-Weather",
     demo: "https://aura-weather-sync.vercel.app/"
+  },
+  {
+    id: "10",
+    category: "ai-companion",
+    categoryBadge: "AI Companion",
+    categoryBadgeStyle: "bg-[rgba(244,114,182,0.1)] text-[#F472B6] text-xs font-bold uppercase",
+    status: "Shipped",
+    statusBadgeStyle: "bg-[#052E16] text-[#22C55E] text-xs font-bold uppercase",
+    title: "Lyra",
+    tagline: "The AI companion that listens, remembers, and responds when you need to talk.",
+    description: "Lyra is a modern AI companion web app built around a fully animated, expressive 3D anime character rendered in real time — voice, memory, emotion-driven expressions, and a living room environment she can walk, turn, and dance in, all running in the browser. Every AI response drives her physical state directly: expression, gesture, movement, and voice update simultaneously from a single emotion tag, so the character and the conversation are one unified thing rather than a chatbot wearing a 3D skin. Local-first by default with optional Supabase-backed cloud sync for accounts and cross-device continuity.",
+    challenges: [
+      "Unified emotion-driven expression and gesture system",
+      "Weighted idle animation to avoid robotic stillness",
+      "Asynchronous memory extraction pipeline",
+      "Rest-pose fix to eliminate T-pose pop-in",
+      "Mixamo-to-VRM runtime retargeting with finger motion"
+    ],
+    tech: [
+      "React",
+      "Vite",
+      "Three.js",
+      "React Three Fiber",
+      "Three-VRM",
+      "Framer Motion",
+      "Tailwind CSS",
+      "Supabase",
+      "Google Gemini Flash",
+      "Web Speech API",
+      "IndexedDB"
+    ],
+    github: "https://github.com/Pro-Prince/Lyra",
+    demo: "https://lyra-companion.vercel.app/"
   }
 ];
 
@@ -189,7 +222,8 @@ export default function Projects() {
               { id: 'chrome', label: 'Chrome Extensions' },
               { id: 'web', label: 'Web Apps' },
               { id: 'android', label: 'Android' },
-              { id: 'ai-product', label: 'AI Products' }
+              { id: 'ai-product', label: 'AI Products' },
+              { id: 'ai-companion', label: 'AI Companion' }
             ].map(tab => (
               <button
                 key={tab.id}

@@ -1,4 +1,4 @@
-export type ProjectCategory = 'chrome' | 'web' | 'android' | 'ai-tool';
+export type ProjectCategory = 'chrome' | 'web' | 'android' | 'ai-tool' | 'ai-companion';
 export type ProjectStatus = 'shipped' | 'in-progress';
 
 export interface ProjectData {
@@ -92,5 +92,14 @@ export const projects: ProjectData[] = [
     githubUrl: "https://github.com/Pro-Prince/Aura-Weather",
     dateAdded: "2026-08-09",
     order: 9
+  },
+  {
+    name: 'Lyra',
+    category: 'ai-companion',
+    status: 'shipped',
+    liveUrl: 'https://lyra-companion.vercel.app/',
+    githubUrl: 'https://github.com/Pro-Prince/Lyra',
+    dateAdded: '2026-08-19',
+    order: 10
   }
 ];

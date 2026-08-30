@@ -14,6 +14,7 @@ export default function Home() {
   const { count: count3, ref: ref3 } = useCountUp(5);
   const { count: count4, ref: ref4 } = useCountUp(1);
   const { count: count5, ref: ref5 } = useCountUp(1);
+  const { count: count6, ref: ref6 } = useCountUp(1);
 
   return (
     <main className="pt-24 pb-16 md:pb-24">
@@ -48,7 +49,7 @@ export default function Home() {
                 Get In Touch
               </Link>
             </div>
-            <FadeIn delay={0.2} className="mt-12 grid grid-cols-2 sm:grid-cols-5 gap-6 sm:gap-8">
+            <FadeIn delay={0.2} className="mt-12 grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-8">
               <div className="flex flex-col">
                 <div className="text-4xl font-bold text-[#6366F1]">
                   <span ref={ref1}>{count1}</span>
@@ -78,6 +79,12 @@ export default function Home() {
                   <span ref={ref5}>{count5}</span>
                 </div>
                 <div className="text-sm text-[#A3A3A3] mt-1 font-medium">AI Product</div>
+              </div>
+              <div className="flex flex-col">
+                <div className="text-4xl font-bold text-[#6366F1]">
+                  <span ref={ref6}>{count6}</span>
+                </div>
+                <div className="text-sm text-[#A3A3A3] mt-1 font-medium">AI Companion</div>
               </div>
             </FadeIn>
           </FadeIn>

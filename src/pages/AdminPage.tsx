@@ -437,16 +437,23 @@ function AdminDashboard({ onLock }: { onLock: () => void }) {
   const projectStats = clicks.reduce((acc, click) => {
     const normalizedName = normalizeProjectName(click.project_name);
     if (!acc[normalizedName]) {
-      acc[normalizedName] = { live_demo: 0, github: 0, gpt_link: 0, total: 0 };
+      acc[normalizedName] = { live_demo: 0, github: 0, total: 0 };
     }
-    if (click.button_type && acc[normalizedName][click.button_type] !== undefined) {
-      acc[normalizedName][click.button_type]++;
+    
+    // Map gpt_link to live_demo to treat it as a normal project
+    let btnType = click.button_type;
+    if (btnType === 'gpt_link') {
+      btnType = 'live_demo';
+    }
+    
+    if (btnType && acc[normalizedName][btnType as keyof typeof acc[string]] !== undefined) {
+      acc[normalizedName][btnType as keyof typeof acc[string]]++;
     }
     acc[normalizedName].total++;
     return acc;
-  }, {} as Record<string, { live_demo: number, github: number, gpt_link: number, total: number }>);
+  }, {} as Record<string, { live_demo: number, github: number, total: number }>);
   
-  const sortedProjects = (Object.entries(projectStats) as [string, { live_demo: number, github: number, gpt_link: number, total: number }][])
+  const sortedProjects = (Object.entries(projectStats) as [string, { live_demo: number, github: number, total: number }][])
     .sort((a, b) => b[1].total - a[1].total);
 
   const chartElement = (
@@ -812,7 +819,6 @@ function AdminDashboard({ onLock }: { onLock: () => void }) {
                       <th className="px-4 py-3 font-medium">Project Name</th>
                       <th className="px-4 py-3 font-medium text-right">Live Demo</th>
                       <th className="px-4 py-3 font-medium text-right">GitHub</th>
-                      <th className="px-4 py-3 font-medium text-right">GPT Link</th>
                       <th className="px-4 py-3 font-medium text-right">Total</th>
                     </tr>
                   </thead>
@@ -822,7 +828,6 @@ function AdminDashboard({ onLock }: { onLock: () => void }) {
                         <td className="px-4 py-3 text-white font-medium">{name}</td>
                         <td className="px-4 py-3 text-right">{stats.live_demo || 0}</td>
                         <td className="px-4 py-3 text-right">{stats.github || 0}</td>
-                        <td className="px-4 py-3 text-right">{stats.gpt_link || 0}</td>
                         <td className="px-4 py-3 text-right font-bold text-[#6366F1]">{stats.total}</td>
                       </tr>
                     ))}

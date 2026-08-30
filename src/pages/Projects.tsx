@@ -156,9 +156,9 @@ const projects = [
     id: "10",
     category: "ai-companion",
     categoryBadge: "AI Companion",
-    categoryBadgeStyle: "bg-[rgba(244,114,182,0.1)] text-[#F472B6] text-xs font-bold uppercase",
+    categoryBadgeStyle: "bg-[rgba(244,114,182,0.1)] text-[#F472B6] text-[10px] font-bold uppercase",
     status: "Shipped",
-    statusBadgeStyle: "bg-[#052E16] text-[#22C55E] text-xs font-bold uppercase",
+    statusBadgeStyle: "bg-green-950 text-[#22C55E] text-[10px] font-bold uppercase",
     title: "Lyra",
     tagline: "The AI companion that listens, remembers, and responds when you need to talk.",
     description: "Lyra is a modern AI companion web app built around a fully animated, expressive 3D anime character rendered in real time — voice, memory, emotion-driven expressions, and a living room environment she can walk, turn, and dance in, all running in the browser. Every AI response drives her physical state directly: expression, gesture, movement, and voice update simultaneously from a single emotion tag, so the character and the conversation are one unified thing rather than a chatbot wearing a 3D skin. Local-first by default with optional Supabase-backed cloud sync for accounts and cross-device continuity.",
@@ -287,7 +287,7 @@ export default function Projects() {
                   </a>
                 )}
                 {project.gptLink && (
-                  <a href={project.gptLink} onClick={() => trackProjectClick(project.title, 'gpt_link')} target="_blank" rel="noopener noreferrer" className="w-full flex items-center justify-center bg-[rgba(99,102,241,0.08)] border border-[rgba(99,102,241,0.3)] hover:bg-[rgba(99,102,241,0.15)] hover:border-[#6366F1] text-[#6366F1] rounded-[8px] px-3 py-2 transition-colors text-sm whitespace-nowrap">
+                  <a href={project.gptLink} onClick={() => trackProjectClick(project.title, 'live_demo')} target="_blank" rel="noopener noreferrer" className="w-full flex items-center justify-center bg-[rgba(99,102,241,0.08)] border border-[rgba(99,102,241,0.3)] hover:bg-[rgba(99,102,241,0.15)] hover:border-[#6366F1] text-[#6366F1] rounded-[8px] px-3 py-2 transition-colors text-sm whitespace-nowrap">
                     <ExternalLink size={14} className="mr-1.5" />
                     Try the GPT &rarr;
                   </a>

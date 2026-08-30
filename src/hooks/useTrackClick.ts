@@ -16,7 +16,7 @@ function isDevOrPreviewEnvironment() {
 
 export function trackProjectClick(
   projectName: string,
-  buttonType: 'live_demo' | 'github' | 'gpt_link'
+  buttonType: 'live_demo' | 'github'
 ) {
   if (isDevOrPreviewEnvironment() || import.meta.env.DEV) {
     return

@@ -9,7 +9,7 @@ import { trackProjectClick } from '../hooks/useTrackClick';
 export default function Home() {
   useDynamicTitle('Prince Patel - I Build Things That Actually Work');
 
-  const { count: count1, ref: ref1 } = useCountUp(9);
+  const { count: count1, ref: ref1 } = useCountUp(10);
   const { count: count2, ref: ref2 } = useCountUp(2);
   const { count: count3, ref: ref3 } = useCountUp(5);
   const { count: count4, ref: ref4 } = useCountUp(1);
@@ -255,7 +255,7 @@ export default function Home() {
                   ))}
                 </div>
                 <div className="mt-auto flex flex-row gap-2 mt-4">
-                  <a href="https://chatgpt.com/g/g-6a756f5c7d6c81918067354f1bc5116c-interview-answer-auditor" onClick={() => trackProjectClick('Interview Answer Auditor', 'gpt_link')} target="_blank" rel="noopener noreferrer" className="w-full flex items-center justify-center bg-[rgba(99,102,241,0.08)] border border-[rgba(99,102,241,0.3)] hover:bg-[rgba(99,102,241,0.15)] hover:border-[#6366F1] text-[#6366F1] rounded-[8px] px-3 py-2 transition-colors text-sm whitespace-nowrap">
+                  <a href="https://chatgpt.com/g/g-6a756f5c7d6c81918067354f1bc5116c-interview-answer-auditor" onClick={() => trackProjectClick('Interview Answer Auditor', 'live_demo')} target="_blank" rel="noopener noreferrer" className="w-full flex items-center justify-center bg-[rgba(99,102,241,0.08)] border border-[rgba(99,102,241,0.3)] hover:bg-[rgba(99,102,241,0.15)] hover:border-[#6366F1] text-[#6366F1] rounded-[8px] px-3 py-2 transition-colors text-sm whitespace-nowrap">
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-1.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                     Try the GPT &rarr;
                   </a>
@@ -267,7 +267,7 @@ export default function Home() {
           
           <div className="mt-10 text-center">
             <Link to="/projects" className="inline-block bg-transparent border border-[#3F3F46] hover:border-[#6366F1] text-[#FAFAFA] rounded-[8px] px-6 py-3 transition-all font-semibold">
-              View All 9 Projects &rarr;
+              View All 10 Projects &rarr;
             </Link>
           </div>
         </div>

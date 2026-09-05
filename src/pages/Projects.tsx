@@ -184,6 +184,37 @@ const projects = [
     ],
     github: "https://github.com/Pro-Prince/Lyra",
     demo: "https://lyra-companion.vercel.app/"
+  },
+  {
+    id: "11",
+    category: "computer-vision",
+    categoryBadge: "Computer Vision",
+    categoryBadgeStyle: "bg-[rgba(45,212,191,0.1)] text-[#2DD4BF] text-[10px] font-bold uppercase",
+    status: "Shipped",
+    statusBadgeStyle: "bg-green-950 text-[#22C55E] text-[10px] font-bold uppercase",
+    title: "Indoor Digital Twin",
+    tagline: "Turns a phone video walkthrough into a labeled, interactive 3D model of a real room.",
+    description: "Indoor Digital Twin builds a complete pipeline from an ordinary phone video to an interactive, semantically labeled 3D model, no LiDAR or specialized scanning hardware required. The system reconstructs camera positions and a 3D point cloud from the video using structure-from-motion, runs semantic segmentation on every frame to identify walls, floors, and furniture, then projects those 2D labels back onto the 3D points so the model itself understands what it's looking at. The finished, labeled twin renders in a custom browser-based viewer with orbit controls, a live semantic legend, and object-detection statistics.",
+    challenges: [
+      "Sequential matching for video-scale reconstruction",
+      "Frame sampling tuned for reliable point registration",
+      "Segmentation-to-frame resolution alignment",
+      "Cloud storage upload authorization under RLS",
+      "2D-to-3D semantic label back-projection"
+    ],
+    tech: [
+      "React",
+      "TypeScript",
+      "Three.js",
+      "React Three Fiber",
+      "COLMAP",
+      "SegFormer",
+      "Supabase Storage",
+      "Google Colab",
+      "Vercel"
+    ],
+    github: "https://github.com/Pro-Prince/digital-twin-viewer",
+    demo: "https://digital-twin-viewer-system.vercel.app/"
   }
 ];
 
@@ -223,7 +254,8 @@ export default function Projects() {
               { id: 'web', label: 'Web Apps' },
               { id: 'android', label: 'Android' },
               { id: 'ai-product', label: 'AI Products' },
-              { id: 'ai-companion', label: 'AI Companion' }
+              { id: 'ai-companion', label: 'AI Companion' },
+              { id: 'computer-vision', label: 'Computer Vision' }
             ].map(tab => (
               <button
                 key={tab.id}

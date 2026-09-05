@@ -9,12 +9,13 @@ import { trackProjectClick } from '../hooks/useTrackClick';
 export default function Home() {
   useDynamicTitle('Prince Patel - I Build Things That Actually Work');
 
-  const { count: count1, ref: ref1 } = useCountUp(10);
+  const { count: count1, ref: ref1 } = useCountUp(11);
   const { count: count2, ref: ref2 } = useCountUp(2);
   const { count: count3, ref: ref3 } = useCountUp(5);
   const { count: count4, ref: ref4 } = useCountUp(1);
   const { count: count5, ref: ref5 } = useCountUp(1);
   const { count: count6, ref: ref6 } = useCountUp(1);
+  const { count: count7, ref: ref7 } = useCountUp(1);
 
   return (
     <main className="pt-24 pb-16 md:pb-24">
@@ -49,7 +50,7 @@ export default function Home() {
                 Get In Touch
               </Link>
             </div>
-            <FadeIn delay={0.2} className="mt-12 grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-8">
+            <FadeIn delay={0.2} className="mt-12 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-8">
               <div className="flex flex-col">
                 <div className="text-4xl font-bold text-[#6366F1]">
                   <span ref={ref1}>{count1}</span>
@@ -85,6 +86,12 @@ export default function Home() {
                   <span ref={ref6}>{count6}</span>
                 </div>
                 <div className="text-sm text-[#A3A3A3] mt-1 font-medium">AI Companion</div>
+              </div>
+              <div className="flex flex-col">
+                <div className="text-4xl font-bold text-[#6366F1]">
+                  <span ref={ref7}>{count7}</span>
+                </div>
+                <div className="text-sm text-[#A3A3A3] mt-1 font-medium">Computer Vision</div>
               </div>
             </FadeIn>
           </FadeIn>
@@ -274,7 +281,7 @@ export default function Home() {
           
           <div className="mt-10 text-center">
             <Link to="/projects" className="inline-block bg-transparent border border-[#3F3F46] hover:border-[#6366F1] text-[#FAFAFA] rounded-[8px] px-6 py-3 transition-all font-semibold">
-              View All 10 Projects &rarr;
+              View All 11 Projects &rarr;
             </Link>
           </div>
         </div>

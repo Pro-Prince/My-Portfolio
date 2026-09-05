@@ -1,4 +1,4 @@
-export type ProjectCategory = 'chrome' | 'web' | 'android' | 'ai-tool' | 'ai-companion';
+export type ProjectCategory = 'chrome' | 'web' | 'android' | 'ai-tool' | 'ai-companion' | 'computer-vision';
 export type ProjectStatus = 'shipped' | 'in-progress';
 
 export interface ProjectData {
@@ -101,5 +101,14 @@ export const projects: ProjectData[] = [
     githubUrl: 'https://github.com/Pro-Prince/Lyra',
     dateAdded: '2026-08-19',
     order: 10
+  },
+  {
+    name: 'Indoor Digital Twin',
+    category: 'computer-vision',
+    status: 'shipped',
+    liveUrl: 'https://digital-twin-viewer-system.vercel.app/',
+    githubUrl: 'https://github.com/Pro-Prince/digital-twin-viewer',
+    dateAdded: '2026-09-05',
+    order: 11
   }
 ];

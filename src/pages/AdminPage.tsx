@@ -170,6 +170,7 @@ function normalizeProjectName(rawName: string): string {
   if (name.startsWith('PDF Craft')) return 'PDF Craft';
   if (name.startsWith('Interview Answer Auditor')) return 'Interview Answer Auditor';
   if (name.startsWith('Aura Weather')) return 'Aura Weather';
+  if (name.startsWith('Indoor Digital Twin')) return 'Indoor Digital Twin';
   
   return name;
 }

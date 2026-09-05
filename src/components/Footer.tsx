@@ -61,7 +61,11 @@ export default function Footer() {
                   </a>
                 ))
               }
-              <Link to="/projects" className="text-sm text-[#6366F1] hover:underline mt-1">
+              <Link 
+                to="/projects" 
+                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                className="text-sm text-[#6366F1] hover:underline mt-1"
+              >
                 View All Projects &rarr;
               </Link>
             </div>

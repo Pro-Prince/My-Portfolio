@@ -215,6 +215,41 @@ const projects = [
     ],
     github: "https://github.com/Pro-Prince/digital-twin-viewer",
     demo: "https://digital-twin-viewer-system.vercel.app/"
+  },
+  {
+    id: "12",
+    category: "desktop-app",
+    categoryBadge: "Desktop App",
+    categoryBadgeStyle: "bg-[rgba(251,146,60,0.1)] text-[#FB923C] text-[10px] font-bold uppercase",
+    status: "Shipped",
+    statusBadgeStyle: "bg-[#052E16] text-[#22C55E] text-[10px] font-bold uppercase",
+    title: "Peeky Task",
+    tagline: "A screen-edge floating task widget for Windows that stays out of your way until you need it.",
+    description: "Peeky Task is a minimalist, transparent daily task and to-do widget built natively for Windows 10 and 11 using Electron. When at rest, it collapses into ultra-thin 7px pastel color pills flush against the screen bezel. When hovered, it fans out into interactive sticky tabs with real-time checklist progress, markdown checklists, and a full task dashboard accessible via Alt+Space. 100% offline, zero telemetry, local JSON persistence, and packaged as a certified MSIX for the Microsoft Store. Includes a separate Next.js 16 promotional website with high-fidelity laptop mockup video demos.",
+    challenges: [
+      "Window transparency without click-through blocking",
+      "Dynamic 3-tier window resizing engine",
+      "Keyboard ergonomics for rapid checklist creation",
+      "Dual-window IPC data synchronization",
+      "Cross-browser video autoplay on the web showcase"
+    ],
+    tech: [
+      "Electron 33",
+      "Node.js",
+      "JavaScript",
+      "HTML5",
+      "CSS",
+      "electron-builder",
+      "MSIX",
+      "Next.js 16",
+      "React 19",
+      "TypeScript",
+      "Tailwind CSS",
+      "Vercel"
+    ],
+    github: "https://github.com/Pro-Prince/peeky-task-app",
+    demo: "https://peeky-task.vercel.app/",
+    demoLabel: "Web Showcase →"
   }
 ];
 
@@ -255,7 +290,8 @@ export default function Projects() {
               { id: 'android', label: 'Android' },
               { id: 'ai-product', label: 'AI Products' },
               { id: 'ai-companion', label: 'AI Companion' },
-              { id: 'computer-vision', label: 'Computer Vision' }
+              { id: 'computer-vision', label: 'Computer Vision' },
+              { id: 'desktop-app', label: 'Desktop App' }
             ].map(tab => (
               <button
                 key={tab.id}
@@ -314,8 +350,8 @@ export default function Projects() {
               <div className="mt-auto flex flex-col sm:flex-row gap-3 mt-4">
                 {project.demo && (
                   <a href={project.demo} onClick={() => trackProjectClick(project.title, 'live_demo')} target="_blank" rel="noopener noreferrer" className="w-full sm:flex-1 flex items-center justify-center bg-[rgba(99,102,241,0.08)] border border-[rgba(99,102,241,0.3)] hover:bg-[rgba(99,102,241,0.15)] hover:border-[#6366F1] text-[#6366F1] rounded-lg px-3 py-2 transition-colors text-sm whitespace-nowrap">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-1.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                    Live Demo &rarr;
+                    <ExternalLink size={14} className="mr-1.5" />
+                    {project.demoLabel || 'Live Demo →'}
                   </a>
                 )}
                 {project.gptLink && (
@@ -325,7 +361,8 @@ export default function Projects() {
                   </a>
                 )}
                 {project.github && (
-                  <a href={project.github} onClick={() => trackProjectClick(project.title, 'github')} target="_blank" rel="noreferrer" className={`w-full sm:flex-1 flex items-center justify-center bg-transparent border border-[#3F3F46] hover:border-[#6366F1] text-[#FAFAFA] rounded-[8px] px-3 py-2 transition-colors text-sm whitespace-nowrap`}>
+                  <a href={project.github} onClick={() => trackProjectClick(project.title, 'github')} target="_blank" rel="noreferrer" className="w-full sm:flex-1 flex items-center justify-center bg-transparent border border-[#3F3F46] hover:border-[#6366F1] text-[#FAFAFA] rounded-[8px] px-3 py-2 transition-colors text-sm whitespace-nowrap">
+                    <Github size={14} className="mr-1.5" />
                     View on GitHub &rarr;
                   </a>
                 )}

@@ -1,4 +1,4 @@
-export type ProjectCategory = 'chrome' | 'web' | 'android' | 'ai-tool' | 'ai-companion' | 'computer-vision';
+export type ProjectCategory = 'chrome' | 'web' | 'android' | 'ai-tool' | 'ai-companion' | 'computer-vision' | 'desktop-app';
 export type ProjectStatus = 'shipped' | 'in-progress';
 
 export interface ProjectData {
@@ -110,5 +110,14 @@ export const projects: ProjectData[] = [
     githubUrl: 'https://github.com/Pro-Prince/digital-twin-viewer',
     dateAdded: '2026-09-05',
     order: 11
+  },
+  {
+    name: 'Peeky Task',
+    category: 'desktop-app',
+    status: 'shipped',
+    liveUrl: 'https://peeky-task.vercel.app/',
+    githubUrl: 'https://github.com/Pro-Prince/peeky-task-app',
+    dateAdded: '2026-10-23',
+    order: 12,
   }
 ];

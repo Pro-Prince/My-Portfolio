@@ -9,95 +9,119 @@ import { trackProjectClick } from '../hooks/useTrackClick';
 export default function Home() {
   useDynamicTitle('Prince Patel - I Build Things That Actually Work');
 
-  const { count: count1, ref: ref1 } = useCountUp(11);
+  const { count: count1, ref: ref1 } = useCountUp(12);
   const { count: count2, ref: ref2 } = useCountUp(2);
   const { count: count3, ref: ref3 } = useCountUp(5);
   const { count: count4, ref: ref4 } = useCountUp(1);
   const { count: count5, ref: ref5 } = useCountUp(1);
   const { count: count6, ref: ref6 } = useCountUp(1);
   const { count: count7, ref: ref7 } = useCountUp(1);
+  const { count: count8, ref: ref8 } = useCountUp(1);
 
   return (
     <main className="pt-24 pb-16 md:pb-24">
       <div className="max-w-6xl mx-auto px-6">
         {/* HERO SECTION */}
-        <div className="grid grid-cols-1 md:grid-cols-[60%_40%] gap-12 md:gap-8 items-center mb-24">
-          <FadeIn>
-            <div className="mb-6 inline-flex items-center gap-2.5 bg-[#111111] border border-[#262626] rounded-full px-4 py-2 w-fit">
-              <div className="w-2 h-2 rounded-full bg-[#22C55E] pulse-dot shadow-[0_0_8px_#22C55E]"></div>
-              <span className="text-sm text-[#A3A3A3] font-medium">Open to Freelance & Opportunities</span>
-            </div>
-            <h1 className="mb-4 text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.1] text-[#FAFAFA]">
-              <div>I Build Things</div>
-              <div className="text-[#FAFAFA]">
-                That Actually <span className="text-[#6366F1]">Work.</span>
+        <div className="mb-24">
+          <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] lg:grid-cols-[1fr_340px] gap-10 md:gap-12 items-center mb-16">
+            <FadeIn>
+              <div className="mb-6 inline-flex items-center gap-2.5 bg-[#111111] border border-[#262626] rounded-full px-4 py-2 w-fit">
+                <div className="w-2 h-2 rounded-full bg-[#22C55E] pulse-dot shadow-[0_0_8px_#22C55E]"></div>
+                <span className="text-sm text-[#A3A3A3] font-medium">Open to Freelance & Opportunities</span>
               </div>
-            </h1>
-            <p className="mb-10 text-lg md:text-xl text-[#A3A3A3] leading-relaxed max-w-xl">
-              I design and ship AI-powered products - Chrome extensions, full-stack web apps, and native Android apps. I use AI as a force multiplier to build faster and think bigger, not as a shortcut.
-            </p>
-            <div className="flex gap-4 mb-14 flex-wrap">
-              <Link
-                to="/projects"
-                className="bg-[#6366F1] hover:bg-[#4F46E5] text-white px-6 py-3 rounded-[8px] font-semibold transition-all"
-              >
-                View My Work
-              </Link>
-              <Link
-                to="/contact"
-                className="bg-transparent border border-[#3F3F46] hover:border-[#6366F1] text-[#FAFAFA] px-6 py-3 rounded-[8px] font-semibold transition-all"
-              >
-                Get In Touch
-              </Link>
-            </div>
-            <FadeIn delay={0.2} className="mt-12 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-8">
-              <div className="flex flex-col">
-                <div className="text-4xl font-bold text-[#6366F1]">
-                  <span ref={ref1}>{count1}</span>
+              <h1 className="mb-4 text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.1] text-[#FAFAFA]">
+                <div>I Build Things</div>
+                <div className="text-[#FAFAFA]">
+                  That Actually <span className="text-[#6366F1]">Work.</span>
                 </div>
-                <div className="text-sm text-[#A3A3A3] mt-1 font-medium">Products Shipped</div>
-              </div>
-              <div className="flex flex-col">
-                <div className="text-4xl font-bold text-[#6366F1]">
-                  <span ref={ref2}>{count2}</span>
-                </div>
-                <div className="text-sm text-[#A3A3A3] mt-1 font-medium">Chrome Extensions</div>
-              </div>
-              <div className="flex flex-col">
-                <div className="text-4xl font-bold text-[#6366F1]">
-                  <span ref={ref3}>{count3}</span>
-                </div>
-                <div className="text-sm text-[#A3A3A3] mt-1 font-medium">Web Apps</div>
-              </div>
-              <div className="flex flex-col">
-                <div className="text-4xl font-bold text-[#6366F1]">
-                  <span ref={ref4}>{count4}</span>
-                </div>
-                <div className="text-sm text-[#A3A3A3] mt-1 font-medium">Android App</div>
-              </div>
-              <div className="flex flex-col">
-                <div className="text-4xl font-bold text-[#6366F1]">
-                  <span ref={ref5}>{count5}</span>
-                </div>
-                <div className="text-sm text-[#A3A3A3] mt-1 font-medium">AI Product</div>
-              </div>
-              <div className="flex flex-col">
-                <div className="text-4xl font-bold text-[#6366F1]">
-                  <span ref={ref6}>{count6}</span>
-                </div>
-                <div className="text-sm text-[#A3A3A3] mt-1 font-medium">AI Companion</div>
-              </div>
-              <div className="flex flex-col">
-                <div className="text-4xl font-bold text-[#6366F1]">
-                  <span ref={ref7}>{count7}</span>
-                </div>
-                <div className="text-sm text-[#A3A3A3] mt-1 font-medium">Computer Vision</div>
+              </h1>
+              <p className="mb-10 text-lg md:text-xl text-[#A3A3A3] leading-relaxed max-w-xl">
+                I design and ship AI-powered products - Chrome extensions, full-stack web apps, and native Android apps. I use AI as a force multiplier to build faster and think bigger, not as a shortcut.
+              </p>
+              <div className="flex gap-4 flex-wrap">
+                <Link
+                  to="/projects"
+                  className="bg-[#6366F1] hover:bg-[#4F46E5] text-white px-6 py-3 rounded-[8px] font-semibold transition-all"
+                >
+                  View My Work
+                </Link>
+                <Link
+                  to="/contact"
+                  className="bg-transparent border border-[#3F3F46] hover:border-[#6366F1] text-[#FAFAFA] px-6 py-3 rounded-[8px] font-semibold transition-all"
+                >
+                  Get In Touch
+                </Link>
               </div>
             </FadeIn>
-          </FadeIn>
-          <FadeIn delay={0.1} className="flex justify-center md:justify-end">
-            <div style={{ borderRadius: '50%', background: '#1A1A1A', border: '4px solid rgba(99,102,241,0.2)', boxShadow: '0 0 40px rgba(99,102,241,0.15)', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }} className="flex-shrink-0 w-[200px] h-[200px] sm:w-[240px] sm:h-[240px] md:w-[260px] md:h-[260px]">
-              <img src="/prince-photo.jpg" alt="Prince Patel" className="w-full h-full object-cover rounded-full" />
+
+            <FadeIn delay={0.1} className="flex justify-center md:justify-end items-center">
+              <div className="relative flex justify-center items-center">
+                {/* Ambient glow behind portrait */}
+                <div className="absolute -inset-4 bg-gradient-to-tr from-[#6366F1]/20 to-cyan-500/10 rounded-full blur-2xl pointer-events-none" />
+                
+                {/* Photo frame with full dark grey ring outline & aura glow */}
+                <div className="relative w-[220px] h-[220px] sm:w-[260px] sm:h-[260px] md:w-[280px] md:h-[280px] lg:w-[320px] lg:h-[320px] rounded-full p-1.5 bg-[#262626] shadow-[0_0_50px_rgba(99,102,241,0.18)] flex-shrink-0">
+                  <div className="w-full h-full rounded-full overflow-hidden bg-[#1A1A1A]">
+                    <img
+                      src="/prince-photo.jpg"
+                      alt="Prince Patel"
+                      className="w-full h-full object-cover object-center rounded-full"
+                    />
+                  </div>
+                </div>
+              </div>
+            </FadeIn>
+          </div>
+
+          {/* METRICS ROW */}
+          <FadeIn delay={0.2} className="pt-10 border-t border-[#1F1F1F] grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-x-6 gap-y-8">
+            <div className="flex flex-col">
+              <div className="text-4xl font-bold text-[#6366F1]">
+                <span ref={ref1}>{count1}</span>
+              </div>
+              <div className="text-sm text-[#A3A3A3] mt-1 font-medium">Products Shipped</div>
+            </div>
+            <div className="flex flex-col">
+              <div className="text-4xl font-bold text-[#6366F1]">
+                <span ref={ref2}>{count2}</span>
+              </div>
+              <div className="text-sm text-[#A3A3A3] mt-1 font-medium">Chrome Extensions</div>
+            </div>
+            <div className="flex flex-col">
+              <div className="text-4xl font-bold text-[#6366F1]">
+                <span ref={ref3}>{count3}</span>
+              </div>
+              <div className="text-sm text-[#A3A3A3] mt-1 font-medium">Web Apps</div>
+            </div>
+            <div className="flex flex-col">
+              <div className="text-4xl font-bold text-[#6366F1]">
+                <span ref={ref4}>{count4}</span>
+              </div>
+              <div className="text-sm text-[#A3A3A3] mt-1 font-medium">Android App</div>
+            </div>
+            <div className="flex flex-col">
+              <div className="text-4xl font-bold text-[#6366F1]">
+                <span ref={ref5}>{count5}</span>
+              </div>
+              <div className="text-sm text-[#A3A3A3] mt-1 font-medium">AI Product</div>
+            </div>
+            <div className="flex flex-col">
+              <div className="text-4xl font-bold text-[#6366F1]">
+                <span ref={ref6}>{count6}</span>
+              </div>
+              <div className="text-sm text-[#A3A3A3] mt-1 font-medium">AI Companion</div>
+            </div>
+            <div className="flex flex-col">
+              <div className="text-4xl font-bold text-[#6366F1]">
+                <span ref={ref7}>{count7}</span>
+              </div>
+              <div className="text-sm text-[#A3A3A3] mt-1 font-medium">Computer Vision</div>
+            </div>
+            <div className="flex flex-col">
+              <div className="text-4xl font-bold text-[#6366F1]">
+                <span ref={ref8}>{count8}</span>
+              </div>
+              <div className="text-sm text-[#A3A3A3] mt-1 font-medium">Desktop App</div>
             </div>
           </FadeIn>
         </div>
@@ -281,7 +305,7 @@ export default function Home() {
           
           <div className="mt-10 text-center">
             <Link to="/projects" className="inline-block bg-transparent border border-[#3F3F46] hover:border-[#6366F1] text-[#FAFAFA] rounded-[8px] px-6 py-3 transition-all font-semibold">
-              View All 11 Projects &rarr;
+              View All 12 Projects &rarr;
             </Link>
           </div>
         </div>

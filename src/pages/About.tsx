@@ -304,6 +304,11 @@ export default function About() {
                 year: '2026',
                 title: 'Indoor Digital Twin — Computer Vision',
                 description: 'Built a full pipeline turning a phone video walkthrough into a semantically labeled, interactive 3D model. Structure-from-motion reconstruction connected to semantic segmentation, so the reconstructed room understands walls, floors, and furniture as distinct objects, not just geometry.'
+              },
+              {
+                year: '2026',
+                title: 'Peeky Task — Windows Desktop App',
+                description: 'Shipped Peeky Task, a minimalist screen-edge floating task widget for Windows 10 and 11 built with Electron. Packaged as a certified MSIX for the Microsoft Store with 100% local storage, zero telemetry, and a companion Next.js 16 promotional website with live laptop mockup video demos.'
               }
             ].map((event, i) => (
               <FadeIn key={i} delay={i * 0.1}>
@@ -330,11 +335,11 @@ export default function About() {
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <div className="bg-[#111111] border border-[#262626] rounded-xl p-5 text-center hover:border-[#3F3F46] transition-colors">
-                <div className="text-3xl font-bold text-[#6366F1] mb-1">11</div>
+                <div className="text-3xl font-bold text-[#6366F1] mb-1">13</div>
                 <div className="text-sm text-[#A3A3A3]">Repos</div>
               </div>
               <div className="bg-[#111111] border border-[#262626] rounded-xl p-5 text-center hover:border-[#3F3F46] transition-colors">
-                <div className="text-3xl font-bold text-[#22D3EE] mb-1">11+</div>
+                <div className="text-3xl font-bold text-[#22D3EE] mb-1">12+</div>
                 <div className="text-sm text-[#A3A3A3]">Products Shipped</div>
               </div>
               <div className="bg-[#111111] border border-[#262626] rounded-xl p-5 text-center hover:border-[#3F3F46] transition-colors">

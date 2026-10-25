@@ -5,11 +5,12 @@ import { useCountUp } from '../hooks/useCountUp';
 import { useDynamicTitle } from '../hooks/useDynamicTitle';
 import { Atom, FileCode2, Paintbrush, Database, Sparkles, FlaskConical, Smartphone, LayoutTemplate, Puzzle, BarChart3, Heart, Type, ExternalLink } from 'lucide-react';
 import { trackProjectClick } from '../hooks/useTrackClick';
+import { projects } from '../data/projects';
 
 export default function Home() {
   useDynamicTitle('Prince Patel - I Build Things That Actually Work');
 
-  const { count: count1, ref: ref1 } = useCountUp(12);
+  const { count: count1, ref: ref1 } = useCountUp(13);
   const { count: count2, ref: ref2 } = useCountUp(2);
   const { count: count3, ref: ref3 } = useCountUp(5);
   const { count: count4, ref: ref4 } = useCountUp(1);
@@ -17,6 +18,7 @@ export default function Home() {
   const { count: count6, ref: ref6 } = useCountUp(1);
   const { count: count7, ref: ref7 } = useCountUp(1);
   const { count: count8, ref: ref8 } = useCountUp(1);
+  const { count: count9, ref: ref9 } = useCountUp(1);
 
   return (
     <main className="pt-24 pb-16 md:pb-24">
@@ -74,7 +76,7 @@ export default function Home() {
           </div>
 
           {/* METRICS ROW */}
-          <FadeIn delay={0.2} className="pt-10 border-t border-[#1F1F1F] grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-x-6 gap-y-8">
+          <FadeIn delay={0.2} className="pt-10 border-t border-[#1F1F1F] grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 xl:grid-cols-9 gap-x-6 gap-y-8">
             <div className="flex flex-col">
               <div className="text-4xl font-bold text-[#6366F1]">
                 <span ref={ref1}>{count1}</span>
@@ -123,6 +125,12 @@ export default function Home() {
               </div>
               <div className="text-sm text-[#A3A3A3] mt-1 font-medium">Desktop App</div>
             </div>
+            <div className="flex flex-col">
+              <div className="text-4xl font-bold text-[#6366F1]">
+                <span ref={ref9}>{count9}</span>
+              </div>
+              <div className="text-sm text-[#A3A3A3] mt-1 font-medium">Game</div>
+            </div>
           </FadeIn>
         </div>
 
@@ -135,177 +143,80 @@ export default function Home() {
           </FadeIn>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* CARD 1 */}
-            <FadeIn delay={0}>
-              <div className="project-card p-6 flex flex-col h-full">
-                <div className="flex justify-between items-center mb-4">
-                  <span className="bg-cyan-400/10 text-[#22D3EE] text-[10px] font-bold px-3 py-1 rounded-full uppercase">Chrome Extension</span>
-                  <span className="bg-green-950 text-[#22C55E] text-[10px] font-bold px-3 py-1 rounded-full uppercase">Shipped</span>
-                </div>
-                <h3 className="text-xl font-bold text-white mb-2">HoverPick</h3>
-                <p className="text-sm text-[#A3A3A3] leading-relaxed flex-grow">
-                  A precision color picker that extracts exact colors from any website in real time. Pixel-level magnification, HEX and RGB support, one-click copying, zero workflow interruption.
-                </p>
-                <div className="border-t border-[#1F1F1F] my-4"></div>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {['JavaScript', 'Chrome MV3', 'Canvas API', 'Screen Capture'].map(tag => (
-                    <span key={tag} className="tech-tag text-[10px] font-mono px-2 py-0.5 rounded-full uppercase">{tag}</span>
-                  ))}
-                </div>
-                <div className="mt-auto flex flex-row gap-2 mt-4">
-                  <a href="https://github.com/Pro-Prince/HoverPick" onClick={() => trackProjectClick('HoverPick', 'github')} target="_blank" rel="noreferrer" className="flex-1 flex items-center justify-center bg-transparent border border-[#3F3F46] hover:border-[#6366F1] text-[#FAFAFA] rounded-[8px] px-3 py-2 transition-colors text-sm whitespace-nowrap">
-                    View on GitHub &rarr;
-                  </a>
-                </div>
-              </div>
-            </FadeIn>
-
-            {/* CARD 2 */}
-            <FadeIn delay={0.1}>
-              <div className="project-card p-6 flex flex-col h-full">
-                <div className="flex justify-between items-center mb-4">
-                  <span className="bg-indigo-400/10 text-[#6366F1] text-[10px] font-bold px-3 py-1 rounded-full uppercase">Web App</span>
-                  <span className="bg-green-950 text-[#22C55E] text-[10px] font-bold px-3 py-1 rounded-full uppercase">Shipped</span>
-                </div>
-                <h3 className="text-xl font-bold text-white mb-2">Soul Sync - Web</h3>
-                <p className="text-sm text-[#A3A3A3] leading-relaxed flex-grow">
-                  AI-powered emotional wellness platform. Journaling, mood tracking, Gemini AI reflections, and emotional analytics - all in one calm digital sanctuary. Built for web and Android.
-                </p>
-                <div className="border-t border-[#1F1F1F] my-4"></div>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {['React', 'TypeScript', 'Supabase', 'Gemini AI', 'Kotlin'].map(tag => (
-                    <span key={tag} className="tech-tag text-[10px] font-mono px-2 py-0.5 rounded-full uppercase">{tag}</span>
-                  ))}
-                </div>
-                <div className="mt-auto flex flex-row gap-2 mt-4">
-                  <a href="https://yoursoulsync.lovable.app" onClick={() => trackProjectClick('Soul Sync - Web', 'live_demo')} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center bg-[rgba(99,102,241,0.08)] border border-[rgba(99,102,241,0.3)] hover:bg-[rgba(99,102,241,0.15)] hover:border-[#6366F1] text-[#6366F1] rounded-lg px-3 py-2 transition-colors text-sm whitespace-nowrap">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-1.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                    Live Demo &rarr;
-                  </a>
-                  <a href="https://github.com/Pro-Prince/yoursoulsync" onClick={() => trackProjectClick('Soul Sync - Web', 'github')} target="_blank" rel="noreferrer" className="flex-1 flex items-center justify-center bg-transparent border border-[#3F3F46] hover:border-[#6366F1] text-[#FAFAFA] rounded-[8px] px-3 py-2 transition-colors text-sm whitespace-nowrap">
-                    View on GitHub &rarr;
-                  </a>
-                </div>
-              </div>
-            </FadeIn>
-
-            {/* CARD 3 */}
-            <FadeIn delay={0.2}>
-              <div className="project-card p-6 flex flex-col h-full">
-                <div className="flex justify-between items-center mb-4">
-                  <span className="bg-indigo-400/10 text-[#6366F1] text-[10px] font-bold px-3 py-1 rounded-full uppercase">Web App</span>
-                  <span className="bg-green-950 text-[#22C55E] text-[10px] font-bold px-3 py-1 rounded-full uppercase">Shipped</span>
-                </div>
-                <h3 className="text-xl font-bold text-white mb-2">Life Tracker - LifeOS</h3>
-                <p className="text-sm text-[#A3A3A3] leading-relaxed flex-grow">
-                  A full-stack personal OS unifying habit tracking, expense management, and health analytics into a single intelligent dashboard with real-time insights.
-                </p>
-                <div className="border-t border-[#1F1F1F] my-4"></div>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {['React', 'TypeScript', 'Supabase', 'Recharts', 'PostgreSQL'].map(tag => (
-                    <span key={tag} className="tech-tag text-[10px] font-mono px-2 py-0.5 rounded-full uppercase">{tag}</span>
-                  ))}
-                </div>
-                <div className="mt-auto flex flex-row gap-2 mt-4">
-                  <a href="https://yourlifetracker.lovable.app" onClick={() => trackProjectClick('Life Tracker - LifeOS', 'live_demo')} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center bg-[rgba(99,102,241,0.08)] border border-[rgba(99,102,241,0.3)] hover:bg-[rgba(99,102,241,0.15)] hover:border-[#6366F1] text-[#6366F1] rounded-lg px-3 py-2 transition-colors text-sm whitespace-nowrap">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-1.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                    Live Demo &rarr;
-                  </a>
-                  <a href="https://github.com/Pro-Prince/yourlifetracker" onClick={() => trackProjectClick('Life Tracker - LifeOS', 'github')} target="_blank" rel="noreferrer" className="flex-1 flex items-center justify-center bg-transparent border border-[#3F3F46] hover:border-[#6366F1] text-[#FAFAFA] rounded-[8px] px-3 py-2 transition-colors text-sm whitespace-nowrap">
-                    View on GitHub &rarr;
-                  </a>
-                </div>
-              </div>
-            </FadeIn>
-            {/* CARD 4 */}
-            <FadeIn delay={0.3}>
-              <div className="project-card p-6 flex flex-col h-full">
-                <div className="flex justify-between items-center mb-4">
-                  <span className="bg-[rgba(99,102,241,0.1)] text-[#6366F1] text-[10px] font-bold px-3 py-1 rounded-full uppercase">Web App</span>
-                  <span className="bg-[#052E16] text-[#22C55E] text-[10px] font-bold px-3 py-1 rounded-full uppercase">Shipped</span>
-                </div>
-                <h3 className="text-xl font-bold text-white mt-4 mb-2">Amul Kool Gold</h3>
-                <p className="text-sm text-[#A3A3A3] leading-relaxed flex-grow">
-                  A cinematic scroll-driven D2C concept storefront for a premium dairy beverage. Frame-sequence hero animation scrubbed by scroll, a four-flavour catalog, live cart, three-step checkout, and a complete order simulation - built to be clicked through, not just scrolled past.
-                </p>
-                <div className="border-t border-[#1F1F1F] my-4"></div>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {['React', 'TypeScript', 'Framer Motion', 'React Context', 'Tailwind CSS', 'Scroll Animation', 'Vite'].map(tag => (
-                    <span key={tag} className="tech-tag text-[10px] font-mono px-2 py-0.5 rounded-full uppercase">{tag}</span>
-                  ))}
-                </div>
-                <div className="mt-auto flex flex-row gap-2 mt-4">
-                  <a href="https://amul-kool-gold-website.vercel.app/" onClick={() => trackProjectClick('Amul Kool Gold', 'live_demo')} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center bg-[rgba(99,102,241,0.08)] border border-[rgba(99,102,241,0.3)] hover:bg-[rgba(99,102,241,0.15)] hover:border-[#6366F1] text-[#6366F1] rounded-lg px-3 py-2 transition-colors text-sm whitespace-nowrap">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-1.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                    Live Demo &rarr;
-                  </a>
-                  <a href="https://github.com/Pro-Prince/Amul-Kool-Website" onClick={() => trackProjectClick('Amul Kool Gold', 'github')} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center bg-transparent border border-[#3F3F46] hover:border-[#6366F1] text-[#FAFAFA] rounded-[8px] px-3 py-2 transition-colors text-sm whitespace-nowrap">
-                    View on GitHub &rarr;
-                  </a>
-                </div>
-              </div>
-            </FadeIn>
-
-            {/* CARD 5 */}
-            <FadeIn delay={0.4}>
-              <div className="project-card p-6 flex flex-col h-full">
-                <div className="flex justify-between items-center mb-4">
-                  <span className="bg-[rgba(99,102,241,0.1)] text-[#6366F1] text-[10px] font-bold px-3 py-1 rounded-full uppercase">Web App</span>
-                  <span className="bg-[#052E16] text-[#22C55E] text-[10px] font-bold px-3 py-1 rounded-full uppercase">Shipped</span>
-                </div>
-                <h3 className="text-xl font-bold text-white mt-4 mb-2">PDF Craft</h3>
-                <p className="text-sm text-[#A3A3A3] leading-relaxed flex-grow">
-                  A browser-based PDF editor with a full annotation toolkit - edit text, sign, redact, stamp, and export a flattened high-fidelity PDF without installing anything. Documents autosave to a secure per-user library, so nothing is ever lost between sessions.
-                </p>
-                <div className="border-t border-[#1F1F1F] my-4"></div>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {['React', 'Supabase', 'pdf.js', 'pdf-lib', 'Tailwind CSS'].map(tag => (
-                    <span key={tag} className="tech-tag text-[10px] font-mono px-2 py-0.5 rounded-full uppercase">{tag}</span>
-                  ))}
-                </div>
-                <div className="mt-auto flex flex-row gap-2 mt-4">
-                  <a href="https://your-pdf-craft.vercel.app/" onClick={() => trackProjectClick('PDF Craft', 'live_demo')} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center bg-[rgba(99,102,241,0.08)] border border-[rgba(99,102,241,0.3)] hover:bg-[rgba(99,102,241,0.15)] hover:border-[#6366F1] text-[#6366F1] rounded-lg px-3 py-2 transition-colors text-sm whitespace-nowrap">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-1.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                    Live Demo &rarr;
-                  </a>
-                  <a href="https://github.com/Pro-Prince/PDF-Craft" onClick={() => trackProjectClick('PDF Craft', 'github')} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center bg-transparent border border-[#3F3F46] hover:border-[#6366F1] text-[#FAFAFA] rounded-[8px] px-3 py-2 transition-colors text-sm whitespace-nowrap">
-                    View on GitHub &rarr;
-                  </a>
-                </div>
-              </div>
-            </FadeIn>
-
-            {/* CARD 6 */}
-            <FadeIn delay={0.5}>
-              <div className="project-card p-6 flex flex-col h-full">
-                <div className="flex justify-between items-center mb-4">
-                  <span className="bg-[rgba(167,139,250,0.1)] text-[#A78BFA] text-[10px] font-bold px-3 py-1 rounded-full uppercase">AI Product</span>
-                  <span className="bg-[#052E16] text-[#22C55E] text-[10px] font-bold px-3 py-1 rounded-full uppercase">Shipped</span>
-                </div>
-                <h3 className="text-xl font-bold text-white mt-4 mb-2">Interview Answer Auditor</h3>
-                <p className="text-sm text-[#A3A3A3] leading-relaxed flex-grow">
-                  A custom GPT that audits placement interview answers like a skeptical interviewer, not a hype machine. Scores each answer, flags the exact weak line, rewrites it, and predicts the follow-up question that would expose a memorized response.
-                </p>
-                <div className="border-t border-[#1F1F1F] my-4"></div>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {['Prompt Engineering', 'GPT Builder', 'Custom Instructions', 'Knowledge Base Design'].map(tag => (
-                    <span key={tag} className="tech-tag text-[10px] font-mono px-2 py-0.5 rounded-full uppercase">{tag}</span>
-                  ))}
-                </div>
-                <div className="mt-auto flex flex-row gap-2 mt-4">
-                  <a href="https://chatgpt.com/g/g-6a756f5c7d6c81918067354f1bc5116c-interview-answer-auditor" onClick={() => trackProjectClick('Interview Answer Auditor', 'live_demo')} target="_blank" rel="noopener noreferrer" className="w-full flex items-center justify-center bg-[rgba(99,102,241,0.08)] border border-[rgba(99,102,241,0.3)] hover:bg-[rgba(99,102,241,0.15)] hover:border-[#6366F1] text-[#6366F1] rounded-[8px] px-3 py-2 transition-colors text-sm whitespace-nowrap">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-1.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                    Try the GPT &rarr;
-                  </a>
-                </div>
-              </div>
-            </FadeIn>
-
+            {[...projects]
+              .sort((a, b) => new Date(b.dateAdded).getTime() - new Date(a.dateAdded).getTime())
+              .slice(0, 6)
+              .map((project, idx) => (
+                <FadeIn key={project.name} delay={idx * 0.1}>
+                  <div className="project-card p-6 flex flex-col h-full">
+                    <div className="flex justify-between items-center mb-4">
+                      <span className={`${project.categoryBadgeStyle || 'bg-indigo-400/10 text-[#6366F1] text-[10px] font-bold uppercase'} rounded-full px-3 py-1`}>
+                        {project.categoryBadge || project.category}
+                      </span>
+                      <span className={`${project.statusBadgeStyle || 'bg-green-950 text-[#22C55E] text-[10px] font-bold'} rounded-full px-3 py-1 uppercase`}>
+                        {project.status === 'shipped' ? 'Shipped' : 'In Progress'}
+                      </span>
+                    </div>
+                    <h3 className="text-xl font-bold text-white mb-2">{project.name}</h3>
+                    <p className="text-sm text-[#A3A3A3] leading-relaxed flex-grow">
+                      {project.shortDescription || project.description}
+                    </p>
+                    <div className="border-t border-[#1F1F1F] my-4"></div>
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {project.tech?.map(tag => (
+                        <span key={tag} className="tech-tag text-[10px] font-mono px-2 py-0.5 rounded-full uppercase">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    <div className="mt-auto flex flex-row gap-2 mt-4">
+                      {project.gptLink ? (
+                        <a
+                          href={project.gptLink}
+                          onClick={() => trackProjectClick(project.name, 'live_demo')}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="w-full flex items-center justify-center bg-[rgba(99,102,241,0.08)] border border-[rgba(99,102,241,0.3)] hover:bg-[rgba(99,102,241,0.15)] hover:border-[#6366F1] text-[#6366F1] rounded-[8px] px-3 py-2 transition-colors text-sm whitespace-nowrap"
+                        >
+                          <ExternalLink size={14} className="mr-1.5" />
+                          {project.demoLabel || 'Try the GPT →'}
+                        </a>
+                      ) : (
+                        <>
+                          {project.liveUrl && (
+                            <a
+                              href={project.liveUrl}
+                              onClick={() => trackProjectClick(project.name, 'live_demo')}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex-1 flex items-center justify-center bg-[rgba(99,102,241,0.08)] border border-[rgba(99,102,241,0.3)] hover:bg-[rgba(99,102,241,0.15)] hover:border-[#6366F1] text-[#6366F1] rounded-lg px-3 py-2 transition-colors text-sm whitespace-nowrap"
+                            >
+                              <ExternalLink size={14} className="mr-1.5" />
+                              {project.demoLabel || 'Live Demo →'}
+                            </a>
+                          )}
+                          {project.githubUrl && (
+                            <a
+                              href={project.githubUrl}
+                              onClick={() => trackProjectClick(project.name, 'github')}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="flex-1 flex items-center justify-center bg-transparent border border-[#3F3F46] hover:border-[#6366F1] text-[#FAFAFA] rounded-[8px] px-3 py-2 transition-colors text-sm whitespace-nowrap"
+                            >
+                              View on GitHub &rarr;
+                            </a>
+                          )}
+                        </>
+                      )}
+                    </div>
+                  </div>
+                </FadeIn>
+              ))}
           </div>
           
           <div className="mt-10 text-center">
             <Link to="/projects" className="inline-block bg-transparent border border-[#3F3F46] hover:border-[#6366F1] text-[#FAFAFA] rounded-[8px] px-6 py-3 transition-all font-semibold">
-              View All 12 Projects &rarr;
+              View All 13 Projects &rarr;
             </Link>
           </div>
         </div>

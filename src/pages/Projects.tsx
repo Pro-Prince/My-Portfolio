@@ -250,6 +250,38 @@ const projects = [
     github: "https://github.com/Pro-Prince/peeky-task-app",
     demo: "https://peeky-task.vercel.app/",
     demoLabel: "Web Showcase →"
+  },
+  {
+    id: "13",
+    category: "game",
+    categoryBadge: "Game",
+    categoryBadgeStyle: "bg-[rgba(234,179,8,0.1)] text-[#EAB308] text-[10px] font-bold uppercase",
+    status: "Shipped",
+    statusBadgeStyle: "bg-[#052E16] text-[#22C55E] text-[10px] font-bold uppercase",
+    title: "Coast Horizon",
+    tagline: "Take the scenic route. A peaceful retro-arcade coastal driving game, solo or with a friend.",
+    description: "Coast Horizon is a high-performance 3D web driving experience built entirely with web standards and zero game-engine dependencies. The entire visual world is generated procedurally — a parametric Bézier hatchback chassis, a 10-kilometer Catmull-Rom coastal highway re-parameterized by arc-length integration, and a combustion engine synthesized live using the Web Audio API with harmonic Fourier waves across 6 gear shifts. Two-player multiplayer runs on 20 Hz WebSocket synchronization with 100ms client-side entity interpolation. 60+ FPS, zero audio files, zero 3D asset downloads.",
+    challenges: [
+      "Procedural 3D vehicle with zero asset downloads",
+      "Synthesized engine audio with no audio files",
+      "Arc-length spline to prevent texture distortion",
+      "Smooth multiplayer via 100ms interpolation buffer",
+      "Dual-pass rear-view mirror without a second context"
+    ],
+    tech: [
+      "Three.js",
+      "WebGL",
+      "Web Audio API",
+      "WebSockets",
+      "GLSL Shaders",
+      "JavaScript ES Modules",
+      "HTML5",
+      "SVG",
+      "Vercel"
+    ],
+    github: "https://github.com/Pro-Prince/coast-horizon",
+    demo: "https://coast-horizon.vercel.app/",
+    demoLabel: "Play Live →"
   }
 ];
 
@@ -291,7 +323,8 @@ export default function Projects() {
               { id: 'ai-product', label: 'AI Products' },
               { id: 'ai-companion', label: 'AI Companion' },
               { id: 'computer-vision', label: 'Computer Vision' },
-              { id: 'desktop-app', label: 'Desktop App' }
+              { id: 'desktop-app', label: 'Desktop App' },
+              { id: 'game', label: 'Game' }
             ].map(tab => (
               <button
                 key={tab.id}

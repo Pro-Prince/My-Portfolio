@@ -40,6 +40,6 @@ jobs:
       - name: Ping Indoor Digital Twin
         run: |
           curl -s -o /dev/null -w "Digital Twin: %{http_code}\n" \
-            "${{ secrets.DIGITAL_TWIN_URL }}/rest/v1/" \
-            -H "apikey: ${{ secrets.DIGITAL_TWIN_KEY }}" \
-            -H "Authorization: Bearer ${{ secrets.DIGITAL_TWIN_KEY }}"
+          "${{ secrets.DIGITAL_TWIN_URL }}/storage/v1/bucket" \
+          -H "apikey: ${{ secrets.DIGITAL_TWIN_KEY }}" \
+          -H "Authorization: Bearer ${{ secrets.DIGITAL_TWIN_KEY }}"

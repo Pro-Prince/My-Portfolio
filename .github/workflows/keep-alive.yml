@@ -33,7 +33,7 @@ jobs:
       - name: Ping Lyra
         run: |
           curl -s -o /dev/null -w "Lyra: %{http_code}\n" \
-            "${{ secrets.LYRA_URL }}/rest/v1/" \
+            "${{ secrets.LYRA_URL }}/rest/v1/profiles?select=*&limit=1" \
             -H "apikey: ${{ secrets.LYRA_KEY }}" \
             -H "Authorization: Bearer ${{ secrets.LYRA_KEY }}"
 
